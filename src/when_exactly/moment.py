@@ -1,5 +1,6 @@
-import datetime
 import dataclasses
+import datetime
+
 
 @dataclasses.dataclass
 class Moment:
@@ -12,10 +13,12 @@ class Moment:
 
     def __str__(self):
         return f"{self.year}-{self.month}-{self.day} {self.hour}:{self.minute}:{self.second}"
-    
+
     def to_datetime(self):
-        return datetime.datetime(self.year, self.month, self.day, self.hour, self.minute, self.second)
-    
+        return datetime.datetime(
+            self.year, self.month, self.day, self.hour, self.minute, self.second
+        )
+
     @classmethod
     def from_datetime(cls, dt: datetime.datetime):
         return cls(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second)

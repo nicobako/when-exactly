@@ -1,5 +1,7 @@
-import when_exactly as we
 import datetime
+
+import when_exactly as we
+
 
 def test_moment():
     moment = we.Moment(2020, 1, 1, 0, 0, 0)
@@ -13,9 +15,11 @@ def test_moment():
     assert moment == we.Moment(2020, 1, 1, 0, 0, 0)
     assert moment != we.Moment(2020, 1, 1, 0, 0, 1)
 
+
 def test_moment_to_datetime():
     moment = we.Moment(2020, 1, 1, 0, 0, 0)
     assert moment.to_datetime() == datetime.datetime(2020, 1, 1, 0, 0, 0)
+
 
 def test_moment_from_datetime():
     dt = datetime.datetime(2020, 1, 1, 0, 0, 0)
