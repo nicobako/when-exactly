@@ -22,3 +22,9 @@ class Moment:
     @classmethod
     def from_datetime(cls, dt: datetime.datetime):
         return cls(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second)
+
+    def __post_init__(self):
+        try:
+            self.to_datetime()
+        except ValueError as e:
+            raise ValueError(f"Invalid moment: {e}") from e
