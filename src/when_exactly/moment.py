@@ -36,3 +36,12 @@ class Moment:
 
     def __le__(self, other: Moment) -> bool:
         return self.to_datetime() <= other.to_datetime()
+
+    def next_month(self) -> Moment:
+        if self.month == 12:
+            return Moment(
+                self.year + 1, 1, self.day, self.hour, self.minute, self.second
+            )
+        return Moment(
+            self.year, self.month + 1, self.day, self.hour, self.minute, self.second
+        )

@@ -1,0 +1,6 @@
+{
+  "recommendations": [
+    "ms-python.python", // Microsoft Python extensions
+    "ms-python.black-formatter" // Black formatter
+  ]
+}

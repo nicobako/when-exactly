@@ -59,3 +59,11 @@ def test_comparators() -> None:
         assert moment_gt > moment1
         assert moment_gt >= moment1
         assert moment_eq >= moment1
+
+
+def test_next_month() -> None:
+    moment = we.Moment(2020, 1, 1, 0, 0, 0)
+    assert moment.next_month() == we.Moment(2020, 2, 1, 0, 0, 0)
+
+    moment = we.Moment(2020, 12, 1, 0, 0, 0)
+    assert moment.next_month() == we.Moment(2021, 1, 1, 0, 0, 0)
