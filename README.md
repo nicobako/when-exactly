@@ -1,3 +1,5 @@
 # When Exactly
 
-A Python date library for those who think that working with dates ought to be more complicated.
+The precisely ambiguous time frame library.
+
+python -m twine upload --repository pypi dist/*

@@ -5,7 +5,7 @@ import pytest
 import when_exactly as we
 
 
-def test_moment():
+def test_moment() -> None:
     moment = we.Moment(2020, 1, 1, 0, 0, 0)
     assert str(moment) == "2020-1-1 0:0:0"
     assert moment.year == 2020
@@ -18,19 +18,19 @@ def test_moment():
     assert moment != we.Moment(2020, 1, 1, 0, 0, 1)
 
 
-def test_moment_to_datetime():
+def test_moment_to_datetime() -> None:
     moment = we.Moment(2020, 1, 1, 0, 0, 0)
     assert moment.to_datetime() == datetime.datetime(2020, 1, 1, 0, 0, 0)
 
 
-def test_moment_from_datetime():
+def test_moment_from_datetime() -> None:
     dt = datetime.datetime(2020, 1, 1, 0, 0, 0)
     moment = we.Moment.from_datetime(dt)
     assert moment == we.Moment(2020, 1, 1, 0, 0, 0)
     assert moment.to_datetime() == dt
 
 
-def test_invalid_moments_raise():
+def test_invalid_moments_raise() -> None:
     invalid_args = [2020, 1, 44, 0, 0, 0]
     with pytest.raises(ValueError):
         we.Moment(*invalid_args)
