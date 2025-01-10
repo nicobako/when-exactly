@@ -1,11 +1,14 @@
-import when_exactly as we
 import dataclasses
-from assert_frozen import assert_frozen
 import datetime
 
-def test_duration():
+from assert_frozen import assert_frozen
+
+import when_exactly as we
+
+
+def test_duration() -> None:
     duration = we.Duration(
-        years=1, 
+        years=1,
         months=2,
         weeks=3,
         days=2,
@@ -22,9 +25,10 @@ def test_duration():
     assert duration.seconds == 30
     assert_frozen(duration)
 
-def test_add_durations():
+
+def test_add_durations() -> None:
     duration1 = we.Duration(
-        years=1, 
+        years=1,
         months=2,
         weeks=3,
         days=2,
@@ -33,7 +37,7 @@ def test_add_durations():
         seconds=30,
     )
     duration2 = we.Duration(
-        years=2, 
+        years=2,
         months=3,
         weeks=5,
         days=7,
@@ -42,11 +46,11 @@ def test_add_durations():
         seconds=55,
     )
     assert duration1 + duration2 == we.Duration(
-        years=duration1.years + duration2.years, 
+        years=duration1.years + duration2.years,
         months=duration1.months + duration2.months,
         weeks=duration1.weeks + duration2.weeks,
         days=duration1.days + duration2.days,
         hours=duration1.hours + duration2.hours,
-        minutes= duration1.minutes + duration2.minutes,
+        minutes=duration1.minutes + duration2.minutes,
         seconds=duration1.seconds + duration2.seconds,
     )

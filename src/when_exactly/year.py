@@ -1,11 +1,13 @@
+import dataclasses
+
 from when_exactly.interval import Interval
 from when_exactly.moment import Moment
 
-import dataclasses
 
 @dataclasses.dataclass(frozen=True)
 class Year(Interval):
     pass
+
 
 def year(year: int) -> Year:
     return Year(
