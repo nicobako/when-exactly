@@ -4,7 +4,7 @@ import dataclasses
 import datetime
 
 
-@dataclasses.dataclass
+@dataclasses.dataclass(frozen=True)
 class Moment:
     year: int
     month: int
@@ -30,3 +30,9 @@ class Moment:
             self.to_datetime()
         except ValueError as e:
             raise ValueError(f"Invalid moment: {e}") from e
+
+    def __lt__(self, other: Moment) -> bool:
+        return self.to_datetime() < other.to_datetime()
+
+    def __le__(self, other: Moment) -> bool:
+        return self.to_datetime() <= other.to_datetime()
