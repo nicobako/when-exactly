@@ -21,3 +21,6 @@ class Interval:
             self.start + delta,
             self.stop + delta,
         )
+
+    def __next__(self) -> Interval:
+        raise NotImplementedError

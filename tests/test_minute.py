@@ -28,3 +28,9 @@ def test_minute_second() -> None:
     assert second.stop == we.Moment(2020, 1, 1, 0, 0, 1)
     assert_frozen(second)
     assert second.minute() == minute
+
+
+def test_minute_next() -> None:
+    minute = we.minute(2020, 1, 1, 0, 0)
+    assert next(minute) == we.minute(2020, 1, 1, 0, 1)
+    assert next(next(minute)) == we.minute(2020, 1, 1, 0, 2)

@@ -4,6 +4,7 @@ import dataclasses
 import datetime
 from typing import Iterable
 
+from when_exactly.delta import Delta
 from when_exactly.interval import Interval
 from when_exactly.moment import Moment
 
@@ -63,21 +64,29 @@ class Second(Interval):
             self.start.minute,
         )
 
+    def __next__(self) -> Second:
+        return Second(
+            start=self.stop,
+            stop=self.stop + Delta(seconds=1),
+        )
+
 
 @dataclasses.dataclass(frozen=True)
 class Minute(Interval):
     pass
 
     def seconds(self) -> Iterable[Second]:
-        for i in range(60):
-            yield Second(
-                start=Moment.from_datetime(
-                    self.start.to_datetime() + datetime.timedelta(seconds=i)
-                ),
-                stop=Moment.from_datetime(
-                    self.start.to_datetime() + datetime.timedelta(seconds=i + 1)
-                ),
-            )
+        second = _second(
+            self.start.year,
+            self.start.month,
+            self.start.day,
+            self.start.hour,
+            self.start.minute,
+            0,
+        )
+        for _ in range(60):
+            yield second
+            second = next(second)
 
     def second(self, second: int) -> Second:
         return _second(
@@ -89,18 +98,31 @@ class Minute(Interval):
             second,
         )
 
+    def __next__(self) -> Minute:
+        return Minute(
+            start=self.stop,
+            stop=self.stop + Delta(minutes=1),
+        )
+
 
 @dataclasses.dataclass(frozen=True)
 class Hour(Interval):
     pass
 
     def minutes(self) -> Iterable[Minute]:
-        for i in range(60):
-            yield Minute(
-                start=Moment.from_datetime(
-                    self.start.to_datetime() + datetime.timedelta(minutes=i)
-                ),
-                stop=Moment.from_datetime(
-                    self.start.to_datetime() + datetime.timedelta(minutes=i + 1)
-                ),
-            )
+        minute = _minute(
+            self.start.year,
+            self.start.month,
+            self.start.day,
+            self.start.hour,
+            0,
+        )
+        for _ in range(60):
+            yield minute
+            minute = next(minute)
+
+    def __next__(self) -> Interval:
+        return Hour(
+            start=self.stop,
+            stop=self.stop + Delta(hours=1),
+        )
