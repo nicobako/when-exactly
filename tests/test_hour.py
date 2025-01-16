@@ -24,3 +24,9 @@ def test_next_hour() -> None:
     hour = we.hour(2020, 1, 1, 0)
     assert next(hour) == we.hour(2020, 1, 1, 1)
     assert next(next(hour)) == we.hour(2020, 1, 1, 2)
+
+
+def test_hour_day() -> None:
+    hour = we.hour(2020, 1, 1, 0)
+    day = hour.day()
+    assert day == we.day(2020, 1, 1)

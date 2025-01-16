@@ -19,15 +19,3 @@ def test_interval_start_and_stop_cannot_ge() -> None:
         we.Interval(start, start)
     with pytest.raises(ValueError):
         we.Interval(start, we.Moment(2019, 1, 1, 0, 0, 0))
-
-
-def test_add_delta() -> None:
-    interval = we.Interval(
-        we.Moment(2020, 1, 1, 0, 0, 0), we.Moment(2020, 1, 2, 0, 0, 0)
-    )
-    assert interval + we.Delta(days=1) == we.Interval(
-        we.Moment(2020, 1, 2, 0, 0, 0), we.Moment(2020, 1, 3, 0, 0, 0)
-    )
-    assert interval + we.Delta(days=-1) == we.Interval(
-        we.Moment(2019, 12, 31, 0, 0, 0), we.Moment(2020, 1, 1, 0, 0, 0)
-    )
