@@ -15,11 +15,13 @@ from when_exactly.factories import (
     year,
 )
 from when_exactly.interval import Interval
+from when_exactly.intervals import Intervals
 from when_exactly.moment import Moment
 
 __all__ = [
     "Delta",
     "Interval",
+    "Intervals",
     "Moment",
     "now",
     "second",
