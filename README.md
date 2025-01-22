@@ -6,7 +6,10 @@ The precisely ambiguous time frame library.
 
 ### Uploading to pypi
 
+```bash
+python -m build
 python -m twine upload --repository pypi dist/*
+```
 
 ### Date and Time Format
 
