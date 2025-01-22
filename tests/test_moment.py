@@ -1,5 +1,7 @@
 import datetime
 
+import pytest
+
 import when_exactly as we
 
 
@@ -26,3 +28,9 @@ def test_moment_from_datetime():
     moment = we.Moment.from_datetime(dt)
     assert moment == we.Moment(2020, 1, 1, 0, 0, 0)
     assert moment.to_datetime() == dt
+
+
+def test_invalid_moments_raise():
+    invalid_args = [2020, 1, 44, 0, 0, 0]
+    with pytest.raises(ValueError):
+        we.Moment(*invalid_args)
