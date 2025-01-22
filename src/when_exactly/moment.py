@@ -3,6 +3,8 @@ from __future__ import annotations
 import dataclasses
 import datetime
 
+from when_exactly.delta import Delta
+
 
 @dataclasses.dataclass(frozen=True)
 class Moment:
@@ -37,11 +39,43 @@ class Moment:
     def __le__(self, other: Moment) -> bool:
         return self.to_datetime() <= other.to_datetime()
 
-    def next_month(self) -> Moment:
-        if self.month == 12:
-            return Moment(
-                self.year + 1, 1, self.day, self.hour, self.minute, self.second
-            )
-        return Moment(
-            self.year, self.month + 1, self.day, self.hour, self.minute, self.second
-        )
+    def __add__(self, delta: Delta) -> Moment:
+        new_moment_kwargs = {
+            "year": self.year,
+            "month": self.month,
+            "day": self.day,
+            "hour": self.hour,
+            "minute": self.minute,
+            "second": self.second,
+        }
+        if delta.years != 0:
+            new_moment_kwargs["year"] += delta.years
+
+        if delta.months != 0:
+            new_moment_kwargs["month"] += delta.months
+            while new_moment_kwargs["month"] > 12:
+                new_moment_kwargs["month"] -= 12
+                new_moment_kwargs["year"] += 1
+
+            while new_moment_kwargs["month"] < 1:
+                new_moment_kwargs["month"] += 12
+                new_moment_kwargs["year"] -= 1
+
+        while (
+            new_moment_kwargs["day"] > 28
+        ):  # if the day is too large for the month, we need to decrement it until it is valid
+            try:
+                Moment(**new_moment_kwargs)
+                break
+            except ValueError:
+                new_moment_kwargs["day"] -= 1
+
+        dt = Moment(**new_moment_kwargs).to_datetime()
+
+        dt += datetime.timedelta(weeks=delta.weeks)
+        dt += datetime.timedelta(days=delta.days)
+        dt += datetime.timedelta(hours=delta.hours)
+        dt += datetime.timedelta(minutes=delta.minutes)
+        dt += datetime.timedelta(seconds=delta.seconds)
+
+        return Moment.from_datetime(dt)

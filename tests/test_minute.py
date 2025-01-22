@@ -18,3 +18,13 @@ def test_minute_seconds() -> None:
         assert second == we.second(2020, 1, 1, 0, 0, i)
     assert seconds[-1].start == we.Moment(2020, 1, 1, 0, 0, 59)
     assert seconds[-1].stop == we.Moment(2020, 1, 1, 0, 1, 0)
+
+
+def test_minute_second() -> None:
+    minute = we.minute(2020, 1, 1, 0, 0)
+    second = minute.second(0)
+    assert second == we.second(2020, 1, 1, 0, 0, 0)
+    assert second.start == we.Moment(2020, 1, 1, 0, 0, 0)
+    assert second.stop == we.Moment(2020, 1, 1, 0, 0, 1)
+    assert_frozen(second)
+    assert second.minute() == minute
