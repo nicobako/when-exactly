@@ -54,3 +54,6 @@ class Intervals(abc.Container[T]):
 
     def __len__(self) -> int:
         return len(self._values)
+
+    def iso(self) -> str:
+        return f"[{','.join(interval.iso() for interval in self)}]"

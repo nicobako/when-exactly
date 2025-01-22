@@ -209,6 +209,9 @@ class Day(Interval):
             self.start.month,
         )
 
+    def iso(self) -> str:
+        return f"{self.start.year:04}-{self.start.month:02}-{self.start.day:02}"
+
     def __next__(self) -> Day:
         return Day(
             start=self.stop,
@@ -219,15 +222,20 @@ class Day(Interval):
 @dataclasses.dataclass(frozen=True)
 class Month(Interval):
 
-    def days(self) -> Iterable[Day]:
-        day = _day(
-            self.start.year,
-            self.start.month,
-            1,
+    def days(self) -> Days:
+        return Days(
+            filter(
+                lambda d: d.start.month == self.start.month,
+                [
+                    _day(
+                        self.start.year,
+                        self.start.month,
+                        i + 1,
+                    )
+                    for i in range(31)
+                ],
+            )
         )
-        for _ in range(31):
-            yield day
-            day = next(day)
 
     def day(self, day: int) -> Day:
         return _day(
@@ -249,14 +257,8 @@ class Month(Interval):
 @dataclasses.dataclass(frozen=True)
 class Year(Interval):
 
-    def months(self) -> Iterable[Month]:
-        month = _month(
-            self.start.year,
-            1,
-        )
-        for _ in range(12):
-            yield month
-            month = next(month)
+    def months(self) -> Months:
+        return Months([_month(self.start.year, i + 1) for i in range(12)])
 
     def month(self, month: int) -> Month:
         return _month(

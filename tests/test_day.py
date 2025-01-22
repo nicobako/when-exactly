@@ -33,3 +33,8 @@ def test_day_months() -> None:
     day = we.day(2020, 1, 1)
     month = day.month()
     assert month == we.month(2020, 1)
+
+
+def test_day_iso() -> None:
+    day = we.day(2020, 1, 1)
+    assert day.iso() == "2020-01-01"

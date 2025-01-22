@@ -20,3 +20,6 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/nicobako/when-exactly"
 Issues = "https://github.com/nicobako/when-exactly/issues"
+
+[tool.pytest.ini_options]
+addopts = "--doctest-glob='*.md'"
