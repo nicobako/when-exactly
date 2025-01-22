@@ -1,10 +1,17 @@
 repos:
   - repo: https://github.com/psf/black
-    rev: 24.10.0  # Use the latest stable version
+    rev: 24.10.0 # 2024-10-27
     hooks:
       - id: black
+      
   - repo: https://github.com/PyCQA/isort
-    rev: 5.13.2  # Use the latest stable version
+    rev: 5.13.2 # 2023-12-13
     hooks:
       - id: isort
         args: [--profile, black]
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.14.1 # 2025-01-09
+    hooks:
+      - id: mypy
+        args: [--strict, --ignore-missing-imports]
