@@ -22,3 +22,9 @@ class Interval:
 
     def __le__(self, other: Interval) -> bool:
         return self.start <= other.start or self.stop <= other.stop
+
+    def iso(self) -> str:
+        return f"{self.start.iso()}/{self.stop.iso()}"
+
+    def __str__(self) -> str:
+        return self.iso()

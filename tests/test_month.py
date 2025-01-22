@@ -30,3 +30,9 @@ def test_month_next() -> None:
     month = we.month(2020, 1)
     assert next(month) == we.month(2020, 2)
     assert next(next(month)) == we.month(2020, 3)
+
+
+def test_month_iso() -> None:
+    month = we.month(2023, 5)
+    expected_iso = "2023-05"
+    assert month.iso() == expected_iso

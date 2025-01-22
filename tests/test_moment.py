@@ -8,7 +8,7 @@ import when_exactly as we
 
 def test_moment() -> None:
     moment = we.Moment(2020, 1, 1, 0, 0, 0)
-    assert str(moment) == "2020-1-1 0:0:0"
+    assert_frozen(moment)
     assert moment.year == 2020
     assert moment.month == 1
     assert moment.day == 1
@@ -17,7 +17,6 @@ def test_moment() -> None:
     assert moment.second == 0
     assert moment == we.Moment(2020, 1, 1, 0, 0, 0)
     assert moment != we.Moment(2020, 1, 1, 0, 0, 1)
-    assert_frozen(moment)
 
 
 def test_moment_to_datetime() -> None:
@@ -108,3 +107,10 @@ def test_add_delta_edge_cases() -> None:
         2020, 2, 29, 0, 0, 0
     )
     assert leap_year + we.Delta(years=1) == we.Moment(2021, 2, 28, 0, 0, 0)
+
+
+def test_iso() -> None:
+    moment = we.Moment(2020, 1, 1, 0, 0, 0)
+    expected_iso = "2020-01-01T00:00:00"
+    assert moment.iso() == expected_iso
+    assert str(moment) == expected_iso

@@ -8,6 +8,7 @@ def test_year() -> None:
     assert_frozen(year)
     assert year.start == we.Moment(2020, 1, 1, 0, 0, 0)
     assert year.stop == we.Moment(2021, 1, 1, 0, 0, 0)
+    assert str(year) == "2020"
 
 
 def test_year_months() -> None:
@@ -30,3 +31,8 @@ def test_year_next() -> None:
     year = we.year(2020)
     assert next(year) == we.year(2021)
     assert next(next(year)) == we.year(2022)
+
+
+def test_year_iso() -> None:
+    year = we.year(2025)
+    assert year.iso() == "2025"

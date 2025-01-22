@@ -42,3 +42,12 @@ def test_comparators() -> None:
     for gt_interval in gt_intervals:
         assert gt_interval > interval
         assert gt_interval >= interval
+
+
+def test_iso() -> None:
+    interval = we.Interval(
+        we.Moment(2020, 1, 1, 0, 0, 0), we.Moment(2021, 1, 1, 0, 0, 0)
+    )
+    expected_iso = "2020-01-01T00:00:00/2021-01-01T00:00:00"
+    assert interval.iso() == expected_iso
+    assert str(interval) == expected_iso

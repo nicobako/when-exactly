@@ -15,9 +15,6 @@ class Moment:
     minute: int
     second: int
 
-    def __str__(self) -> str:
-        return f"{self.year}-{self.month}-{self.day} {self.hour}:{self.minute}:{self.second}"
-
     def to_datetime(self) -> datetime.datetime:
         return datetime.datetime(
             self.year, self.month, self.day, self.hour, self.minute, self.second
@@ -79,3 +76,9 @@ class Moment:
         dt += datetime.timedelta(seconds=delta.seconds)
 
         return Moment.from_datetime(dt)
+
+    def iso(self) -> str:
+        return self.to_datetime().isoformat()
+
+    def __str__(self) -> str:
+        return self.iso()

@@ -242,6 +242,9 @@ class Month(Interval):
             stop=self.stop + Delta(months=1),
         )
 
+    def iso(self) -> str:
+        return f"{self.start.year:04}-{self.start.month:02}"
+
 
 @dataclasses.dataclass(frozen=True)
 class Year(Interval):
@@ -266,6 +269,12 @@ class Year(Interval):
             start=self.stop,
             stop=self.stop + Delta(years=1),
         )
+
+    def iso(self) -> str:
+        return f"{self.start.year}"
+
+    def __repr__(self) -> str:
+        return f"{self.start.year}"
 
 
 def days(days: list[Day]) -> Days:
