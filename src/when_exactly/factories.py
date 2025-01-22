@@ -6,6 +6,7 @@ from typing import Iterable
 
 from when_exactly.delta import Delta
 from when_exactly.interval import Interval
+from when_exactly.intervals import Intervals
 from when_exactly.moment import Moment
 
 
@@ -259,3 +260,14 @@ class Year(Interval):
             start=self.stop,
             stop=self.stop + Delta(years=1),
         )
+
+
+def days(days: list[Day]) -> Days:
+    return Days(
+        start=day(1, 1, 1).start,
+        stop=day(1, 1, 2).start,
+    )
+
+
+class Days(Intervals[Day]):
+    pass
