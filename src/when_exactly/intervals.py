@@ -51,3 +51,6 @@ class Intervals(abc.Container[T]):
 
     def __reversed__(self) -> NoReturn:
         raise NotImplementedError
+
+    def __len__(self) -> int:
+        return len(self._values)

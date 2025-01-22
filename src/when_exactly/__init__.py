@@ -1,12 +1,14 @@
 from when_exactly.delta import Delta
 from when_exactly.factories import (
     Day,
+    Days,
     Hour,
     Minute,
     Month,
     Second,
     Year,
     day,
+    days,
     hour,
     minute,
     month,
@@ -34,6 +36,8 @@ __all__ = [
     "Year",
     "day",
     "Day",
+    "days",
+    "Days",
     "month",
     "Month",
     "year",

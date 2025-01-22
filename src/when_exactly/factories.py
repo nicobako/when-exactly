@@ -203,6 +203,12 @@ class Day(Interval):
             hour,
         )
 
+    def month(self) -> Month:
+        return _month(
+            self.start.year,
+            self.start.month,
+        )
+
     def __next__(self) -> Day:
         return Day(
             start=self.stop,
@@ -264,10 +270,15 @@ class Year(Interval):
 
 def days(days: list[Day]) -> Days:
     return Days(
-        start=day(1, 1, 1).start,
-        stop=day(1, 1, 2).start,
+        days,
     )
 
 
 class Days(Intervals[Day]):
+
+    def months(self) -> Months:
+        return Months(list(set([day.month() for day in self])))
+
+
+class Months(Intervals[Month]):
     pass

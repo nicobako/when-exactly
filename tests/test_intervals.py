@@ -31,3 +31,5 @@ def test_intervals_collection_api(
 
     with pytest.raises(NotImplementedError):
         assert reversed(intervals)
+
+    assert len(intervals) == 3

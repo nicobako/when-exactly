@@ -27,3 +27,9 @@ def test_day_hour() -> None:
         assert hour == we.hour(2020, 1, 1, i)
         assert hour.start == we.Moment(2020, 1, 1, i, 0, 0)
         assert hour.day() == day
+
+
+def test_day_months() -> None:
+    day = we.day(2020, 1, 1)
+    month = day.month()
+    assert month == we.month(2020, 1)
