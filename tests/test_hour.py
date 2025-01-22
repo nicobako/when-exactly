@@ -18,3 +18,9 @@ def test_hour_minutes() -> None:
         assert minute == we.minute(2020, 1, 1, 0, i)
     assert minutes[-1].start == we.Moment(2020, 1, 1, 0, 59, 0)
     assert minutes[-1].stop == we.Moment(2020, 1, 1, 1, 0, 0)
+
+
+def test_next_hour() -> None:
+    hour = we.hour(2020, 1, 1, 0)
+    assert next(hour) == we.hour(2020, 1, 1, 1)
+    assert next(next(hour)) == we.hour(2020, 1, 1, 2)
