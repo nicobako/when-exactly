@@ -11,7 +11,7 @@ from collections import abc
 
 class Intervals(abc.Container[T]):
     def __init__(self, values: Iterable[T]) -> None:
-        self._values = list(values)
+        self._values: list[T] = sorted(set(values))
         self._counter = 0
 
     def __iter__(self) -> Intervals[T]:

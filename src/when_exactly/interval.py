@@ -16,3 +16,9 @@ class Interval:
 
     def __next__(self) -> Interval:
         raise NotImplementedError
+
+    def __lt__(self, other: Interval) -> bool:
+        return self.start < other.start or self.stop < other.stop
+
+    def __le__(self, other: Interval) -> bool:
+        return self.start <= other.start or self.stop <= other.stop

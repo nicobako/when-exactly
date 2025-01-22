@@ -277,7 +277,7 @@ def days(days: list[Day]) -> Days:
 class Days(Intervals[Day]):
 
     def months(self) -> Months:
-        return Months(list(set([day.month() for day in self])))
+        return Months([day.month() for day in self])
 
 
 class Months(Intervals[Month]):

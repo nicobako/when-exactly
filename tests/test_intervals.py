@@ -33,3 +33,13 @@ def test_intervals_collection_api(
         assert reversed(intervals)
 
     assert len(intervals) == 3
+
+
+def test_intervals_sorts_and_removes_duplicates() -> None:
+    a = we.Interval(we.Moment(2020, 1, 1, 0, 0, 0), we.Moment(2020, 1, 2, 0, 0, 0))
+    b = we.Interval(we.Moment(2020, 1, 2, 0, 0, 0), we.Moment(2020, 1, 3, 0, 0, 0))
+    c = we.Interval(we.Moment(2020, 1, 3, 0, 0, 0), we.Moment(2020, 1, 4, 0, 0, 0))
+
+    values = [a, b, c, a, b, c]
+    intervals = we.Intervals(values)
+    assert list(intervals) == [a, b, c]
