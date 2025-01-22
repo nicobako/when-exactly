@@ -1,5 +1,7 @@
-from when_exactly.moment import Moment
 import datetime
 
-def now()->Moment:
+from when_exactly.moment import Moment
+
+
+def now() -> Moment:
     return Moment.from_datetime(datetime.datetime.now())

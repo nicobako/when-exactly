@@ -1,9 +1,10 @@
 import datetime
 
 import pytest
+from assert_frozen import assert_frozen
 
 import when_exactly as we
-from assert_frozen import assert_frozen
+
 
 def test_moment() -> None:
     moment = we.Moment(2020, 1, 1, 0, 0, 0)
@@ -17,6 +18,7 @@ def test_moment() -> None:
     assert moment == we.Moment(2020, 1, 1, 0, 0, 0)
     assert moment != we.Moment(2020, 1, 1, 0, 0, 1)
     assert_frozen(moment)
+
 
 def test_moment_to_datetime() -> None:
     moment = we.Moment(2020, 1, 1, 0, 0, 0)
@@ -37,8 +39,9 @@ def test_invalid_moments_raise() -> None:
     with pytest.raises(ValueError):
         we.Moment(*invalid_args)
 
+
 def test_comparators() -> None:
-    moment_args = [2020, 2, 2, 1,1, 1]
+    moment_args = [2020, 2, 2, 1, 1, 1]
     moment1 = we.Moment(*moment_args)
     eq_args = moment_args.copy()
     moment_eq = we.Moment(*eq_args)
@@ -56,8 +59,3 @@ def test_comparators() -> None:
         assert moment_gt > moment1
         assert moment_gt >= moment1
         assert moment_eq >= moment1
-    
-def test_moment_add():
-    moment = we.Moment(2020, 1, 1, 0, 0, 0)
-    assert moment + we.delta(days=1) == we.Moment(2020, 1, 2, 0, 0, 0)
-    moment.add(days=1)

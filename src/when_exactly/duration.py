@@ -1,5 +1,8 @@
 from __future__ import annotations
+
 import dataclasses
+
+
 @dataclasses.dataclass(kw_only=True, frozen=True)
 class Duration:
     years: int = 0
