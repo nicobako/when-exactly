@@ -254,8 +254,19 @@ class Month(Interval):
         return f"{self.start.year:04}-{self.start.month:02}"
 
 
-@dataclasses.dataclass(frozen=True)
+@dataclasses.dataclass(frozen=True, repr=False)
 class Year(Interval):
+
+    def __init__(self, year: int) -> None:
+
+        Interval.__init__(
+            self,
+            start=Moment(year, 1, 1, 0, 0, 0),
+            stop=Moment(year + 1, 1, 1, 0, 0, 0),
+        )
+
+    def __repr__(self) -> str:
+        return f"Year({self.start.year})"
 
     def months(self) -> Months:
         return Months([_month(self.start.year, i + 1) for i in range(12)])
@@ -267,10 +278,7 @@ class Year(Interval):
         )
 
     def __next__(self) -> Year:
-        return Year(
-            start=self.stop,
-            stop=self.stop + Delta(years=1),
-        )
+        return Year(self.stop.year)
 
     def iso(self) -> str:
         return f"{self.start.year}"
