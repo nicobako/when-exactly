@@ -13,10 +13,10 @@ def test_year() -> None:
 
 def test_year_months() -> None:
     year = we.Year(2020)
-    months = list(year.months())
+    months = year.months()
     assert len(months) == 12
     for i, month in enumerate(months):
-        assert month == we.month(2020, i + 1)
+        assert month == we.Month(2020, i + 1)
     assert months[-1].start == we.Moment(2020, 12, 1, 0, 0, 0)
     assert months[-1].stop == we.Moment(2021, 1, 1, 0, 0, 0)
 
@@ -24,7 +24,7 @@ def test_year_months() -> None:
 def test_year_month() -> None:
     year = we.Year(2020)
     month = year.month(1)
-    assert month == we.month(2020, 1)
+    assert month == we.Month(2020, 1)
 
 
 def test_year_next() -> None:

@@ -14,86 +14,33 @@ def now() -> Moment:
     return Moment.from_datetime(datetime.datetime.now())
 
 
-def second(
-    year: int, month: int, day: int, hour: int, minute: int, second: int
-) -> Second:
-    start = Moment(year, month, day, hour, minute, second)
-    stop = start + Delta(seconds=1)
-    return Second(
-        start=start,
-        stop=stop,
-    )
+@dataclasses.dataclass(frozen=True, init=False, repr=False)
+class CustomInterval(Interval):
+    def __init__(self, *args: int, **kwargs: int):
+        raise NotImplementedError("CustomInterval init not implemented")
+
+    def __repr__(self) -> str:
+        raise NotImplementedError("CustomInterval repr not implemented")
+
+    @classmethod
+    def from_moment(cls, moment: Moment) -> CustomInterval:
+        raise NotImplementedError("CustomInterval from_moment not implemented")
+
+    def __next__(self) -> CustomInterval:
+        raise NotImplementedError("CustomInterval next not implemented")
 
 
-_second = second
-
-
-def minute(year: int, month: int, day: int, hour: int, minute: int) -> Minute:
-    start = Moment(year, month, day, hour, minute, 0)
-    stop = start + Delta(minutes=1)
-    return Minute(
-        start=start,
-        stop=stop,
-    )
-
-
-_minute = minute
-
-
-def hour(year: int, month: int, day: int, hour: int) -> Hour:
-    start = Moment(year, month, day, hour, 0, 0)
-    stop = start + Delta(hours=1)
-    return Hour(
-        start=start,
-        stop=stop,
-    )
-
-
-_hour = hour
-
-
-def day(year: int, month: int, day: int) -> Day:
-    start = Moment(year, month, day, 0, 0, 0)
-    stop = start + Delta(days=1)
-    return Day(
-        start=start,
-        stop=stop,
-    )
-
-
-_day = day
-
-
-def month(year: int, month: int) -> Month:
-    start = Moment(year, month, 1, 0, 0, 0)
-    stop = start + Delta(months=1)
-    return Month(
-        start=start,
-        stop=stop,
-    )
-
-
-_month = month
-
-
-def year(year: int) -> Year:
-    start = Moment(year, 1, 1, 0, 0, 0)
-    stop = start + Delta(years=1)
-    return Year(
-        start=start,
-        stop=stop,
-    )
-
-
-_year = year
-
-
-@dataclasses.dataclass(frozen=True)
-class Second(Interval):
-    pass
+@dataclasses.dataclass(frozen=True, init=False, repr=False)
+class Second(CustomInterval):
+    def __init__(
+        self, year: int, month: int, day: int, hour: int, minute: int, second: int
+    ) -> None:
+        start = Moment(year, month, day, hour, minute, second)
+        stop = start + Delta(seconds=1)
+        Interval.__init__(self, start=start, stop=stop)
 
     def minute(self) -> Minute:
-        return minute(
+        return Minute(
             self.start.year,
             self.start.month,
             self.start.day,
@@ -103,17 +50,39 @@ class Second(Interval):
 
     def __next__(self) -> Second:
         return Second(
-            start=self.stop,
-            stop=self.stop + Delta(seconds=1),
+            self.stop.year,
+            self.stop.month,
+            self.stop.day,
+            self.stop.hour,
+            self.stop.minute,
+            self.stop.second,
+        )
+
+    @classmethod
+    def from_moment(cls, moment: Moment) -> Second:
+        return Second(
+            moment.year,
+            moment.month,
+            moment.day,
+            moment.hour,
+            moment.minute,
+            moment.second,
         )
 
 
-@dataclasses.dataclass(frozen=True)
-class Minute(Interval):
-    pass
+@dataclasses.dataclass(frozen=True, init=False, repr=False)
+class Minute(CustomInterval):
+
+    def __init__(self, year: int, month: int, day: int, hour: int, minute: int) -> None:
+        start = Moment(year, month, day, hour, minute, 0)
+        stop = start + Delta(minutes=1)
+        Interval.__init__(self, start=start, stop=stop)
+
+    def __repr__(self) -> str:
+        return f"Minute({self.start.year}, {self.start.month}, {self.start.day}, {self.start.hour}, {self.start.minute})"
 
     def seconds(self) -> Iterable[Second]:
-        second = _second(
+        second = Second(
             self.start.year,
             self.start.month,
             self.start.day,
@@ -126,7 +95,7 @@ class Minute(Interval):
             second = next(second)
 
     def second(self, second: int) -> Second:
-        return _second(
+        return Second(
             self.start.year,
             self.start.month,
             self.start.day,
@@ -137,17 +106,26 @@ class Minute(Interval):
 
     def __next__(self) -> Minute:
         return Minute(
-            start=self.stop,
-            stop=self.stop + Delta(minutes=1),
+            self.stop.year,
+            self.stop.month,
+            self.stop.day,
+            self.stop.hour,
+            self.stop.minute,
         )
 
 
-@dataclasses.dataclass(frozen=True)
-class Hour(Interval):
-    pass
+@dataclasses.dataclass(frozen=True, init=False, repr=False)
+class Hour(CustomInterval):
+    def __init__(self, year: int, month: int, day: int, hour: int) -> None:
+        start = Moment(year, month, day, hour, 0, 0)
+        stop = start + Delta(hours=1)
+        Interval.__init__(self, start=start, stop=stop)
+
+    def __repr__(self) -> str:
+        return f"Hour({self.start.year}, {self.start.month}, {self.start.day}, {self.start.hour})"
 
     def minutes(self) -> Iterable[Minute]:
-        minute = _minute(
+        minute = Minute(
             self.start.year,
             self.start.month,
             self.start.day,
@@ -159,7 +137,7 @@ class Hour(Interval):
             minute = next(minute)
 
     def minute(self, minute: int) -> Minute:
-        return _minute(
+        return Minute(
             self.start.year,
             self.start.month,
             self.start.day,
@@ -168,7 +146,7 @@ class Hour(Interval):
         )
 
     def day(self) -> Day:
-        return _day(
+        return Day(
             self.start.year,
             self.start.month,
             self.start.day,
@@ -176,16 +154,25 @@ class Hour(Interval):
 
     def __next__(self) -> Hour:
         return Hour(
-            start=self.stop,
-            stop=self.stop + Delta(hours=1),
+            self.stop.year,
+            self.stop.month,
+            self.stop.day,
+            self.stop.hour,
         )
 
 
-@dataclasses.dataclass(frozen=True)
-class Day(Interval):
+@dataclasses.dataclass(frozen=True, init=False, repr=False)
+class Day(CustomInterval):
+    def __init__(self, year: int, month: int, day: int) -> None:
+        start = Moment(year, month, day, 0, 0, 0)
+        stop = start + Delta(days=1)
+        Interval.__init__(self, start=start, stop=stop)
+
+    def __repr__(self) -> str:
+        return f"Day({self.start.year}, {self.start.month}, {self.start.day})"
 
     def hours(self) -> Iterable[Hour]:
-        hour = _hour(
+        hour = Hour(
             self.start.year,
             self.start.month,
             self.start.day,
@@ -196,7 +183,7 @@ class Day(Interval):
             hour = next(hour)
 
     def hour(self, hour: int) -> Hour:
-        return _hour(
+        return Hour(
             self.start.year,
             self.start.month,
             self.start.day,
@@ -204,7 +191,7 @@ class Day(Interval):
         )
 
     def month(self) -> Month:
-        return _month(
+        return Month(
             self.start.year,
             self.start.month,
         )
@@ -214,20 +201,33 @@ class Day(Interval):
 
     def __next__(self) -> Day:
         return Day(
-            start=self.stop,
-            stop=self.stop + Delta(days=1),
+            self.stop.year,
+            self.stop.month,
+            self.stop.day,
         )
 
 
-@dataclasses.dataclass(frozen=True)
+@dataclasses.dataclass(frozen=True, init=False, repr=False)
 class Month(Interval):
+
+    def __init__(self, year: int, month: int) -> None:
+        start = Moment(year, month, 1, 0, 0, 0)
+        stop = start + Delta(months=1)
+        Interval.__init__(
+            self,
+            start=start,
+            stop=stop,
+        )
+
+    def __repr__(self) -> str:
+        return f"Month({self.start.year}, {self.start.month})"
 
     def days(self) -> Days:
         return Days(
             filter(
                 lambda d: d.start.month == self.start.month,
                 [
-                    _day(
+                    Day(
                         self.start.year,
                         self.start.month,
                         i + 1,
@@ -238,7 +238,7 @@ class Month(Interval):
         )
 
     def day(self, day: int) -> Day:
-        return _day(
+        return Day(
             self.start.year,
             self.start.month,
             day,
@@ -246,16 +246,16 @@ class Month(Interval):
 
     def __next__(self) -> Month:
         return Month(
-            start=self.stop,
-            stop=self.stop + Delta(months=1),
+            self.stop.year,
+            self.stop.month,
         )
 
     def iso(self) -> str:
         return f"{self.start.year:04}-{self.start.month:02}"
 
 
-@dataclasses.dataclass(frozen=True, repr=False)
-class Year(Interval):
+@dataclasses.dataclass(frozen=True, init=False, repr=False)
+class Year(CustomInterval):
 
     def __init__(self, year: int) -> None:
 
@@ -269,10 +269,10 @@ class Year(Interval):
         return f"Year({self.start.year})"
 
     def months(self) -> Months:
-        return Months([_month(self.start.year, i + 1) for i in range(12)])
+        return Months([Month(self.start.year, self.start.month + i) for i in range(12)])
 
     def month(self, month: int) -> Month:
-        return _month(
+        return Month(
             self.start.year,
             month,
         )
@@ -282,15 +282,6 @@ class Year(Interval):
 
     def iso(self) -> str:
         return f"{self.start.year}"
-
-    def __repr__(self) -> str:
-        return f"{self.start.year}"
-
-
-def days(days: list[Day]) -> Days:
-    return Days(
-        days,
-    )
 
 
 class Days(Intervals[Day]):

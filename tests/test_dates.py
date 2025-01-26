@@ -2,11 +2,11 @@ import when_exactly as we
 
 
 def test_days() -> None:
-    days = we.days(
+    days = we.Days(
         [
-            we.day(2020, 1, 1),
-            we.day(2020, 1, 2),
-            we.day(2020, 1, 3),
+            we.Day(2020, 1, 1),
+            we.Day(2020, 1, 2),
+            we.Day(2020, 1, 3),
         ]
     )
     assert isinstance(days, we.Days)
@@ -14,13 +14,13 @@ def test_days() -> None:
 
 
 def test_days_months() -> None:
-    days = we.days(
+    days = we.Days(
         [
-            we.day(2020, 1, 1),
-            we.day(2020, 1, 2),
-            we.day(2020, 1, 3),
+            we.Day(2020, 1, 1),
+            we.Day(2020, 1, 2),
+            we.Day(2020, 1, 3),
         ]
     )
     months = days.months()
     assert len(months) == 1
-    assert months[0] == we.month(2020, 1)
+    assert months[0] == we.Month(2020, 1)

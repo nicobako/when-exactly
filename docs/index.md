@@ -14,7 +14,7 @@ so they can write more expressive and functional date/time code.
 ```python
 >>> import when_exactly as we
 
->>> year = we.year(2025)
+>>> year = we.Year(2025)
 >>> year.iso()
 '2025'
 
@@ -22,7 +22,7 @@ so they can write more expressive and functional date/time code.
 >>> month.iso()
 '2025-01'
 
->>> day = we.day(2025, 12, 25)
+>>> day = we.Day(2025, 12, 25)
 >>> day.iso()
 '2025-12-25'
 
