@@ -15,24 +15,18 @@ so they can write more expressive code when working with dates.
 >>> import when_exactly as we
 
 >>> year = we.Year(2025)
->>> year.iso()
-'2025'
+>>> year
+Year(2025)
 
 >>> month = year.month(1)
->>> month.iso()
-'2025-01'
+>>> month
+Month(2025, 1)
 
 >>> day = we.Day(2025, 12, 25)
->>> day.iso()
-'2025-12-25'
+>>> day
+Day(2025, 12, 25)
 
->>> day.month().iso()
-'2025-12'
-
->>> year.months().iso()
-'[2025-01,2025-02,2025-03,2025-04,2025-05,2025-06,2025-07,2025-08,2025-09,2025-10,2025-11,2025-12]'
-
->>> month.days()[0:-1:5].iso()
-'[2025-01-01,2025-01-06,2025-01-11,2025-01-16,2025-01-21,2025-01-26]'
+>>> day.month()
+Month(2025, 12)
 
 ```

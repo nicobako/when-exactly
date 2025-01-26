@@ -77,8 +77,5 @@ class Moment:
 
         return Moment.from_datetime(dt)
 
-    def iso(self) -> str:
-        return self.to_datetime().isoformat()
-
     def __str__(self) -> str:
-        return self.iso()
+        return self.to_datetime().isoformat()

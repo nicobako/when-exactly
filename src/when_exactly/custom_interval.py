@@ -29,9 +29,14 @@ class CustomInterval(Interval):
     def __next__(self) -> CustomInterval:
         raise NotImplementedError("CustomInterval next not implemented")
 
+    def __str__(self) -> str:
+        raise NotImplementedError("CustomInterval str not implemented")
+
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class Second(CustomInterval):
+    """A second interval."""
+
     def __init__(
         self, year: int, month: int, day: int, hour: int, minute: int, second: int
     ) -> None:
@@ -39,24 +44,18 @@ class Second(CustomInterval):
         stop = start + Delta(seconds=1)
         Interval.__init__(self, start=start, stop=stop)
 
+    def __repr__(self) -> str:
+        return f"Second({self.start.year}, {self.start.month}, {self.start.day}, {self.start.hour}, {self.start.minute}, {self.start.second})"
+
+    def __str__(self) -> str:
+        start = self.start
+        return f"{start.year:04}-{start.month:02}-{start.day:02}T{start.hour:02}:{start.minute:02}:{start.second:02}"
+
     def minute(self) -> Minute:
-        return Minute(
-            self.start.year,
-            self.start.month,
-            self.start.day,
-            self.start.hour,
-            self.start.minute,
-        )
+        return Minute.from_moment(self.start)
 
     def __next__(self) -> Second:
-        return Second(
-            self.stop.year,
-            self.stop.month,
-            self.stop.day,
-            self.stop.hour,
-            self.stop.minute,
-            self.stop.second,
-        )
+        return Second.from_moment(self.stop)
 
     @classmethod
     def from_moment(cls, moment: Moment) -> Second:
@@ -80,6 +79,10 @@ class Minute(CustomInterval):
 
     def __repr__(self) -> str:
         return f"Minute({self.start.year}, {self.start.month}, {self.start.day}, {self.start.hour}, {self.start.minute})"
+
+    def __str__(self) -> str:
+        start = self.start
+        return f"{start.year:04}-{start.month:02}-{start.day:02}T{start.hour:02}:{start.minute:02}"
 
     def seconds(self) -> Iterable[Second]:
         second = Second(
@@ -105,12 +108,16 @@ class Minute(CustomInterval):
         )
 
     def __next__(self) -> Minute:
+        return Minute.from_moment(self.stop)
+
+    @classmethod
+    def from_moment(cls, moment: Moment) -> Minute:
         return Minute(
-            self.stop.year,
-            self.stop.month,
-            self.stop.day,
-            self.stop.hour,
-            self.stop.minute,
+            moment.year,
+            moment.month,
+            moment.day,
+            moment.hour,
+            moment.minute,
         )
 
 
@@ -123,6 +130,19 @@ class Hour(CustomInterval):
 
     def __repr__(self) -> str:
         return f"Hour({self.start.year}, {self.start.month}, {self.start.day}, {self.start.hour})"
+
+    def __str__(self) -> str:
+        start = self.start
+        return f"{start.year:04}-{start.month:02}-{start.day:02}T{start.hour:02}"
+
+    @classmethod
+    def from_moment(cls, moment: Moment) -> Hour:
+        return Hour(
+            moment.year,
+            moment.month,
+            moment.day,
+            moment.hour,
+        )
 
     def minutes(self) -> Iterable[Minute]:
         minute = Minute(
@@ -146,19 +166,10 @@ class Hour(CustomInterval):
         )
 
     def day(self) -> Day:
-        return Day(
-            self.start.year,
-            self.start.month,
-            self.start.day,
-        )
+        return Day.from_moment(self.start)
 
     def __next__(self) -> Hour:
-        return Hour(
-            self.stop.year,
-            self.stop.month,
-            self.stop.day,
-            self.stop.hour,
-        )
+        return Hour.from_moment(self.stop)
 
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
@@ -171,16 +182,16 @@ class Day(CustomInterval):
     def __repr__(self) -> str:
         return f"Day({self.start.year}, {self.start.month}, {self.start.day})"
 
-    def hours(self) -> Iterable[Hour]:
-        hour = Hour(
-            self.start.year,
-            self.start.month,
-            self.start.day,
-            0,
+    def __str__(self) -> str:
+        return f"{self.start.year:04}-{self.start.month:02}-{self.start.day:02}"
+
+    @classmethod
+    def from_moment(cls, moment: Moment) -> Day:
+        return Day(
+            moment.year,
+            moment.month,
+            moment.day,
         )
-        for _ in range(24):
-            yield hour
-            hour = next(hour)
 
     def hour(self, hour: int) -> Hour:
         return Hour(
@@ -196,19 +207,12 @@ class Day(CustomInterval):
             self.start.month,
         )
 
-    def iso(self) -> str:
-        return f"{self.start.year:04}-{self.start.month:02}-{self.start.day:02}"
-
     def __next__(self) -> Day:
-        return Day(
-            self.stop.year,
-            self.stop.month,
-            self.stop.day,
-        )
+        return Day.from_moment(self.stop)
 
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
-class Month(Interval):
+class Month(CustomInterval):
 
     def __init__(self, year: int, month: int) -> None:
         start = Moment(year, month, 1, 0, 0, 0)
@@ -221,6 +225,16 @@ class Month(Interval):
 
     def __repr__(self) -> str:
         return f"Month({self.start.year}, {self.start.month})"
+
+    def __str__(self) -> str:
+        return f"{self.start.year:04}-{self.start.month:02}"
+
+    @classmethod
+    def from_moment(cls, moment: Moment) -> Month:
+        return Month(
+            moment.year,
+            moment.month,
+        )
 
     def days(self) -> Days:
         return Days(
@@ -245,13 +259,7 @@ class Month(Interval):
         )
 
     def __next__(self) -> Month:
-        return Month(
-            self.stop.year,
-            self.stop.month,
-        )
-
-    def iso(self) -> str:
-        return f"{self.start.year:04}-{self.start.month:02}"
+        return Month.from_moment(self.stop)
 
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
@@ -268,6 +276,13 @@ class Year(CustomInterval):
     def __repr__(self) -> str:
         return f"Year({self.start.year})"
 
+    def __str__(self) -> str:
+        return f"{self.start.year:04}"
+
+    @classmethod
+    def from_moment(cls, moment: Moment) -> Year:
+        return Year(moment.year)
+
     def months(self) -> Months:
         return Months([Month(self.start.year, self.start.month + i) for i in range(12)])
 
@@ -278,10 +293,7 @@ class Year(CustomInterval):
         )
 
     def __next__(self) -> Year:
-        return Year(self.stop.year)
-
-    def iso(self) -> str:
-        return f"{self.start.year}"
+        return Year.from_moment(self.stop)
 
 
 class Days(Intervals[Day]):

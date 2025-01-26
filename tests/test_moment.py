@@ -107,10 +107,3 @@ def test_add_delta_edge_cases() -> None:
         2020, 2, 29, 0, 0, 0
     )
     assert leap_year + we.Delta(years=1) == we.Moment(2021, 2, 28, 0, 0, 0)
-
-
-def test_iso() -> None:
-    moment = we.Moment(2020, 1, 1, 0, 0, 0)
-    expected_iso = "2020-01-01T00:00:00"
-    assert moment.iso() == expected_iso
-    assert str(moment) == expected_iso

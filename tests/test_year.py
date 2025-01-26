@@ -1,14 +1,17 @@
-from assert_frozen import assert_frozen
+from custom_interval import assert_custom_interval
 
 import when_exactly as we
 
 
 def test_year() -> None:
-    year = we.Year(2020)
-    assert_frozen(year)
-    assert year.start == we.Moment(2020, 1, 1, 0, 0, 0)
-    assert year.stop == we.Moment(2021, 1, 1, 0, 0, 0)
-    assert str(year) == "2020"
+    assert_custom_interval(
+        we.Year,
+        we.Year(2020),
+        we.Moment(2020, 1, 1, 0, 0, 0),
+        we.Moment(2021, 1, 1, 0, 0, 0),
+        "Year(2020)",
+        "2020",
+    )
 
 
 def test_year_months() -> None:
@@ -31,8 +34,3 @@ def test_year_next() -> None:
     year = we.Year(2020)
     assert next(year) == we.Year(2021)
     assert next(next(year)) == we.Year(2022)
-
-
-def test_year_iso() -> None:
-    year = we.Year(2025)
-    assert year.iso() == "2025"

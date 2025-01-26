@@ -1,13 +1,17 @@
-from assert_frozen import assert_frozen
+from custom_interval import assert_custom_interval
 
 import when_exactly as we
 
 
 def test_month() -> None:
-    month = we.Month(2020, 1)
-    assert_frozen(month)
-    assert month.start == we.Moment(2020, 1, 1, 0, 0, 0)
-    assert month.stop == we.Moment(2020, 2, 1, 0, 0, 0)
+    assert_custom_interval(
+        we.Month,
+        we.Month(2020, 1),
+        we.Moment(2020, 1, 1, 0, 0, 0),
+        we.Moment(2020, 2, 1, 0, 0, 0),
+        "Month(2020, 1)",
+        "2020-01",
+    )
 
 
 def test_month_days() -> None:
@@ -30,9 +34,3 @@ def test_month_next() -> None:
     month = we.Month(2020, 1)
     assert next(month) == we.Month(2020, 2)
     assert next(next(month)) == we.Month(2020, 3)
-
-
-def test_month_iso() -> None:
-    month = we.Month(2023, 5)
-    expected_iso = "2023-05"
-    assert month.iso() == expected_iso

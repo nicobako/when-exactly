@@ -1,13 +1,17 @@
-from assert_frozen import assert_frozen
+from custom_interval import assert_custom_interval
 
 import when_exactly as we
 
 
 def test_hour() -> None:
-    hour = we.Hour(2020, 1, 1, 0)
-    assert_frozen(hour)
-    assert hour.start == we.Moment(2020, 1, 1, 0, 0, 0)
-    assert hour.stop == we.Moment(2020, 1, 1, 1, 0, 0)
+    assert_custom_interval(
+        we.Hour,
+        we.Hour(2020, 1, 1, 0),
+        we.Moment(2020, 1, 1, 0, 0, 0),
+        we.Moment(2020, 1, 1, 1, 0, 0),
+        "Hour(2020, 1, 1, 0)",
+        "2020-01-01T00",
+    )
 
 
 def test_hour_minutes() -> None:
