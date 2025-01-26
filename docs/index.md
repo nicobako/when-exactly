@@ -1,13 +1,13 @@
 # Welcome to when-exactly
 
-Work with dates and time the same way you think about dates and times.
+An expressive and intuitive library for working with dates.
 
 ## Rationale
 
 When we think about dates and times, we think in terms of _years_, _months_, _weeks_, _days_, _hours_, _minutes_, etc.
 
 When-Exactly is a library that aims to bring these types into the hands of developers,
-so they can write more expressive and functional date/time code.
+so they can write more expressive code when working with dates.
 
 ## Overview
 
