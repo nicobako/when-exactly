@@ -71,15 +71,15 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="welcome-to-when-exactly">Welcome to when-exactly</h1>
-<p>Work with dates and time the same way you think about dates and times.</p>
+<p>An expressive and intuitive library for working with dates.</p>
 <h2 id="rationale">Rationale</h2>
 <p>When we think about dates and times, we think in terms of <em>years</em>, <em>months</em>, <em>weeks</em>, <em>days</em>, <em>hours</em>, <em>minutes</em>, etc.</p>
 <p>When-Exactly is a library that aims to bring these types into the hands of developers,
-so they can write more expressive and functional date/time code.</p>
+so they can write more expressive code when working with dates.</p>
 <h2 id="overview">Overview</h2>
 <pre><code class="language-python">&gt;&gt;&gt; import when_exactly as we
 
-&gt;&gt;&gt; year = we.year(2025)
+&gt;&gt;&gt; year = we.Year(2025)
 &gt;&gt;&gt; year.iso()
 '2025'
 
@@ -87,7 +87,7 @@ so they can write more expressive and functional date/time code.</p>
 &gt;&gt;&gt; month.iso()
 '2025-01'
 
-&gt;&gt;&gt; day = we.day(2025, 12, 25)
+&gt;&gt;&gt; day = we.Day(2025, 12, 25)
 &gt;&gt;&gt; day.iso()
 '2025-12-25'
 
@@ -182,5 +182,5 @@ so they can write more expressive and functional date/time code.</p>
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-01-25 01:24:34.498348+00:00
+Build Date UTC : 2025-01-26 01:13:30.899994+00:00
 -->
