@@ -29,4 +29,3 @@ six==1.17.0
 tomli==2.0.1
 virtualenv==20.28.1
 watchdog==6.0.0
--e git+ssh://git@github.com/nicobako/when-exactly.git@5883ba980447052d1f1635815a6edd57d50bec5e#egg=when_exactly
