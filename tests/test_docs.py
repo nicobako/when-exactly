@@ -1,6 +1,7 @@
 import doctest
-import pytest
 from pathlib import Path
+
+import pytest
 
 FILES = [f for f in Path("./docs/").rglob("*.md")]
 
@@ -9,7 +10,7 @@ FILES = [f for f in Path("./docs/").rglob("*.md")]
     "file",
     FILES,
     ids=[f.name for f in FILES],
-)
+)  # type: ignore
 def test_docs(file: Path) -> None:
     test_results = doctest.testfile(
         filename=f"{file}",

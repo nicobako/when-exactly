@@ -1,13 +1,13 @@
 """Test that custom intervals properly override base-class methods."""
 
-import pytest
 from typing import Type
 
+import pytest
 from assert_frozen import assert_frozen
 
+import when_exactly as we
 from when_exactly.custom_interval import CustomInterval
 from when_exactly.moment import Moment
-import when_exactly as we
 
 
 @pytest.mark.parametrize(
@@ -77,7 +77,7 @@ import when_exactly as we
             "2020-01-01T00:00:00",
         ),
     ],
-)
+)  # type: ignore
 def test_custom_interval(
     custom_interval_type: Type[CustomInterval],
     custom_interval: CustomInterval,

@@ -5,8 +5,8 @@ from when_exactly.custom_interval import (
     Minute,
     Month,
     Second,
-    Year,
     Week,
+    Year,
     now,
 )
 from when_exactly.delta import Delta
