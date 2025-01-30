@@ -79,3 +79,15 @@ class Moment:
 
     def __str__(self) -> str:
         return self.to_datetime().isoformat()
+
+    @property
+    def iso_year(self) -> int:
+        return self.to_datetime().isocalendar()[0]
+
+    @property
+    def iso_week(self) -> int:
+        return self.to_datetime().isocalendar()[1]
+
+    @property
+    def iso_day(self) -> int:
+        return self.to_datetime().isocalendar()[2]

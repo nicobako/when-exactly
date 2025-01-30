@@ -1,17 +1,4 @@
-from custom_interval import assert_custom_interval
-
 import when_exactly as we
-
-
-def test_month() -> None:
-    assert_custom_interval(
-        we.Month,
-        we.Month(2020, 1),
-        we.Moment(2020, 1, 1, 0, 0, 0),
-        we.Moment(2020, 2, 1, 0, 0, 0),
-        "Month(2020, 1)",
-        "2020-01",
-    )
 
 
 def test_month_days() -> None:

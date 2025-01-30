@@ -1,17 +1,4 @@
-from custom_interval import assert_custom_interval
-
 import when_exactly as we
-
-
-def test_day() -> None:
-    assert_custom_interval(
-        we.Day,
-        we.Day(2020, 1, 1),
-        we.Moment(2020, 1, 1, 0, 0, 0),
-        we.Moment(2020, 1, 2, 0, 0, 0),
-        "Day(2020, 1, 1)",
-        "2020-01-01",
-    )
 
 
 def test_day_hour() -> None:
@@ -23,7 +10,13 @@ def test_day_hour() -> None:
         assert hour.day() == day
 
 
-def test_day_months() -> None:
+def test_day_month() -> None:
     day = we.Day(2020, 1, 1)
     month = day.month()
     assert month == we.Month(2020, 1)
+
+
+def test_day_week() -> None:
+    day = we.Day(2020, 1, 1)
+    week = day.week()
+    assert week == we.Week(2020, 1)

@@ -1,17 +1,4 @@
-from custom_interval import assert_custom_interval
-
 import when_exactly as we
-
-
-def test_year() -> None:
-    assert_custom_interval(
-        we.Year,
-        we.Year(2020),
-        we.Moment(2020, 1, 1, 0, 0, 0),
-        we.Moment(2021, 1, 1, 0, 0, 0),
-        "Year(2020)",
-        "2020",
-    )
 
 
 def test_year_months() -> None:

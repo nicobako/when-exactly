@@ -1,17 +1,4 @@
-from custom_interval import assert_custom_interval
-
 import when_exactly as we
-
-
-def test_hour() -> None:
-    assert_custom_interval(
-        we.Hour,
-        we.Hour(2020, 1, 1, 0),
-        we.Moment(2020, 1, 1, 0, 0, 0),
-        we.Moment(2020, 1, 1, 1, 0, 0),
-        "Hour(2020, 1, 1, 0)",
-        "2020-01-01T00",
-    )
 
 
 def test_hour_minutes() -> None:

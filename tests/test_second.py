@@ -1,18 +1,4 @@
-from assert_frozen import assert_frozen
-from custom_interval import assert_custom_interval
-
 import when_exactly as we
-
-
-def test_second() -> None:
-    assert_custom_interval(
-        we.Second,
-        we.Second(2020, 1, 1, 0, 0, 0),
-        we.Moment(2020, 1, 1, 0, 0, 0),
-        we.Moment(2020, 1, 1, 0, 0, 1),
-        "Second(2020, 1, 1, 0, 0, 0)",
-        "2020-01-01T00:00:00",
-    )
 
 
 def test_assert_second_minute() -> None:

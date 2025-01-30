@@ -107,3 +107,20 @@ def test_add_delta_edge_cases() -> None:
         2020, 2, 29, 0, 0, 0
     )
     assert leap_year + we.Delta(years=1) == we.Moment(2021, 2, 28, 0, 0, 0)
+
+
+def test_moment_iso() -> None:
+    moment = we.Moment(2020, 1, 1, 0, 0, 0)
+    assert moment.iso_year == 2020
+    assert moment.iso_week == 1
+    assert moment.iso_day == 3
+
+    moment = we.Moment(2020, 12, 31, 0, 0, 0)
+    assert moment.iso_year == 2020
+    assert moment.iso_week == 53
+    assert moment.iso_day == 4
+
+    moment = we.Moment(2019, 12, 31, 0, 0, 0)
+    assert moment.iso_year == 2020
+    assert moment.iso_week == 1
+    assert moment.iso_day == 2

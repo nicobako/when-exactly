@@ -6,6 +6,7 @@ from when_exactly.custom_interval import (
     Month,
     Second,
     Year,
+    Week,
     now,
 )
 from when_exactly.delta import Delta
@@ -26,5 +27,6 @@ __all__ = [
     "Day",
     "Days",
     "Month",
+    "Week",
     "Year",
 ]

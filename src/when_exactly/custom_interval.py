@@ -207,8 +207,40 @@ class Day(CustomInterval):
             self.start.month,
         )
 
+    def week(self) -> Week:
+        return Week.from_moment(self.start)
+
     def __next__(self) -> Day:
         return Day.from_moment(self.stop)
+
+
+@dataclasses.dataclass(frozen=True, init=False, repr=False)
+class Week(CustomInterval):
+
+    def __init__(self, year: int, week: int) -> None:
+        start = Moment.from_datetime(datetime.datetime.fromisocalendar(year, week, 1))
+        stop = start + Delta(days=7)
+        Interval.__init__(
+            self,
+            start=start,
+            stop=stop,
+        )
+
+    def __repr__(self) -> str:
+        return f"Week({self.start.iso_year}, {self.start.iso_week})"
+
+    def __str__(self) -> str:
+        return f"{self.start.iso_year:04}-W{self.start.iso_week:02}"
+
+    @classmethod
+    def from_moment(cls, moment: Moment) -> Week:
+        return Week(
+            moment.iso_year,
+            moment.iso_week,
+        )
+
+    def __next__(self) -> CustomInterval:
+        return Week.from_moment(self.stop)
 
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
