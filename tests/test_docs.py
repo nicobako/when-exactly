@@ -12,8 +12,9 @@ FILES = [f for f in Path("./docs/").rglob("*.md")]
     ids=[f.name for f in FILES],
 )  # type: ignore
 def test_docs(file: Path) -> None:
+    file_str = str(file)
     test_results = doctest.testfile(
-        filename=f"{file}",
+        filename=file_str,
         module_relative=False,
     )
 

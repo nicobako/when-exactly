@@ -1,1 +1,7 @@
 site_name: when-exactly
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Tutorial:
+    - Core Concepts: tutorial/core-concepts.md
+    - Advanced Concepts: tutorial/advanced-concepts.md
