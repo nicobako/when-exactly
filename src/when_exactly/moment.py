@@ -89,5 +89,5 @@ class Moment:
         return self.to_datetime().isocalendar()[1]
 
     @property
-    def iso_day(self) -> int:
+    def iso_weekday(self) -> int:
         return self.to_datetime().isocalendar()[2]

@@ -1,12 +1,12 @@
-# Core Concepts
+# Moment
 
-Since _When-Exactly_ allows developers to interact with dates and times in a very unique way,
-it is worth while becoming familiar with some of the lower-level building blocks.
-
-## Moment
-
-The `Moment` represents, as the name suggests, _a moment in time_. This is analogous to Python's
+The `Moment` represents, as the name suggests, _a moment in time_. It is analogous to Python's
 [datetime.datetime](https://docs.python.org/3/library/datetime.html#datetime.datetime) class.
+
+The `Moment` is a simple class that it is used prevalently throughought _When-Exactly_.
+
+
+## Creating a Moment
 
 ```python
 >>> import when_exactly as we
@@ -20,6 +20,10 @@ The `Moment` represents, as the name suggests, _a moment in time_. This is analo
 ...     second=30,
 ... )
 >>> moment
+Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
+
+>>> # or, more concisely 
+>>> we.Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
 Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
 
 ```
@@ -38,8 +42,76 @@ Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
 
 ```
 
+## Moment Validation
 
-The `Moment` is really a simple class, but it is used prevalently throughought _When-Exactly_.
+A `Moment` is always a valid date-time.
+
+```python
+>>> we.Moment(2025, 1, 32, 0,0,0)
+Traceback (most recent call last):
+...
+ValueError: Invalid moment: day is out of range for month
+
+```
+
+## Comaring Moments
+
+`Moment`s can be compared to one another
+
+```python
+>>> moment1 = we.Moment(2025, 1, 1, 0, 0, 0)
+>>> moment2 = we.Moment(2025, 1, 1, 1, 0, 0)
+>>> assert moment1 != moment2
+>>> assert moment1 < moment2
+>>> assert moment1 <= moment2
+>>> assert moment2 > moment1
+>>> assert moment2 >= moment1
+>>> assert moment1 == we.Moment(2025, 1, 1, 0, 0, 0)
+
+```
+
+## Adding Deltas to Moments
+
+A [`Delta`](delta.md) can be added to a `Moment`.
+
+
+```python
+>>> moment = we.Moment(2025, 1, 31, 12, 30, 30)
+>>> moment + we.Delta(years=1)
+Moment(year=2026, month=1, day=31, hour=12, minute=30, second=30)
+
+>>> moment + we.Delta(months=1)
+Moment(year=2025, month=2, day=28, hour=12, minute=30, second=30)
+Moment(year=2025, month=2, day=28, hour=12, minute=30, second=30)
+
+>>> moment + we.Delta(days=2)
+Moment(year=2025, month=2, day=2, hour=12, minute=30, second=30)
+
+>>> # etc.
+
+```
+
+## ISO Year, Week, and Day
+
+!!! note
+    Incorporating ISO year, week, and days is still a work-in-progress.
+
+A `Moment`'s ISO year, week, and weekday is accessible as follows:
+
+```python
+>>> moment = we.Moment(2019, 12, 31, 0,0,0)
+>>> moment.iso_year
+2020
+
+>>> moment.iso_week
+1
+
+>>> moment.iso_weekday
+2
+
+```
+
+
 
 
 

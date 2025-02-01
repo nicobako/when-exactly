@@ -113,14 +113,14 @@ def test_moment_iso() -> None:
     moment = we.Moment(2020, 1, 1, 0, 0, 0)
     assert moment.iso_year == 2020
     assert moment.iso_week == 1
-    assert moment.iso_day == 3
+    assert moment.iso_weekday == 3
 
     moment = we.Moment(2020, 12, 31, 0, 0, 0)
     assert moment.iso_year == 2020
     assert moment.iso_week == 53
-    assert moment.iso_day == 4
+    assert moment.iso_weekday == 4
 
     moment = we.Moment(2019, 12, 31, 0, 0, 0)
     assert moment.iso_year == 2020
     assert moment.iso_week == 1
-    assert moment.iso_day == 2
+    assert moment.iso_weekday == 2

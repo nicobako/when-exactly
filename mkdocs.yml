@@ -3,5 +3,8 @@ nav:
   - Home: index.md
   - Getting Started: getting-started.md
   - Tutorial:
-    - Core Concepts: tutorial/core-concepts.md
-    - Advanced Concepts: tutorial/advanced-concepts.md
+    - Moment: tutorial/moment.md
+    - Delta: tutorial/delta.md
+markdown_extensions:
+  - admonition: {}
+
