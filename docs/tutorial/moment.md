@@ -82,7 +82,6 @@ Moment(year=2026, month=1, day=31, hour=12, minute=30, second=30)
 
 >>> moment + we.Delta(months=1)
 Moment(year=2025, month=2, day=28, hour=12, minute=30, second=30)
-Moment(year=2025, month=2, day=28, hour=12, minute=30, second=30)
 
 >>> moment + we.Delta(days=2)
 Moment(year=2025, month=2, day=2, hour=12, minute=30, second=30)
