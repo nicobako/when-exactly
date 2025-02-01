@@ -1,17 +1,25 @@
 # Development Notes
 
-## Uploading to pypi
+## Deployment
 
 ```bash
-python -m build
-python -m twine upload --repository pypi dist/*
-```
+deploy() {
+    set -e  # Exit immediately if a command exits with a non-zero status
+    version=$1
 
-## Building and deploying documentation
+    # run tests and static analysis
+    pytest
+    pre-commit run --all files
 
-```bash
-mkdocs gh-deploy
-git push --all
+    # build
+    mkdocs gh-deploy
+    python -m build
+
+    # tag and deploy
+    git tag -a "$version" -m "$version"
+    python -m twine upload --repository pypi dist/*
+    git push --all
+}
 ```
 
 ## Date and Time Format
