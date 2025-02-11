@@ -1,4 +1,4 @@
-# Welcome to when-exactly
+# When-Exactly
 
 An expressive and intuitive library for working with dates.
 
