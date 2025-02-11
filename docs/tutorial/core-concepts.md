@@ -5,43 +5,39 @@ it is worth while becoming familiar with some of the lower-level building blocks
 
 ## Moment
 
-The `Moment` represents, as the name suggests, _a moment in time_. This is analogous to Python's
+The [`Moment`](moment.md) represents, _a moment in time_. This is analogous to Python's
 [datetime.datetime](https://docs.python.org/3/library/datetime.html#datetime.datetime) class.
 
-```python
->>> import when_exactly as we
 
->>> moment = we.Moment(
-...     year=2025,
-...     month=1,
-...     day=30,
-...     hour=15,
-...     minute=25,
-...     second=30,
+!!!note
+    The resolution of a moment is limited to _a second_.
+    If you need more resolution, then when-exactly is probably not the library you need.
+
+## Delta
+
+The [`Delta`](delta.md) is analogous to Python's
+[`datetime.timedelta](https://docs.python.org/3/library/datetime.html#datetime.timedelta),
+with extra functionality for deltas of _months_ and _years_.
+
+## Interval
+
+An _interval_ represents a _time span_.
+
+```python
+>>> interval = we.Interval(
+...     start=we.Moment(2025, 2, 14, 12, 0, 0,),
+...     stop=we.Moment(2025, 2, 14, 12, 30, 0),
 ... )
->>> moment
-Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
+>>> str(interval)
+'2025-02-14T12:00:00/2025-02-14T12:30:00'
 
 ```
 
-Moments can be created from datetimes, and can be converted to datetimes.
+This is the building block of all the _custom intervals_ like _Year_, _Month_, etc.
 
-```python
->>> import datetime
+### Intervals
 
->>> moment.to_datetime()
-datetime.datetime(2025, 1, 30, 15, 25, 30)
-
->>> dt = datetime.datetime(2025, 1, 30, 15, 25, 30)
->>> we.Moment.from_datetime(dt)
-Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
-
-```
-
-
-The `Moment` is really a simple class, but it is used prevalently throughought _When-Exactly_.
-
-
-
+_Intervals_ (note that this word is plural)
+represents a _collection of `Interval` objects_.
 
 

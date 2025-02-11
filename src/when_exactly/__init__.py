@@ -6,6 +6,7 @@ from when_exactly.custom_interval import (
     Month,
     Second,
     Week,
+    Weeks,
     Year,
     now,
 )
@@ -28,5 +29,6 @@ __all__ = [
     "Days",
     "Month",
     "Week",
+    "Weeks",
     "Year",
 ]

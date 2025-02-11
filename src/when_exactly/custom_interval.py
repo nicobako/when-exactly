@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import dataclasses
 import datetime
-from typing import Iterable
+from typing import Callable, Generator, Iterable, Protocol, TypeVar
 
 from when_exactly.delta import Delta
 from when_exactly.interval import Interval
@@ -31,6 +31,37 @@ class CustomInterval(Interval):
 
     def __str__(self) -> str:
         raise NotImplementedError("CustomInterval str not implemented")
+
+
+class Nextable(Protocol):
+    def __next__(self) -> Nextable: ...
+
+    start: Moment
+
+
+def get_n_next(n: int, interval: Nextable) -> Generator[Nextable, None, None]:
+    for _ in range(n):
+        yield interval
+        interval = next(interval)
+
+
+C = TypeVar("C", bound=CustomInterval)
+
+
+def get_next_while(
+    interval: C, condition: Callable[[C], bool]
+) -> Generator[C, None, None]:
+    while condition(interval):
+        yield interval
+        interval = next(interval)  # type: ignore
+
+
+# def get_next_while(
+#     interval: Nextable, condition: Callable[[Nextable], bool]
+# ) -> Generator[Nextable, None, None]:
+#     while condition(interval):
+#         yield interval
+#         interval = next(interval)
 
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
@@ -270,18 +301,17 @@ class Month(CustomInterval):
 
     def days(self) -> Days:
         return Days(
-            filter(
+            get_next_while(
+                Day(self.start.year, self.start.month, 1),
                 lambda d: d.start.month == self.start.month,
-                [
-                    Day(
-                        self.start.year,
-                        self.start.month,
-                        i + 1,
-                    )
-                    for i in range(31)
-                ],
             )
         )
+        # return Days(
+        #     filter(
+        #         lambda d: d.start.month == self.start.month,
+        #         get_n_next(31, Day(self.start.year, self.start.month, 1)),
+        #     )
+        # )
 
     def day(self, day: int) -> Day:
         return Day(
@@ -318,6 +348,14 @@ class Year(CustomInterval):
     def months(self) -> Months:
         return Months([Month(self.start.year, self.start.month + i) for i in range(12)])
 
+    def weeks(self) -> Weeks:
+        return Weeks(
+            get_next_while(
+                Week(self.start.year, 1),
+                lambda w: w.start.iso_year == self.start.iso_year,
+            )
+        )
+
     def month(self, month: int) -> Month:
         return Month(
             self.start.year,
@@ -332,6 +370,10 @@ class Days(Intervals[Day]):
 
     def months(self) -> Months:
         return Months([day.month() for day in self])
+
+
+class Weeks(Intervals[Week]):
+    pass
 
 
 class Months(Intervals[Month]):
