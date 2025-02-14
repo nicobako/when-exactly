@@ -1,32 +1,46 @@
-from when_exactly.custom_interval import (
+from when_exactly.core.custom_interval import CustomInterval
+from when_exactly.core.delta import Delta
+from when_exactly.core.interval import Interval
+from when_exactly.core.moment import Moment
+from when_exactly.interval import (
     Day,
     Days,
     Hour,
+    Hours,
     Minute,
+    Minutes,
     Month,
+    Months,
     Second,
+    Seconds,
     Week,
+    Weeks,
     Year,
+    Years,
     now,
 )
-from when_exactly.delta import Delta
-from when_exactly.interval import Interval
 from when_exactly.intervals import Intervals
-from when_exactly.moment import Moment
 
 __all__ = [
     "Delta",
+    "CustomInterval",
     "Interval",
     "Intervals",
     "Moment",
     "now",
-    "Second",
-    "Minute",
-    "Hour",
-    "Year",
     "Day",
     "Days",
-    "Month",
-    "Week",
+    "Minute",
+    "Minutes",
+    "Second",
+    "Seconds",
+    "Hour",
     "Year",
+    "Month",
+    "Months",
+    "Hours",
+    "Week",
+    "Weeks",
+    "Year",
+    "Years",
 ]

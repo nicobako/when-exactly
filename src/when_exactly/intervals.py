@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Iterable, NoReturn, TypeVar, final, overload
 
-from when_exactly.interval import Interval
+from when_exactly.core.interval import Interval
 
 T = TypeVar("T", bound=Interval)
 
@@ -14,6 +14,10 @@ class Intervals(abc.Container[T]):
     def __init__(self, values: Iterable[T]) -> None:
         self._values: list[T] = sorted(set(values))
         self._counter = 0
+
+    @property
+    def values(self) -> list[T]:
+        return self._values
 
     @final
     def __iter__(self) -> Intervals[T]:
@@ -48,13 +52,20 @@ class Intervals(abc.Container[T]):
 
     @final
     def __repr__(self) -> str:
-        return repr(self._values)
+        return f"{self.__class__.__name__}({self._values})"
+
+    @overload
+    def __eq__(self, other: Intervals[T]) -> bool: ...
+
+    @overload
+    def __eq__(self, other: object) -> bool: ...
 
     @final
     def __eq__(self, other: Intervals[T] | object) -> bool:
         if not isinstance(other, Intervals):
-            return NotImplemented
-        return self._values == other._values
+            raise NotImplementedError
+
+        return self._values == other.values
 
     def __reversed__(self) -> NoReturn:
         raise NotImplementedError
@@ -62,3 +73,6 @@ class Intervals(abc.Container[T]):
     @final
     def __len__(self) -> int:
         return len(self._values)
+
+    def __str__(self) -> str:
+        return "{" + ", ".join(str(value) for value in self._values) + "}"

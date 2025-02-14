@@ -1,7 +1,7 @@
 import pytest
-from assert_frozen import assert_frozen
 
 import when_exactly as we
+from tests.core.assert_frozen import assert_frozen
 
 
 def test_interval() -> None:
@@ -42,3 +42,10 @@ def test_comparators() -> None:
     for gt_interval in gt_intervals:
         assert gt_interval > interval
         assert gt_interval >= interval
+
+
+def test_str() -> None:
+    interval = we.Interval(
+        we.Moment(2020, 1, 1, 0, 0, 0), we.Moment(2021, 1, 1, 0, 0, 0)
+    )
+    assert str(interval) == "2020-01-01T00:00:00/2021-01-01T00:00:00"

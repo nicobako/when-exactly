@@ -1,12 +1,12 @@
 import datetime
 
 import pytest
-from assert_frozen import assert_frozen
 
 import when_exactly as we
+from tests.core.assert_frozen import assert_frozen
 
 
-def test_moment() -> None:
+def test_initialization() -> None:
     moment = we.Moment(2020, 1, 1, 0, 0, 0)
     assert_frozen(moment)
     assert moment.year == 2020
@@ -19,21 +19,21 @@ def test_moment() -> None:
     assert moment != we.Moment(2020, 1, 1, 0, 0, 1)
 
 
-def test_moment_to_datetime() -> None:
+def test_to_datetime() -> None:
     moment = we.Moment(2020, 1, 1, 0, 0, 0)
     dt = moment.to_datetime()
     assert dt == datetime.datetime(2020, 1, 1, 0, 0, 0)
     assert dt.microsecond == 0
 
 
-def test_moment_from_datetime() -> None:
+def test_from_datetime() -> None:
     dt = datetime.datetime(2020, 1, 1, 0, 0, 0)
     moment = we.Moment.from_datetime(dt)
     assert moment == we.Moment(2020, 1, 1, 0, 0, 0)
     assert moment.to_datetime() == dt
 
 
-def test_invalid_moments_raise() -> None:
+def test_invalid_datetime_raise() -> None:
     invalid_args = [2020, 1, 44, 0, 0, 0]
     with pytest.raises(ValueError):
         we.Moment(*invalid_args)
