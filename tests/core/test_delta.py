@@ -1,9 +1,5 @@
-import dataclasses
-import datetime
-
-from assert_frozen import assert_frozen
-
 import when_exactly as we
+from tests.core.assert_frozen import assert_frozen
 
 
 def test_delta() -> None:

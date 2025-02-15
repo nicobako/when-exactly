@@ -3,11 +3,9 @@
 from typing import Type
 
 import pytest
-from assert_frozen import assert_frozen
 
 import when_exactly as we
-from when_exactly.custom_interval import CustomInterval
-from when_exactly.moment import Moment
+from tests.core.assert_frozen import assert_frozen
 
 
 @pytest.mark.parametrize(
@@ -79,10 +77,10 @@ from when_exactly.moment import Moment
     ],
 )  # type: ignore
 def test_custom_interval(
-    custom_interval_type: Type[CustomInterval],
-    custom_interval: CustomInterval,
-    expected_start: Moment,
-    expected_stop: Moment,
+    custom_interval_type: Type[we.CustomInterval],
+    custom_interval: we.CustomInterval,
+    expected_start: we.Moment,
+    expected_stop: we.Moment,
     expected_repr: str,
     expected_str: str,
 ) -> None:

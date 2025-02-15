@@ -3,7 +3,7 @@ from __future__ import annotations
 import dataclasses
 import datetime
 
-from when_exactly.delta import Delta
+from when_exactly.core.delta import Delta
 
 
 @dataclasses.dataclass(frozen=True)

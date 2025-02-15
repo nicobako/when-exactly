@@ -1,9 +1,9 @@
 # Moment
 
-The `Moment` represents, as the name suggests, _a moment in time_. It is analogous to Python's
+The `Moment` represents _a moment in time_. It is analogous to Python's
 [datetime.datetime](https://docs.python.org/3/library/datetime.html#datetime.datetime) class.
 
-The `Moment` is a simple class that it is used prevalently throughought _When-Exactly_.
+The `Moment` is a simple class that it is used prevalently throughout _When-Exactly_.
 
 
 ## Creating a Moment

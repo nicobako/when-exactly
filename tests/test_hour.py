@@ -21,3 +21,9 @@ def test_hour_day() -> None:
     hour = we.Hour(2020, 1, 1, 0)
     day = hour.day()
     assert day == we.Day(2020, 1, 1)
+
+
+def test_hour_minute() -> None:
+    hour = we.Hour(2020, 1, 1, 0)
+    assert hour.minute(0) == we.Minute(2020, 1, 1, 0, 0)
+    assert hour.minute(59) == we.Minute(2020, 1, 1, 0, 59)

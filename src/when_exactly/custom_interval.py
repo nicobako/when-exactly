@@ -4,10 +4,10 @@ import dataclasses
 import datetime
 from typing import Callable, Generator, Iterable, Protocol, TypeVar
 
-from when_exactly.delta import Delta
+from when_exactly.core.delta import Delta
 from when_exactly.interval import Interval
 from when_exactly.intervals import Intervals
-from when_exactly.moment import Moment
+from when_exactly.core.moment import Moment
 
 
 def now() -> Moment:
