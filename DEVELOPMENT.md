@@ -9,7 +9,7 @@ deploy() {
 
     # run tests and static analysis
     pytest
-    pre-commit run --all files
+    pre-commit run --all-files
 
     # build
     mkdocs gh-deploy
