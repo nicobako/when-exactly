@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Moment - when-exactly</title>
+        <title>Months - when-exactly</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/fontawesome.min.css" rel="stylesheet">
         <link href="../../css/brands.min.css" rel="stylesheet">
@@ -41,7 +41,7 @@
                                 <a href="../../getting-started/" class="nav-link">Getting Started</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorial</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorial</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -53,7 +53,7 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Moment</a>
+    <a href="../moment/" class="dropdown-item">Moment</a>
 </li>
                                     
 <li>
@@ -69,16 +69,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../year/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../delta/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -97,28 +87,8 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#moment" class="nav-link">Moment</a>
+            <li class="nav-item" data-bs-level="1"><a href="#months" class="nav-link">Months</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#creating-a-moment" class="nav-link">Creating a Moment</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#moment-validation" class="nav-link">Moment Validation</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#comaring-moments" class="nav-link">Comaring Moments</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#adding-deltas-to-moments" class="nav-link">Adding Deltas to Moments</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#iso-year-week-and-day" class="nav-link">ISO Year, Week, and Day</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
         </ul>
@@ -126,92 +96,7 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="moment">Moment</h1>
-<p>The <code>Moment</code> represents <em>a moment in time</em>. It is analogous to Python's
-<a href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime.datetime</a> class.</p>
-<p>The <code>Moment</code> is a simple class that it is used prevalently throughout <em>When-Exactly</em>.</p>
-<h2 id="creating-a-moment">Creating a Moment</h2>
-<pre><code class="language-python">&gt;&gt;&gt; import when_exactly as we
-
-&gt;&gt;&gt; moment = we.Moment(
-...     year=2025,
-...     month=1,
-...     day=30,
-...     hour=15,
-...     minute=25,
-...     second=30,
-... )
-&gt;&gt;&gt; moment
-Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
-
-&gt;&gt;&gt; # or, more concisely 
-&gt;&gt;&gt; we.Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
-Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
-
-</code></pre>
-<p>Moments can be created from datetimes, and can be converted to datetimes.</p>
-<pre><code class="language-python">&gt;&gt;&gt; import datetime
-
-&gt;&gt;&gt; moment.to_datetime()
-datetime.datetime(2025, 1, 30, 15, 25, 30)
-
-&gt;&gt;&gt; dt = datetime.datetime(2025, 1, 30, 15, 25, 30)
-&gt;&gt;&gt; we.Moment.from_datetime(dt)
-Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
-
-</code></pre>
-<h2 id="moment-validation">Moment Validation</h2>
-<p>A <code>Moment</code> is always a valid date-time.</p>
-<pre><code class="language-python">&gt;&gt;&gt; we.Moment(2025, 1, 32, 0,0,0)
-Traceback (most recent call last):
-...
-ValueError: Invalid moment: day is out of range for month
-
-</code></pre>
-<h2 id="comaring-moments">Comaring Moments</h2>
-<p><code>Moment</code>s can be compared to one another</p>
-<pre><code class="language-python">&gt;&gt;&gt; moment1 = we.Moment(2025, 1, 1, 0, 0, 0)
-&gt;&gt;&gt; moment2 = we.Moment(2025, 1, 1, 1, 0, 0)
-&gt;&gt;&gt; assert moment1 != moment2
-&gt;&gt;&gt; assert moment1 &lt; moment2
-&gt;&gt;&gt; assert moment1 &lt;= moment2
-&gt;&gt;&gt; assert moment2 &gt; moment1
-&gt;&gt;&gt; assert moment2 &gt;= moment1
-&gt;&gt;&gt; assert moment1 == we.Moment(2025, 1, 1, 0, 0, 0)
-
-</code></pre>
-<h2 id="adding-deltas-to-moments">Adding Deltas to Moments</h2>
-<p>A <a href="../delta/"><code>Delta</code></a> can be added to a <code>Moment</code>.</p>
-<pre><code class="language-python">&gt;&gt;&gt; moment = we.Moment(2025, 1, 31, 12, 30, 30)
-&gt;&gt;&gt; moment + we.Delta(years=1)
-Moment(year=2026, month=1, day=31, hour=12, minute=30, second=30)
-
-&gt;&gt;&gt; moment + we.Delta(months=1)
-Moment(year=2025, month=2, day=28, hour=12, minute=30, second=30)
-
-&gt;&gt;&gt; moment + we.Delta(days=2)
-Moment(year=2025, month=2, day=2, hour=12, minute=30, second=30)
-
-&gt;&gt;&gt; # etc.
-
-</code></pre>
-<h2 id="iso-year-week-and-day">ISO Year, Week, and Day</h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Incorporating ISO year, week, and days is still a work-in-progress.</p>
-</div>
-<p>A <code>Moment</code>'s ISO year, week, and weekday is accessible as follows:</p>
-<pre><code class="language-python">&gt;&gt;&gt; moment = we.Moment(2019, 12, 31, 0,0,0)
-&gt;&gt;&gt; moment.iso_year
-2020
-
-&gt;&gt;&gt; moment.iso_week
-1
-
-&gt;&gt;&gt; moment.iso_weekday
-2
-
-</code></pre></div>
+<h1 id="months">Months</h1></div>
             </div>
         </div>
 

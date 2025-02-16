@@ -41,8 +41,16 @@
                                 <a href="../../getting-started/" class="nav-link">Getting Started</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorial</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorial</a>
                                 <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Core Concepts</a>
+</li>
+                                    
+<li>
+    <a href="../year/" class="dropdown-item">Year</a>
+</li>
                                     
 <li>
     <a href="../moment/" class="dropdown-item">Moment</a>
@@ -61,6 +69,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../getting-started/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../year/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -85,6 +103,14 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#delta" class="nav-link">Delta</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#interval" class="nav-link">Interval</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -96,34 +122,53 @@
 <p>Since <em>When-Exactly</em> allows developers to interact with dates and times in a very unique way,
 it is worth while becoming familiar with some of the lower-level building blocks.</p>
 <h2 id="moment">Moment</h2>
-<p>The <code>Moment</code> represents, as the name suggests, <em>a moment in time</em>. This is analogous to Python's
+<p>The <a href="../moment/"><code>Moment</code></a> represents, <em>a moment in time</em>. This is analogous to Python's
 <a href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime.datetime</a> class.</p>
-<pre><code class="language-python">&gt;&gt;&gt; import when_exactly as we
-
-&gt;&gt;&gt; moment = we.Moment(
-...     year=2025,
-...     month=1,
-...     day=30,
-...     hour=15,
-...     minute=25,
-...     second=30,
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The resolution of a moment is limited to <em>a second</em>.
+If you need more resolution, then when-exactly is probably not the library you need.</p>
+</div>
+<h2 id="delta">Delta</h2>
+<p>The <a href="../delta/"><code>Delta</code></a> is analogous to Python's
+<a href="https://docs.python.org/3/library/datetime.html#datetime.timedelta">`datetime.timedelta</a>,
+with extra functionality for deltas of <em>months</em> and <em>years</em>.</p>
+<h2 id="interval">Interval</h2>
+<p>An <em>interval</em> represents a <em>time span</em>.
+An <em>interval</em> has a <em>start</em> and a <em>stop</em>.</p>
+<pre><code class="language-python">&gt;&gt;&gt; interval = we.Interval(
+...     start=we.Moment(2025, 2, 14, 12, 0, 0,),
+...     stop=we.Moment(2025, 2, 14, 12, 30, 0),
 ... )
-&gt;&gt;&gt; moment
-Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
+&gt;&gt;&gt; str(interval)
+'2025-02-14T12:00:00/2025-02-14T12:30:00'
 
 </code></pre>
-<p>Moments can be created from datetimes, and can be converted to datetimes.</p>
-<pre><code class="language-python">&gt;&gt;&gt; import datetime
+<p>This is the building block of all the <em>custom intervals</em> like <em>Year</em>, <em>Month</em>, etc.</p>
+<h3 id="intervals">Intervals</h3>
+<p><em>Intervals</em> represents a <em>collection of <code>Interval</code> objects</em>.
+It provides all of the standard functionality you would expect a container to have</p>
+<pre><code class="language-python">&gt;&gt;&gt; intervals = we.Intervals([
+...    we.Day(2023, 1, 5),
+...    we.Day(2023, 1, 7),
+...    we.Week(2023, 10),
+... ])
+&gt;&gt;&gt; intervals[0]
+Day(2023, 1, 5)
 
-&gt;&gt;&gt; moment.to_datetime()
-datetime.datetime(2025, 1, 30, 15, 25, 30)
+&gt;&gt;&gt; intervals[0:2]
+Intervals([Day(2023, 1, 5), Day(2023, 1, 7)])
 
-&gt;&gt;&gt; dt = datetime.datetime(2025, 1, 30, 15, 25, 30)
-&gt;&gt;&gt; we.Moment.from_datetime(dt)
-Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
+&gt;&gt;&gt; we.Week(2023, 10) in intervals
+True
 
-</code></pre>
-<p>The <code>Moment</code> is really a simple class, but it is used prevalently throughought <em>When-Exactly</em>.</p></div>
+&gt;&gt;&gt; for interval in intervals:
+...     print(interval)
+2023-01-05
+2023-01-07
+2023-W10
+
+</code></pre></div>
             </div>
         </div>
 
@@ -137,6 +182,7 @@ Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../js/base.js"></script>
+        <script src="../../js/mermaid-11.4.1.min.js"></script>
         <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
