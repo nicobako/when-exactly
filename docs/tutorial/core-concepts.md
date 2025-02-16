@@ -22,6 +22,7 @@ with extra functionality for deltas of _months_ and _years_.
 ## Interval
 
 An _interval_ represents a _time span_.
+An _interval_ has a _start_ and a _stop_.
 
 ```python
 >>> interval = we.Interval(
@@ -39,5 +40,3 @@ This is the building block of all the _custom intervals_ like _Year_, _Month_, e
 
 _Intervals_ (note that this word is plural)
 represents a _collection of `Interval` objects_.
-
-
