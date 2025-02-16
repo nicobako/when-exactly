@@ -2,13 +2,21 @@ from __future__ import annotations
 
 import dataclasses
 import datetime
-from typing import Iterable
+from typing import Iterable, TypeVar
 
 from when_exactly.core.custom_interval import CustomInterval
 from when_exactly.core.delta import Delta
 from when_exactly.core.interval import Interval
+from when_exactly.core.intervals import Intervals
 from when_exactly.core.moment import Moment
-from when_exactly.intervals import Intervals
+
+I = TypeVar("I", bound=CustomInterval)
+
+
+def _gen_until(start: I, stop: I) -> Iterable[I]:
+    while start < stop:
+        yield start
+        start = next(start)  # type: ignore
 
 
 def now() -> Moment:
@@ -252,16 +260,9 @@ class Month(CustomInterval):
 
     def days(self) -> Days:
         return Days(
-            filter(
-                lambda d: d.start.month == self.start.month,
-                [
-                    Day(
-                        self.start.year,
-                        self.start.month,
-                        i + 1,
-                    )
-                    for i in range(31)
-                ],
+            _gen_until(
+                Day(self.start.year, self.start.month, 1),
+                Day(self.start.year, self.start.month + 1, 1),
             )
         )
 
@@ -304,6 +305,14 @@ class Year(CustomInterval):
         return Month(
             self.start.year,
             month,
+        )
+
+    def weeks(self) -> Weeks:
+        return Weeks(
+            _gen_until(
+                Week(self.start.year, 1),
+                Week(self.start.year + 1, 1),
+            )
         )
 
     def __next__(self) -> Year:

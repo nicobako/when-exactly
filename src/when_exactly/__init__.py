@@ -1,6 +1,7 @@
 from when_exactly.core.custom_interval import CustomInterval
 from when_exactly.core.delta import Delta
 from when_exactly.core.interval import Interval
+from when_exactly.core.intervals import Intervals
 from when_exactly.core.moment import Moment
 from when_exactly.interval import (
     Day,
@@ -19,7 +20,6 @@ from when_exactly.interval import (
     Years,
     now,
 )
-from when_exactly.intervals import Intervals
 
 __all__ = [
     "Delta",

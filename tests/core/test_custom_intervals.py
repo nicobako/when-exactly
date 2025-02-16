@@ -9,41 +9,50 @@ import when_exactly as we
     [
         "intervals_type",
         "interval_values",
+        "type_name",
     ],
     [
         (
             we.Years,
             [we.Year(2020), we.Year(2023)],
+            "Years",
         ),
         (
             we.Months,
             [we.Month(2020, 1), we.Month(2020, 3)],
+            "Months",
         ),
         (
             we.Weeks,
             [we.Week(2020, 1), we.Week(2020, 3)],
+            "Weeks",
         ),
         (
             we.Days,
             [we.Day(2020, 1, 1), we.Day(2020, 1, 3)],
+            "Days",
         ),
         (
             we.Hours,
             [we.Hour(2020, 1, 1, 0), we.Hour(2020, 1, 1, 3)],
+            "Hours",
         ),
         (
             we.Minutes,
             [we.Minute(2020, 1, 1, 0, 0), we.Minute(2020, 1, 1, 0, 3)],
+            "Minutes",
         ),
         (
             we.Seconds,
             [we.Second(2020, 1, 1, 0, 0, 0), we.Second(2020, 1, 1, 0, 0, 3)],
+            "Seconds",
         ),
     ],
 )  # type: ignore
 def test_custom_intervals(
     intervals_type: Type[we.Intervals[we.Interval]],
     interval_values: list[we.Interval],
+    type_name: str,
 ) -> None:
     assert len(interval_values) > 1
     intervals = intervals_type(interval_values)
@@ -76,11 +85,17 @@ def test_custom_intervals(
     # test __repr__
     assert (
         repr(intervals)
-        == intervals_type.__name__ + "([" + ", ".join(map(repr, interval_values)) + "])"
+        == type_name + "([" + ", ".join(map(repr, interval_values)) + "])"
     )
 
     # test __str__
     assert str(intervals) == "{" + ", ".join(map(str, interval_values)) + "}"
+
+    # test __getitem__ with slice
+    intervals_slice = intervals[1:]
+    assert isinstance(intervals_slice, intervals_type)
+    assert intervals_slice.__class__.__name__ == type_name
+    assert type_name in repr(intervals_slice)
 
     # # test __add__
     # assert intervals + intervals == intervals_type(interval_values + interval_values)

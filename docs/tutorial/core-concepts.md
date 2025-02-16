@@ -38,5 +38,28 @@ This is the building block of all the _custom intervals_ like _Year_, _Month_, e
 
 ### Intervals
 
-_Intervals_ (note that this word is plural)
-represents a _collection of `Interval` objects_.
+_Intervals_ represents a _collection of `Interval` objects_.
+It provides all of the standard functionality you would expect a container to have
+
+```python
+>>> intervals = we.Intervals([
+...    we.Day(2023, 1, 5),
+...    we.Day(2023, 1, 7),
+...    we.Week(2023, 10),
+... ])
+>>> intervals[0]
+Day(2023, 1, 5)
+
+>>> intervals[0:2]
+Intervals([Day(2023, 1, 5), Day(2023, 1, 7)])
+
+>>> we.Week(2023, 10) in intervals
+True
+
+>>> for interval in intervals:
+...     print(interval)
+2023-01-05
+2023-01-07
+2023-W10
+
+```

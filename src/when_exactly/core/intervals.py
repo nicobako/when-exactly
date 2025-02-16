@@ -1,12 +1,11 @@
 from __future__ import annotations
 
+from collections import abc
 from typing import Iterable, NoReturn, TypeVar, final, overload
 
 from when_exactly.core.interval import Interval
 
 T = TypeVar("T", bound=Interval)
-
-from collections import abc
 
 
 class Intervals(abc.Container[T]):
@@ -46,7 +45,7 @@ class Intervals(abc.Container[T]):
     @final
     def __getitem__(self, index: int | slice[int]) -> T | Intervals[T]:
         if isinstance(index, slice):
-            return Intervals(self._values[index])
+            return self.__class__(self._values[index])
         else:
             return self._values[index]
 
