@@ -1,5 +1,21 @@
 # Development Notes
 
+## Environment Setup
+
+```bash
+# Windows
+py -3.13 -m venv .venv
+source .venv/Scripts/activate
+
+# Linux
+python3.13 -m venv .venv
+source .venv/bin/activate
+
+# Install dev dependecies
+pip install --upgrade pytest mkdocs pre-commit
+pre-commit install --install-hooks
+```
+
 ## Deployment
 
 ```bash
@@ -12,7 +28,7 @@ deploy() {
     pre-commit run --all-files
 
     # build
-    mkdocs gh-deploy
+    mkdocs gh-deploy --strict
     python -m build
 
     # tag and deploy

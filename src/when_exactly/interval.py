@@ -5,6 +5,7 @@ import datetime
 from typing import Iterable, TypeVar
 
 from when_exactly.core.custom_interval import CustomInterval
+from when_exactly.core.custom_intervals import CustomIntervals
 from when_exactly.core.delta import Delta
 from when_exactly.core.interval import Interval
 from when_exactly.core.intervals import Intervals
@@ -319,31 +320,31 @@ class Year(CustomInterval):
         return Year.from_moment(self.stop)
 
 
-class Years(Intervals[Year]):
+class Years(CustomIntervals[Year]):
     pass
 
 
-class Months(Intervals[Month]):
+class Months(CustomIntervals[Month]):
     pass
 
 
-class Weeks(Intervals[Week]):
+class Weeks(CustomIntervals[Week]):
     pass
 
 
-class Days(Intervals[Day]):
+class Days(CustomIntervals[Day]):
 
     def months(self) -> Months:
         return Months([day.month() for day in self])
 
 
-class Hours(Intervals[Hour]):
+class Hours(CustomIntervals[Hour]):
     pass
 
 
-class Minutes(Intervals[Minute]):
+class Minutes(CustomIntervals[Minute]):
     pass
 
 
-class Seconds(Intervals[Second]):
+class Seconds(CustomIntervals[Second]):
     pass
