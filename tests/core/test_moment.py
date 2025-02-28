@@ -111,16 +111,16 @@ def test_add_delta_edge_cases() -> None:
 
 def test_moment_iso() -> None:
     moment = we.Moment(2020, 1, 1, 0, 0, 0)
-    assert moment.iso_year == 2020
-    assert moment.iso_week == 1
-    assert moment.iso_weekday == 3
+    assert moment.week_year == 2020
+    assert moment.week == 1
+    assert moment.week_day == 3
 
     moment = we.Moment(2020, 12, 31, 0, 0, 0)
-    assert moment.iso_year == 2020
-    assert moment.iso_week == 53
-    assert moment.iso_weekday == 4
+    assert moment.week_year == 2020
+    assert moment.week == 53
+    assert moment.week_day == 4
 
     moment = we.Moment(2019, 12, 31, 0, 0, 0)
-    assert moment.iso_year == 2020
-    assert moment.iso_week == 1
-    assert moment.iso_weekday == 2
+    assert moment.week_year == 2020
+    assert moment.week == 1
+    assert moment.week_day == 2

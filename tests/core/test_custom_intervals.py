@@ -50,14 +50,14 @@ import when_exactly as we
     ],
 )  # type: ignore
 def test_custom_intervals(
-    intervals_type: Type[we.Intervals[we.Interval]],
+    intervals_type: Type[we.Collection[we.Interval]],
     interval_values: list[we.Interval],
     type_name: str,
 ) -> None:
     assert len(interval_values) > 1
     intervals = intervals_type(interval_values)
     assert isinstance(intervals, intervals_type)
-    assert isinstance(intervals, we.Intervals)
+    assert isinstance(intervals, we.Collection)
 
     # test __contains__
     for val in interval_values:

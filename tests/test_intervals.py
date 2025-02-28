@@ -13,12 +13,12 @@ def values() -> list[we.Interval]:
 
 
 @pytest.fixture  # type: ignore
-def intervals(values: list[we.Interval]) -> we.Intervals[we.Interval]:
-    return we.Intervals(values)
+def intervals(values: list[we.Interval]) -> we.Collection[we.Interval]:
+    return we.Collection(values)
 
 
 def test_intervals_collection_api(
-    values: list[we.Interval], intervals: we.Intervals[we.Interval]
+    values: list[we.Interval], intervals: we.Collection[we.Interval]
 ) -> None:
     assert list(intervals) == values
     assert list(intervals) == values
@@ -26,7 +26,7 @@ def test_intervals_collection_api(
     assert values[0] in intervals
     assert intervals[0] == values[0]
 
-    assert intervals[0:2] == we.Intervals(values[0:2])
+    assert intervals[0:2] == we.Collection(values[0:2])
     assert intervals == intervals
 
     with pytest.raises(NotImplementedError):
@@ -41,5 +41,5 @@ def test_intervals_sorts_and_removes_duplicates() -> None:
     c = we.Interval(we.Moment(2020, 1, 3, 0, 0, 0), we.Moment(2020, 1, 4, 0, 0, 0))
 
     values = [a, b, c, a, b, c]
-    intervals = we.Intervals(values)
+    intervals = we.Collection(values)
     assert list(intervals) == [a, b, c]

@@ -10,4 +10,4 @@ def test_weeks() -> None:
         ]
     )
     assert isinstance(weeks, we.Weeks)
-    assert isinstance(weeks, we.Intervals)
+    assert isinstance(weeks, we.Collection)

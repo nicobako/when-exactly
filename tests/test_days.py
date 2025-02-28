@@ -10,7 +10,7 @@ def test_initialization() -> None:
         ]
     )
     assert isinstance(days, we.Days)
-    assert isinstance(days, we.Intervals)
+    assert isinstance(days, we.Collection)
 
 
 def test_months() -> None:

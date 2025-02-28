@@ -8,7 +8,7 @@ from when_exactly.core.interval import Interval
 T = TypeVar("T", bound=Interval)
 
 
-class Intervals(abc.Container[T]):
+class Collection(abc.Container[T]):
     @final
     def __init__(self, values: Iterable[T]) -> None:
         self._values: list[T] = sorted(set(values))
@@ -19,7 +19,7 @@ class Intervals(abc.Container[T]):
         return self._values
 
     @final
-    def __iter__(self) -> Intervals[T]:
+    def __iter__(self) -> Collection[T]:
         return self
 
     @final
@@ -40,10 +40,10 @@ class Intervals(abc.Container[T]):
     def __getitem__(self, index: int) -> T: ...
 
     @overload
-    def __getitem__(self, index: slice[int]) -> Intervals[T]: ...
+    def __getitem__(self, index: slice[int]) -> Collection[T]: ...
 
     @final
-    def __getitem__(self, index: int | slice[int]) -> T | Intervals[T]:
+    def __getitem__(self, index: int | slice[int]) -> T | Collection[T]:
         if isinstance(index, slice):
             return self.__class__(self._values[index])
         else:
@@ -54,14 +54,14 @@ class Intervals(abc.Container[T]):
         return f"{self.__class__.__name__}({self._values})"
 
     @overload
-    def __eq__(self, other: Intervals[T]) -> bool: ...
+    def __eq__(self, other: Collection[T]) -> bool: ...
 
     @overload
     def __eq__(self, other: object) -> bool: ...
 
     @final
-    def __eq__(self, other: Intervals[T] | object) -> bool:
-        if not isinstance(other, Intervals):
+    def __eq__(self, other: Collection[T] | object) -> bool:
+        if not isinstance(other, Collection):
             raise NotImplementedError
 
         return self._values == other.values

@@ -4,12 +4,12 @@ import dataclasses
 import datetime
 from typing import Iterable, TypeVar
 
-from when_exactly.core.custom_interval import CustomInterval
-from when_exactly.core.custom_intervals import CustomIntervals
+from when_exactly.core.collection import Collection
 from when_exactly.core.delta import Delta
 from when_exactly.core.interval import Interval
-from when_exactly.core.intervals import Intervals
 from when_exactly.core.moment import Moment
+from when_exactly.custom.custom_collection import CustomCollection
+from when_exactly.custom.custom_interval import CustomInterval
 
 I = TypeVar("I", bound=CustomInterval)
 
@@ -218,16 +218,16 @@ class Week(CustomInterval):
         )
 
     def __repr__(self) -> str:
-        return f"Week({self.start.iso_year}, {self.start.iso_week})"
+        return f"Week({self.start.week_year}, {self.start.week})"
 
     def __str__(self) -> str:
-        return f"{self.start.iso_year:04}-W{self.start.iso_week:02}"
+        return f"{self.start.week_year:04}-W{self.start.week:02}"
 
     @classmethod
     def from_moment(cls, moment: Moment) -> Week:
         return Week(
-            moment.iso_year,
-            moment.iso_week,
+            moment.week_year,
+            moment.week,
         )
 
     def __next__(self) -> CustomInterval:
@@ -320,31 +320,31 @@ class Year(CustomInterval):
         return Year.from_moment(self.stop)
 
 
-class Years(CustomIntervals[Year]):
+class Years(CustomCollection[Year]):
     pass
 
 
-class Months(CustomIntervals[Month]):
+class Months(CustomCollection[Month]):
     pass
 
 
-class Weeks(CustomIntervals[Week]):
+class Weeks(CustomCollection[Week]):
     pass
 
 
-class Days(CustomIntervals[Day]):
+class Days(CustomCollection[Day]):
 
     def months(self) -> Months:
         return Months([day.month() for day in self])
 
 
-class Hours(CustomIntervals[Hour]):
+class Hours(CustomCollection[Hour]):
     pass
 
 
-class Minutes(CustomIntervals[Minute]):
+class Minutes(CustomCollection[Minute]):
     pass
 
 
-class Seconds(CustomIntervals[Second]):
+class Seconds(CustomCollection[Second]):
     pass

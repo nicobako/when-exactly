@@ -72,7 +72,7 @@ ValueError: Invalid moment: day is out of range for month
 
 ## Adding Deltas to Moments
 
-A [`Delta`](delta.md) can be added to a `Moment`.
+A [`Delta`](./delta.md) can be added to a `Moment`.
 
 
 ```python
@@ -90,22 +90,21 @@ Moment(year=2025, month=2, day=2, hour=12, minute=30, second=30)
 
 ```
 
-## ISO Year, Week, and Day
+## Weeks
 
-!!! note
-    Incorporating ISO year, week, and days is still a work-in-progress.
-
-A `Moment`'s ISO year, week, and weekday is accessible as follows:
+A moment's ISO year, week, and weekday are accessible as follows:
 
 ```python
+>>> # 2019-12-31 == 2020-W01-2
 >>> moment = we.Moment(2019, 12, 31, 0,0,0)
->>> moment.iso_year
+
+>>> moment.week_year
 2020
 
->>> moment.iso_week
+>>> moment.week
 1
 
->>> moment.iso_weekday
+>>> moment.week_day
 2
 
 ```

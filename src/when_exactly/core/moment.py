@@ -81,13 +81,13 @@ class Moment:
         return self.to_datetime().isoformat()
 
     @property
-    def iso_year(self) -> int:
+    def week_year(self) -> int:
         return self.to_datetime().isocalendar()[0]
 
     @property
-    def iso_week(self) -> int:
+    def week(self) -> int:
         return self.to_datetime().isocalendar()[1]
 
     @property
-    def iso_weekday(self) -> int:
+    def week_day(self) -> int:
         return self.to_datetime().isocalendar()[2]

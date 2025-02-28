@@ -1,8 +1,8 @@
 from typing import Type
 
 from tests.core.assert_frozen import assert_frozen
-from when_exactly.core.custom_interval import CustomInterval
 from when_exactly.core.moment import Moment
+from when_exactly.custom.custom_interval import CustomInterval
 
 
 def assert_custom_interval(
