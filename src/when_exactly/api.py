@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import dataclasses
 import datetime
+from functools import cached_property
 from typing import Iterable, TypeVar
 
 from when_exactly.core.collection import Collection
@@ -299,6 +300,7 @@ class Year(CustomInterval):
     def from_moment(cls, moment: Moment) -> Year:
         return Year(moment.year)
 
+    @cached_property
     def months(self) -> Months:
         return Months([Month(self.start.year, self.start.month + i) for i in range(12)])
 
@@ -308,6 +310,7 @@ class Year(CustomInterval):
             month,
         )
 
+    @cached_property
     def weeks(self) -> Weeks:
         return Weeks(
             _gen_until(
