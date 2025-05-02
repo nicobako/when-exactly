@@ -119,11 +119,10 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="core-concepts">Core Concepts</h1>
-<p>Since <em>When-Exactly</em> allows developers to interact with dates and times in a very unique way,
-it is worth while becoming familiar with some of the lower-level building blocks.</p>
+<p><em>When-Exactly</em> is basically a wrapper around Python's already awesome <a href="https://docs.python.org/3/library/datetime.html"><code>datetime</code></a> module. <em>When-Exactly</em> simply provides ways to work with dates in a more abstract way.</p>
 <h2 id="moment">Moment</h2>
 <p>The <a href="../moment/"><code>Moment</code></a> represents, <em>a moment in time</em>. This is analogous to Python's
-<a href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime.datetime</a> class.</p>
+<a href="https://docs.python.org/3/library/datetime.html#datetime.datetime"><code>datetime.datetime</code></a> class.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The resolution of a moment is limited to <em>a second</em>.
@@ -131,10 +130,10 @@ If you need more resolution, then when-exactly is probably not the library you n
 </div>
 <h2 id="delta">Delta</h2>
 <p>The <a href="../delta/"><code>Delta</code></a> is analogous to Python's
-<a href="https://docs.python.org/3/library/datetime.html#datetime.timedelta">`datetime.timedelta</a>,
+<a href="https://docs.python.org/3/library/datetime.html#datetime.timedelta"><code>datetime.timedelta</code></a>,
 with extra functionality for deltas of <em>months</em> and <em>years</em>.</p>
 <h2 id="interval">Interval</h2>
-<p>An <em>interval</em> represents a <em>time span</em>.
+<p>An <a href="../interval/"><code>Interval</code></a> represents a <em>time span</em>.
 An <em>interval</em> has a <em>start</em> and a <em>stop</em>.</p>
 <pre><code class="language-python">&gt;&gt;&gt; interval = we.Interval(
 ...     start=we.Moment(2025, 2, 14, 12, 0, 0,),
@@ -145,24 +144,24 @@ An <em>interval</em> has a <em>start</em> and a <em>stop</em>.</p>
 
 </code></pre>
 <p>This is the building block of all the <em>custom intervals</em> like <em>Year</em>, <em>Month</em>, etc.</p>
-<h3 id="intervals">Intervals</h3>
-<p><em>Intervals</em> represents a <em>collection of <code>Interval</code> objects</em>.
+<h3 id="collection">Collection</h3>
+<p>The <a href="../collection/"><code>Collection</code></a> represents a <em>collection of <code>Interval</code> objects</em>.
 It provides all of the standard functionality you would expect a container to have</p>
-<pre><code class="language-python">&gt;&gt;&gt; intervals = we.Intervals([
+<pre><code class="language-python">&gt;&gt;&gt; collection = we.Collection([
 ...    we.Day(2023, 1, 5),
 ...    we.Day(2023, 1, 7),
 ...    we.Week(2023, 10),
 ... ])
-&gt;&gt;&gt; intervals[0]
+&gt;&gt;&gt; collection[0]
 Day(2023, 1, 5)
 
-&gt;&gt;&gt; intervals[0:2]
-Intervals([Day(2023, 1, 5), Day(2023, 1, 7)])
+&gt;&gt;&gt; collection[0:2]
+Collection([Day(2023, 1, 5), Day(2023, 1, 7)])
 
-&gt;&gt;&gt; we.Week(2023, 10) in intervals
+&gt;&gt;&gt; we.Week(2023, 10) in collection
 True
 
-&gt;&gt;&gt; for interval in intervals:
+&gt;&gt;&gt; for interval in collection:
 ...     print(interval)
 2023-01-05
 2023-01-07

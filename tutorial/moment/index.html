@@ -115,7 +115,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#iso-year-week-and-day" class="nav-link">ISO Year, Week, and Day</a>
+            <li class="nav-item" data-bs-level="2"><a href="#weeks" class="nav-link">Weeks</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -195,20 +195,18 @@ Moment(year=2025, month=2, day=2, hour=12, minute=30, second=30)
 &gt;&gt;&gt; # etc.
 
 </code></pre>
-<h2 id="iso-year-week-and-day">ISO Year, Week, and Day</h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Incorporating ISO year, week, and days is still a work-in-progress.</p>
-</div>
-<p>A <code>Moment</code>'s ISO year, week, and weekday is accessible as follows:</p>
-<pre><code class="language-python">&gt;&gt;&gt; moment = we.Moment(2019, 12, 31, 0,0,0)
-&gt;&gt;&gt; moment.iso_year
+<h2 id="weeks">Weeks</h2>
+<p>A moment's ISO year, week, and weekday are accessible as follows:</p>
+<pre><code class="language-python">&gt;&gt;&gt; # 2019-12-31 == 2020-W01-2
+&gt;&gt;&gt; moment = we.Moment(2019, 12, 31, 0,0,0)
+
+&gt;&gt;&gt; moment.week_year
 2020
 
-&gt;&gt;&gt; moment.iso_week
+&gt;&gt;&gt; moment.week
 1
 
-&gt;&gt;&gt; moment.iso_weekday
+&gt;&gt;&gt; moment.week_day
 2
 
 </code></pre></div>
