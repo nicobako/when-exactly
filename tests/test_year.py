@@ -1,33 +1,51 @@
+from itertools import accumulate
+
+import pytest
+
 import when_exactly as we
 
 
 def test_year_months() -> None:
     year = we.Year(2020)
-    months = year.months()
-    assert len(months) == 12
-    for i, month in enumerate(months):
-        assert month == we.Month(2020, i + 1)
-    assert months[-1].start == we.Moment(2020, 12, 1, 0, 0, 0)
-    assert months[-1].stop == we.Moment(2021, 1, 1, 0, 0, 0)
+    months = year.months
+    assert months == we.Months([we.Month(2020, i + 1) for i in range(12)])
 
 
-def test_year_month() -> None:
+@pytest.mark.parametrize(  # type: ignore
+    "month_number",
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+)
+def test_year_month(month_number: int) -> None:
     year = we.Year(2020)
-    month = year.month(1)
-    assert month == we.Month(2020, 1)
+    month = year.month(month_number)
+    assert month == we.Month(2020, month_number)
 
 
 def test_year_weeks() -> None:
     year = we.Year(2020)
-    weeks = year.weeks()
-    assert len(weeks) == 53
-    for i, week in enumerate(weeks):
-        assert week == we.Week(2020, i + 1)
-    assert weeks[-1].start == we.Moment(2020, 12, 28, 0, 0, 0)
-    assert weeks[-1].stop == we.Moment(2021, 1, 4, 0, 0, 0)
+    weeks = year.weeks
+    assert weeks == we.Weeks([we.Week(2020, i + 1) for i in range(53)])
 
 
-def test_year_next() -> None:
+def test_year_days() -> None:
     year = we.Year(2020)
-    assert next(year) == we.Year(2021)
-    assert next(next(year)) == we.Year(2022)
+    days = year.days
+    assert len(days) == 366
+    assert days[0] == we.Day(2020, 1, 1)
+    assert days[-1] == we.Day(2020, 12, 31)
+
+
+def test_year_month_by_name() -> None:
+    year = we.Year(2020)
+    assert year.january == we.Month(2020, 1)
+    assert year.february == we.Month(2020, 2)
+    assert year.march == we.Month(2020, 3)
+    assert year.april == we.Month(2020, 4)
+    assert year.may == we.Month(2020, 5)
+    assert year.june == we.Month(2020, 6)
+    assert year.july == we.Month(2020, 7)
+    assert year.august == we.Month(2020, 8)
+    assert year.september == we.Month(2020, 9)
+    assert year.october == we.Month(2020, 10)
+    assert year.november == we.Month(2020, 11)
+    assert year.december == we.Month(2020, 12)

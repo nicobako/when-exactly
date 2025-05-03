@@ -18,10 +18,10 @@ Year(2025)
 
 ## The Months of a Year
 
-A `Year` has a `.months()`, which returns the [`Months`](months.md). of the year.
+A `Year` has a `.months` property, which returns the [`Months`](months.md). of the year.
 
 ```python
->>> months = year.months()
+>>> months = year.months
 >>> len(months)
 12
 

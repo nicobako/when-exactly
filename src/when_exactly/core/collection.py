@@ -40,10 +40,14 @@ class Collection(abc.Container[T]):
     def __getitem__(self, index: int) -> T: ...
 
     @overload
-    def __getitem__(self, index: slice[int]) -> Collection[T]: ...
+    def __getitem__(
+        self, index: slice[int, int | None, int | None]
+    ) -> Collection[T]: ...
 
     @final
-    def __getitem__(self, index: int | slice[int]) -> T | Collection[T]:
+    def __getitem__(
+        self, index: int | slice[int, int | None, int | None]
+    ) -> T | Collection[T]:
         if isinstance(index, slice):
             return self.__class__(self._values[index])
         else:

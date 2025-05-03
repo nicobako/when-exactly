@@ -19,10 +19,12 @@ from when_exactly.core.collection import Collection
 from when_exactly.core.delta import Delta
 from when_exactly.core.interval import Interval
 from when_exactly.core.moment import Moment
+from when_exactly.custom.custom_collection import CustomCollection
 from when_exactly.custom.custom_interval import CustomInterval
 
 __all__ = [
     "Delta",
+    "CustomCollection",
     "CustomInterval",
     "Interval",
     "Collection",

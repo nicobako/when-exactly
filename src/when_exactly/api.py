@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import dataclasses
 import datetime
+from functools import cached_property
 from typing import Iterable, TypeVar
 
 from when_exactly.core.collection import Collection
@@ -299,8 +300,18 @@ class Year(CustomInterval):
     def from_moment(cls, moment: Moment) -> Year:
         return Year(moment.year)
 
+    @cached_property
     def months(self) -> Months:
         return Months([Month(self.start.year, self.start.month + i) for i in range(12)])
+
+    @cached_property
+    def days(self) -> Days:
+        return Days(
+            _gen_until(
+                Day(self.start.year, 1, 1),
+                Day(self.start.year + 1, 1, 1),
+            )
+        )
 
     def month(self, month: int) -> Month:
         return Month(
@@ -308,6 +319,7 @@ class Year(CustomInterval):
             month,
         )
 
+    @cached_property
     def weeks(self) -> Weeks:
         return Weeks(
             _gen_until(
@@ -315,6 +327,54 @@ class Year(CustomInterval):
                 Week(self.start.year + 1, 1),
             )
         )
+
+    @property
+    def january(self) -> Month:
+        return Month(self.start.year, 1)
+
+    @property
+    def february(self) -> Month:
+        return Month(self.start.year, 2)
+
+    @property
+    def march(self) -> Month:
+        return Month(self.start.year, 3)
+
+    @property
+    def april(self) -> Month:
+        return Month(self.start.year, 4)
+
+    @property
+    def may(self) -> Month:
+        return Month(self.start.year, 5)
+
+    @property
+    def june(self) -> Month:
+        return Month(self.start.year, 6)
+
+    @property
+    def july(self) -> Month:
+        return Month(self.start.year, 7)
+
+    @property
+    def august(self) -> Month:
+        return Month(self.start.year, 8)
+
+    @property
+    def september(self) -> Month:
+        return Month(self.start.year, 9)
+
+    @property
+    def october(self) -> Month:
+        return Month(self.start.year, 10)
+
+    @property
+    def november(self) -> Month:
+        return Month(self.start.year, 11)
+
+    @property
+    def december(self) -> Month:
+        return Month(self.start.year, 12)
 
     def __next__(self) -> Year:
         return Year.from_moment(self.stop)
