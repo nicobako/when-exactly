@@ -1,6 +1,8 @@
+build==1.2.2.post1
 cfgv==3.4.0
 click==8.1.8
 colorama==0.4.6
+coverage==7.8.0
 distlib==0.3.9
 filelock==3.18.0
 ghp-import==2.1.0
@@ -18,10 +20,13 @@ pathspec==0.12.1
 platformdirs==4.3.7
 pluggy==1.5.0
 pre_commit==4.2.0
+pyproject_hooks==1.2.0
 pytest==8.3.5
+pytest-cov==6.1.1
 python-dateutil==2.9.0.post0
 PyYAML==6.0.2
 pyyaml_env_tag==0.1
 six==1.17.0
 virtualenv==20.30.0
 watchdog==6.0.0
+-e git+https://github.com/nicobako/when-exactly.git@bd8d282f1ac35da5f6d293201a96d3c06c509a2a#egg=when_exactly

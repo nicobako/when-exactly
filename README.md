@@ -33,6 +33,7 @@ pip install \
   pytest-cov \
   mkdocs \
   pre-commit \
+  build \
 
 pip freeze > requirements.txt
 ```
