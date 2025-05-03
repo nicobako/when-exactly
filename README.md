@@ -34,6 +34,7 @@ pip install \
   mkdocs \
   pre-commit \
   build \
+  twine \
 
 pip freeze > requirements.txt
 ```
@@ -52,4 +53,11 @@ mkdocs serve
 
 # deploy
 mkdocs gh-deploy
+```
+
+## Build
+
+```bash
+python -m build
+python -m twine upload dist/*
 ```
