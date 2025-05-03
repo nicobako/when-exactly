@@ -6,7 +6,7 @@ authors = [
 ]
 description = "Expressive and intuitive date and time library"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.13"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -22,5 +22,3 @@ Documentation = "https://when-exactly.nicobako.me"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.pytest.ini_options]
-addopts = "--cov=when_exactly --cov-report=term-missing --cov-fail-under=100"

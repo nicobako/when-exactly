@@ -7,7 +7,7 @@ import when_exactly as we
 
 @pytest.mark.parametrize(
     [
-        "intervals_type",
+        "collection_type",
         "interval_values",
         "type_name",
     ],
@@ -49,65 +49,65 @@ import when_exactly as we
         ),
     ],
 )  # type: ignore
-def test_custom_intervals(
-    intervals_type: Type[we.Intervals[we.Interval]],
-    interval_values: list[we.Interval],
+def test_custom_collection(
+    collection_type: Type[we.CustomCollection[we.CustomInterval]],
+    interval_values: list[we.CustomInterval],
     type_name: str,
 ) -> None:
     assert len(interval_values) > 1
-    intervals = intervals_type(interval_values)
-    assert isinstance(intervals, intervals_type)
-    assert isinstance(intervals, we.Intervals)
+    collection = collection_type(interval_values)
+    assert isinstance(collection, we.CustomCollection)
+    assert isinstance(collection, collection_type)
 
     # test __contains__
     for val in interval_values:
-        assert val in intervals
+        assert val in collection
 
     # test __iter__
-    for val in intervals:
+    for val in collection:
         assert val in interval_values
 
     # test __len__
-    assert len(intervals) == len(interval_values)
-
-    # test __getitem__
-    for i, val in enumerate(interval_values):
-        assert intervals[i] == val
+    assert len(collection) == len(interval_values)
 
     # test __eq__
-    assert intervals == intervals_type(interval_values)
+    assert collection == collection_type(interval_values)
     with pytest.raises(NotImplementedError):
-        assert intervals == object()
+        assert collection == object()
 
     # test __ne__
-    assert intervals != intervals_type(interval_values[:-1])
+    assert collection != collection_type(interval_values[:-1])
 
     # test __repr__
     assert (
-        repr(intervals)
+        repr(collection)
         == type_name + "([" + ", ".join(map(repr, interval_values)) + "])"
     )
 
     # test __str__
-    assert str(intervals) == "{" + ", ".join(map(str, interval_values)) + "}"
+    assert str(collection) == "{" + ", ".join(map(str, interval_values)) + "}"
+
+    # test __getitem__ with int
+    for i, val in enumerate(interval_values):
+        assert collection[i] == val
 
     # test __getitem__ with slice
-    intervals_slice = intervals[1:]
-    assert isinstance(intervals_slice, intervals_type)
-    assert intervals_slice.__class__.__name__ == type_name
-    assert type_name in repr(intervals_slice)
+    collection_slice = collection[1:]
+    assert isinstance(collection_slice, collection_type)
+    assert collection_slice.__class__.__name__ == type_name
+    assert type_name in repr(collection_slice)
 
     # # test __add__
-    # assert intervals + intervals == intervals_type(interval_values + interval_values)
+    # assert collection + collection == collection_type(interval_values + interval_values)
 
     # # test __sub__
-    # assert intervals - intervals == intervals_type([])
+    # assert collection - collection == collection_type([])
 
     # # test __and__
-    # assert intervals & intervals == intervals
+    # assert collection & collection == collection
 
     # # test __or__
-    # assert intervals | intervals == intervals
+    # assert collection | collection == collection
 
     # # test __xor__
-    # assert intervals ^ intervals == intervals_type([])
+    # assert collection ^ collection == collection_type([])

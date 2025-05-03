@@ -10,7 +10,7 @@ def test_initialization() -> None:
         ]
     )
     assert isinstance(days, we.Days)
-    assert isinstance(days, we.Intervals)
+    assert isinstance(days, we.Collection)
 
 
 def test_months() -> None:
@@ -24,4 +24,4 @@ def test_months() -> None:
             we.Day(2020, 2, 3),
         ]
     )
-    assert days.months() == we.Months([we.Month(2020, 1), we.Month(2020, 2)])
+    assert days.months == we.Months([we.Month(2020, 1), we.Month(2020, 2)])

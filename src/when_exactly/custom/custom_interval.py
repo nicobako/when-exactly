@@ -24,6 +24,10 @@ class CustomInterval(Interval):
             "CustomInterval from_moment not implemented"
         )  # pragma: no cover
 
+    @property
+    def next(self) -> CustomInterval:
+        return next(self)
+
     def __next__(self) -> CustomInterval:
         raise NotImplementedError(
             "CustomInterval next not implemented"

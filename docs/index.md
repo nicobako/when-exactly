@@ -4,7 +4,11 @@ An expressive and intuitive library for working with dates.
 
 ## Rationale
 
-When people think about dates and times we tend to think in terms of _years_, _months_, _weeks_, _days_, _hours_, _minutes_, etc.
+Why are rogrammers are restricted to working with _date-time_
+and _date_ objects while needing to work with dates?
+
+People tend to think and communicate about time in terms of
+_years_, _months_, _weeks_, _days_, _hours_, _minutes_, etc.
 
 When-Exactly is a library that aims to bring these types into the hands of developers,
 so they can write more expressive code when working with dates.
@@ -18,7 +22,7 @@ so they can write more expressive code when working with dates.
 >>> year
 Year(2025)
 
->>> month = year.month(1) # month 1 (January)
+>>> month = year.month(1) # month 1 (January) of the year
 >>> month
 Month(2025, 1)
 
@@ -26,10 +30,10 @@ Month(2025, 1)
 >>> day
 Day(2025, 12, 25)
 
->>> day.month() # the month that the day is a part of
+>>> day.month # the month that the day is a part of
 Month(2025, 12)
 
->>> day.week() # the week that the day is a part of
+>>> day.week # the week that the day is a part of
 Week(2025, 52)
 
 ```

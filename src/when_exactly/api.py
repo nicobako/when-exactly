@@ -2,13 +2,15 @@ from __future__ import annotations
 
 import dataclasses
 import datetime
+from functools import cached_property
 from typing import Iterable, TypeVar
 
-from when_exactly.core.custom_interval import CustomInterval
+from when_exactly.core.collection import Collection
 from when_exactly.core.delta import Delta
 from when_exactly.core.interval import Interval
-from when_exactly.core.intervals import Intervals
 from when_exactly.core.moment import Moment
+from when_exactly.custom.custom_collection import CustomCollection
+from when_exactly.custom.custom_interval import CustomInterval
 
 I = TypeVar("I", bound=CustomInterval)
 
@@ -21,6 +23,59 @@ def _gen_until(start: I, stop: I) -> Iterable[I]:
 
 def now() -> Moment:
     return Moment.from_datetime(datetime.datetime.now())
+
+
+@dataclasses.dataclass(frozen=True, init=False, repr=False)
+class Year(CustomInterval):
+
+    def __init__(self, year: int) -> None:
+
+        Interval.__init__(
+            self,
+            start=Moment(year, 1, 1, 0, 0, 0),
+            stop=Moment(year + 1, 1, 1, 0, 0, 0),
+        )
+
+    def __repr__(self) -> str:
+        return f"Year({self.start.year})"
+
+    def __str__(self) -> str:
+        return f"{self.start.year:04}"
+
+    @classmethod
+    def from_moment(cls, moment: Moment) -> Year:
+        return Year(moment.year)
+
+    @cached_property
+    def months(self) -> Months:
+        return Months([Month(self.start.year, self.start.month + i) for i in range(12)])
+
+    @cached_property
+    def days(self) -> Days:
+        return Days(
+            _gen_until(
+                Day(self.start.year, 1, 1),
+                Day(self.start.year + 1, 1, 1),
+            )
+        )
+
+    def month(self, month: int) -> Month:
+        return Month(
+            self.start.year,
+            month,
+        )
+
+    @cached_property
+    def weeks(self) -> Weeks:
+        return Weeks(
+            _gen_until(
+                Week(self.start.year, 1),
+                Week(self.start.year + 1, 1),
+            )
+        )
+
+    def __next__(self) -> Year:
+        return Year.from_moment(self.stop)
 
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
@@ -191,12 +246,14 @@ class Day(CustomInterval):
             hour,
         )
 
+    @cached_property
     def month(self) -> Month:
         return Month(
             self.start.year,
             self.start.month,
         )
 
+    @cached_property
     def week(self) -> Week:
         return Week.from_moment(self.start)
 
@@ -217,16 +274,16 @@ class Week(CustomInterval):
         )
 
     def __repr__(self) -> str:
-        return f"Week({self.start.iso_year}, {self.start.iso_week})"
+        return f"Week({self.start.week_year}, {self.start.week})"
 
     def __str__(self) -> str:
-        return f"{self.start.iso_year:04}-W{self.start.iso_week:02}"
+        return f"{self.start.week_year:04}-W{self.start.week:02}"
 
     @classmethod
     def from_moment(cls, moment: Moment) -> Week:
         return Week(
-            moment.iso_year,
-            moment.iso_week,
+            moment.week_year,
+            moment.week,
         )
 
     def __next__(self) -> CustomInterval:
@@ -277,73 +334,32 @@ class Month(CustomInterval):
         return Month.from_moment(self.stop)
 
 
-@dataclasses.dataclass(frozen=True, init=False, repr=False)
-class Year(CustomInterval):
+class Years(CustomCollection[Year]):
+    pass
 
-    def __init__(self, year: int) -> None:
 
-        Interval.__init__(
-            self,
-            start=Moment(year, 1, 1, 0, 0, 0),
-            stop=Moment(year + 1, 1, 1, 0, 0, 0),
-        )
+class Months(CustomCollection[Month]):
+    pass
 
-    def __repr__(self) -> str:
-        return f"Year({self.start.year})"
 
-    def __str__(self) -> str:
-        return f"{self.start.year:04}"
+class Weeks(CustomCollection[Week]):
+    pass
 
-    @classmethod
-    def from_moment(cls, moment: Moment) -> Year:
-        return Year(moment.year)
 
+class Days(CustomCollection[Day]):
+
+    @cached_property
     def months(self) -> Months:
-        return Months([Month(self.start.year, self.start.month + i) for i in range(12)])
-
-    def month(self, month: int) -> Month:
-        return Month(
-            self.start.year,
-            month,
-        )
-
-    def weeks(self) -> Weeks:
-        return Weeks(
-            _gen_until(
-                Week(self.start.year, 1),
-                Week(self.start.year + 1, 1),
-            )
-        )
-
-    def __next__(self) -> Year:
-        return Year.from_moment(self.stop)
+        return Months([day.month for day in self])
 
 
-class Years(Intervals[Year]):
+class Hours(CustomCollection[Hour]):
     pass
 
 
-class Months(Intervals[Month]):
+class Minutes(CustomCollection[Minute]):
     pass
 
 
-class Weeks(Intervals[Week]):
-    pass
-
-
-class Days(Intervals[Day]):
-
-    def months(self) -> Months:
-        return Months([day.month() for day in self])
-
-
-class Hours(Intervals[Hour]):
-    pass
-
-
-class Minutes(Intervals[Minute]):
-    pass
-
-
-class Seconds(Intervals[Second]):
+class Seconds(CustomCollection[Second]):
     pass

@@ -1,27 +1,52 @@
 # Core Concepts
 
-Since _When-Exactly_ allows developers to interact with dates and times in a very unique way,
-it is worth while becoming familiar with some of the lower-level building blocks.
+_When-Exactly_ is basically a wrapper around Python's already awesome [`datetime`](https://docs.python.org/3/library/datetime.html) module, and allows developers to work with dates in a more abstract way.
 
 ## Moment
 
-The [`Moment`](moment.md) represents, _a moment in time_. This is analogous to Python's
-[datetime.datetime](https://docs.python.org/3/library/datetime.html#datetime.datetime) class.
+The [`Moment`](./moment.md) represents, _a moment in time_. This is analogous to Python's
+[`datetime.datetime`](https://docs.python.org/3/library/datetime.html#datetime.datetime) class.
 
 
 !!!note
     The resolution of a moment is limited to _a second_.
     If you need more resolution, then when-exactly is probably not the library you need.
 
+
+```python
+>>> moment = we.Moment(
+...     year=2025,
+...     month=3,
+...     day=14,
+...     hour=15,
+...     minute=0,
+...     second=0,
+... )
+>>> str(moment)
+'2025-03-14T15:00:00'
+
+```
+
 ## Delta
 
-The [`Delta`](delta.md) is analogous to Python's
-[`datetime.timedelta](https://docs.python.org/3/library/datetime.html#datetime.timedelta),
-with extra functionality for deltas of _months_ and _years_.
+The [`Delta`](./delta.md) is analogous to Python's
+[`datetime.timedelta`](https://docs.python.org/3/library/datetime.html#datetime.timedelta),
+with extra functionality for deltas of _years_ and _months_.
+
+```python
+>>> delta = we.Delta(
+...    years=1,
+...    months=1,
+...    weeks=2,
+... )
+>>> moment + delta
+Moment(year=2026, month=4, day=28, hour=15, minute=0, second=0)
+
+```
 
 ## Interval
 
-An _interval_ represents a _time span_.
+An [`Interval`](./interval.md) represents a _time span_.
 An _interval_ has a _start_ and a _stop_.
 
 ```python
@@ -36,27 +61,27 @@ An _interval_ has a _start_ and a _stop_.
 
 This is the building block of all the _custom intervals_ like _Year_, _Month_, etc.
 
-### Intervals
+## Collection
 
-_Intervals_ represents a _collection of `Interval` objects_.
+The [`Collection`](./collection.md) represents a _collection of `Interval` objects_.
 It provides all of the standard functionality you would expect a container to have
 
 ```python
->>> intervals = we.Intervals([
+>>> collection = we.Collection([
 ...    we.Day(2023, 1, 5),
 ...    we.Day(2023, 1, 7),
 ...    we.Week(2023, 10),
 ... ])
->>> intervals[0]
+>>> collection[0]
 Day(2023, 1, 5)
 
->>> intervals[0:2]
-Intervals([Day(2023, 1, 5), Day(2023, 1, 7)])
+>>> collection[0:2]
+Collection([Day(2023, 1, 5), Day(2023, 1, 7)])
 
->>> we.Week(2023, 10) in intervals
+>>> we.Week(2023, 10) in collection
 True
 
->>> for interval in intervals:
+>>> for interval in collection:
 ...     print(interval)
 2023-01-05
 2023-01-07
