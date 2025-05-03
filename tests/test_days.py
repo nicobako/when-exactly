@@ -24,4 +24,4 @@ def test_months() -> None:
             we.Day(2020, 2, 3),
         ]
     )
-    assert days.months() == we.Months([we.Month(2020, 1), we.Month(2020, 2)])
+    assert days.months == we.Months([we.Month(2020, 1), we.Month(2020, 2)])

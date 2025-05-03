@@ -12,11 +12,11 @@ def test_day_hour() -> None:
 
 def test_day_month() -> None:
     day = we.Day(2020, 1, 1)
-    month = day.month()
+    month = day.month
     assert month == we.Month(2020, 1)
 
 
 def test_day_week() -> None:
     day = we.Day(2020, 1, 1)
-    week = day.week()
+    week = day.week
     assert week == we.Week(2020, 1)

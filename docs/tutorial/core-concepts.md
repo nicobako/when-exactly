@@ -1,6 +1,6 @@
 # Core Concepts
 
-_When-Exactly_ is basically a wrapper around Python's already awesome [`datetime`](https://docs.python.org/3/library/datetime.html) module. _When-Exactly_ simply provides ways to work with dates in a more abstract way.
+_When-Exactly_ is basically a wrapper around Python's already awesome [`datetime`](https://docs.python.org/3/library/datetime.html) module, and allows developers to work with dates in a more abstract way.
 
 ## Moment
 
@@ -12,11 +12,37 @@ The [`Moment`](./moment.md) represents, _a moment in time_. This is analogous to
     The resolution of a moment is limited to _a second_.
     If you need more resolution, then when-exactly is probably not the library you need.
 
+
+```python
+>>> moment = we.Moment(
+...     year=2025,
+...     month=3,
+...     day=14,
+...     hour=15,
+...     minute=0,
+...     second=0,
+... )
+>>> str(moment)
+'2025-03-14T15:00:00'
+
+```
+
 ## Delta
 
 The [`Delta`](./delta.md) is analogous to Python's
 [`datetime.timedelta`](https://docs.python.org/3/library/datetime.html#datetime.timedelta),
-with extra functionality for deltas of _months_ and _years_.
+with extra functionality for deltas of _years_ and _months_.
+
+```python
+>>> delta = we.Delta(
+...    years=1,
+...    months=1,
+...    weeks=2,
+... )
+>>> moment + delta
+Moment(year=2026, month=4, day=28, hour=15, minute=0, second=0)
+
+```
 
 ## Interval
 
@@ -35,7 +61,7 @@ An _interval_ has a _start_ and a _stop_.
 
 This is the building block of all the _custom intervals_ like _Year_, _Month_, etc.
 
-### Collection
+## Collection
 
 The [`Collection`](./collection.md) represents a _collection of `Interval` objects_.
 It provides all of the standard functionality you would expect a container to have

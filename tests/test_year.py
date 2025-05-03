@@ -1,5 +1,3 @@
-from itertools import accumulate
-
 import pytest
 
 import when_exactly as we
@@ -33,19 +31,3 @@ def test_year_days() -> None:
     assert len(days) == 366
     assert days[0] == we.Day(2020, 1, 1)
     assert days[-1] == we.Day(2020, 12, 31)
-
-
-def test_year_month_by_name() -> None:
-    year = we.Year(2020)
-    assert year.january == we.Month(2020, 1)
-    assert year.february == we.Month(2020, 2)
-    assert year.march == we.Month(2020, 3)
-    assert year.april == we.Month(2020, 4)
-    assert year.may == we.Month(2020, 5)
-    assert year.june == we.Month(2020, 6)
-    assert year.july == we.Month(2020, 7)
-    assert year.august == we.Month(2020, 8)
-    assert year.september == we.Month(2020, 9)
-    assert year.october == we.Month(2020, 10)
-    assert year.november == we.Month(2020, 11)
-    assert year.december == we.Month(2020, 12)

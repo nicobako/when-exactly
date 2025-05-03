@@ -50,13 +50,13 @@ import when_exactly as we
     ],
 )  # type: ignore
 def test_custom_collection(
-    collection_type: Type[we.Collection[we.Interval]],
-    interval_values: list[we.Interval],
+    collection_type: Type[we.CustomCollection[we.CustomInterval]],
+    interval_values: list[we.CustomInterval],
     type_name: str,
 ) -> None:
     assert len(interval_values) > 1
     collection = collection_type(interval_values)
-    # assert isinstance(collection, we.CustomCollection) # TODO: failing type check for some reason
+    assert isinstance(collection, we.CustomCollection)
     assert isinstance(collection, collection_type)
 
     # test __contains__

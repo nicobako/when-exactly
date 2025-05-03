@@ -43,8 +43,12 @@ pip freeze > requirements.txt
 pytest .
 ```
 
-### Deploy Documentation
+### Documentation
 
 ```bash
+# live-preview
+mkdocs serve
+
+# deploy
 mkdocs gh-deploy
 ```
