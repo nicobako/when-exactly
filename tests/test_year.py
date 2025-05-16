@@ -25,9 +25,17 @@ def test_year_weeks() -> None:
     assert weeks == we.Weeks([we.Week(2020, i + 1) for i in range(53)])
 
 
-def test_year_days() -> None:
+def test_year_week() -> None:
     year = we.Year(2020)
-    days = year.days
-    assert len(days) == 366
-    assert days[0] == we.Day(2020, 1, 1)
-    assert days[-1] == we.Day(2020, 12, 31)
+    week = year.week(1)
+    assert week == we.Week(2020, 1)
+
+    # Test for a week that crosses into the next year
+    week = year.week(53)
+    assert week == we.Week(2020, 53)
+
+    # we.WeekDay(2025,1,1) is 2024-12-30
+    edge_case_year = we.Year(2025)
+    week = edge_case_year.week(1)
+    assert week == we.Week(2025, 1)  # day with different month-day
+    assert week.week_day(1).to_day() == we.Day(2024, 12, 30)

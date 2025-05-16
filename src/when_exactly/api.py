@@ -5,11 +5,11 @@ import datetime
 from functools import cached_property
 from typing import Iterable, TypeVar
 
+from when_exactly.core.custom_collection import CustomCollection
+from when_exactly.core.custom_interval import CustomInterval
 from when_exactly.core.delta import Delta
 from when_exactly.core.interval import Interval
 from when_exactly.core.moment import Moment
-from when_exactly.custom.custom_collection import CustomCollection
-from when_exactly.custom.custom_interval import CustomInterval
 
 I = TypeVar("I", bound=CustomInterval)
 
@@ -58,15 +58,6 @@ class Year(CustomInterval):
             )
         )
 
-    @cached_property
-    def days(self) -> Days:
-        return Days(
-            _gen_until(
-                Day(self.start.year, 1, 1),
-                Day(self.start.year + 1, 1, 1),
-            )
-        )
-
     def month(self, month: int) -> Month:
         return Month(
             self.start.year,
@@ -75,6 +66,12 @@ class Year(CustomInterval):
 
     def __next__(self) -> Year:
         return Year.from_moment(self.stop)
+
+    def week(self, week: int) -> Week:
+        return Week(
+            self.start.year,
+            week,
+        )
 
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
