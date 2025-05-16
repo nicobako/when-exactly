@@ -73,6 +73,12 @@ class Year(CustomInterval):
             week,
         )
 
+    def ordinal_day(self, ordinal_day: int) -> OrdinalDay:
+        return OrdinalDay(
+            self.start.year,
+            ordinal_day,
+        )
+
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class Week(CustomInterval):
@@ -154,6 +160,33 @@ class WeekDay(CustomInterval):
 
     def to_day(self) -> Day:
         return Day.from_moment(self.start)
+
+
+@dataclasses.dataclass(frozen=True, init=False, repr=False)
+class OrdinalDay(CustomInterval):
+    """An ordinal day interval."""
+
+    def __init__(self, year: int, ordinal_day: int) -> None:
+        start = Moment.from_datetime(
+            datetime.datetime.fromordinal(
+                datetime.date(year, 1, 1).toordinal() + ordinal_day - 1
+            )
+        )
+        stop = start + Delta(days=1)
+        Interval.__init__(self, start=start, stop=stop)
+
+    def __repr__(self) -> str:
+        return f"OrdinalDay({self.start.year}, {self.start.ordinal_day})"
+
+    def __str__(self) -> str:
+        return f"{self.start.year:04}-{self.start.ordinal_day:03}"
+
+    @classmethod
+    def from_moment(cls, moment: Moment) -> OrdinalDay:
+        return OrdinalDay(moment.year, moment.ordinal_day)
+
+    def __next__(self) -> OrdinalDay:
+        return OrdinalDay.from_moment(self.stop)
 
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)

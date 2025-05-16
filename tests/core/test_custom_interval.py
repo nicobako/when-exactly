@@ -69,6 +69,15 @@ class Params:
             we.WeekDay(2025, 20, 6),
         ),
         Params(
+            we.OrdinalDay,
+            we.OrdinalDay(2020, 1),
+            we.Moment(2020, 1, 1, 0, 0, 0),
+            we.Moment(2020, 1, 2, 0, 0, 0),
+            "OrdinalDay(2020, 1)",
+            "2020-001",
+            we.OrdinalDay(2020, 2),
+        ),
+        Params(
             we.Hour,
             we.Hour(2020, 1, 1, 0),
             we.Moment(2020, 1, 1, 0, 0, 0),

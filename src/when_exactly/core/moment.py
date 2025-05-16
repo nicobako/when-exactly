@@ -91,3 +91,11 @@ class Moment:
     @property
     def week_day(self) -> int:
         return self.to_datetime().isocalendar()[2]
+
+    @property
+    def ordinal_day(self) -> int:
+        return (
+            self.to_datetime().toordinal()
+            - datetime.date(self.year, 1, 1).toordinal()
+            + 1
+        )

@@ -39,3 +39,18 @@ def test_year_week() -> None:
     week = edge_case_year.week(1)
     assert week == we.Week(2025, 1)  # day with different month-day
     assert week.week_day(1).to_day() == we.Day(2024, 12, 30)
+
+
+def test_year_ordinal_day() -> None:
+    year = we.Year(2020)
+    ordinal_day = year.ordinal_day(1)
+    assert ordinal_day == we.OrdinalDay(2020, 1)
+
+    # Test for the last day of the year
+    ordinal_day = year.ordinal_day(366)
+    assert ordinal_day == we.OrdinalDay(2020, 366)
+
+    # Test for a non-leap year
+    non_leap_year = we.Year(2021)
+    ordinal_day = non_leap_year.ordinal_day(365)
+    assert ordinal_day == we.OrdinalDay(2021, 365)  # Last day of a non-leap year
