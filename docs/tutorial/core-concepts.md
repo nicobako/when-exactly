@@ -59,6 +59,11 @@ An _interval_ has a _start_ and a _stop_.
 
 ```
 
+## Custom Interval
+
+A [`CustomInterval`](./custom-interval.md) represents a _time span with a specific resolution_.
+For example, []
+
 This is the building block of all the _custom intervals_ like _Year_, _Month_, etc.
 
 ## Collection

@@ -135,8 +135,15 @@ class WeekDay(CustomInterval):
             week_day=moment.week_day,
         )
     
-    def __next__(self) -> CustomInterval:
+    def __next__(self) -> WeekDay:
         return WeekDay.from_moment(moment=self.stop)
+    
+    @cached_property
+    def week(self)->Week:
+        return Week.from_moment(self.start)
+    
+    def to_day(self)->Day:
+        return Day.from_moment(self.start)
     
     
 
