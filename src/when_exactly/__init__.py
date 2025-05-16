@@ -10,8 +10,9 @@ from when_exactly.api import (
     Second,
     Seconds,
     Week,
-    Weeks,
     WeekDay,
+    WeekDays,
+    Weeks,
     Year,
     Years,
     now,
@@ -48,6 +49,7 @@ __all__ = [
     "Week",
     "Weeks",
     "WeekDay",
+    "WeekDays",
     "Year",
     "Years",
 ]

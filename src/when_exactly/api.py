@@ -57,7 +57,7 @@ class Year(CustomInterval):
                 Week(self.start.year + 1, 1),
             )
         )
-    
+
     @cached_property
     def days(self) -> Days:
         return Days(
@@ -73,10 +73,9 @@ class Year(CustomInterval):
             month,
         )
 
-
-
     def __next__(self) -> Year:
         return Year.from_moment(self.stop)
+
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class Week(CustomInterval):
@@ -106,6 +105,18 @@ class Week(CustomInterval):
     def __next__(self) -> CustomInterval:
         return Week.from_moment(self.stop)
 
+    def week_day(self, week_day: int) -> WeekDay:
+        return WeekDay(
+            self.start.week_year,
+            self.start.week,
+            week_day,
+        )
+
+    @cached_property
+    def week_days(self) -> WeekDays:
+        return WeekDays([self.week_day(i) for i in range(1, 8)])
+
+
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class WeekDay(CustomInterval):
     """A weekday interval."""
@@ -122,11 +133,13 @@ class WeekDay(CustomInterval):
         Interval.__init__(self, start=start, stop=stop)
 
     def __repr__(self) -> str:
-        return f"WeekDay({self.start.week_year}, {self.start.week}, {self.start.week_day})"
+        return (
+            f"WeekDay({self.start.week_year}, {self.start.week}, {self.start.week_day})"
+        )
 
     def __str__(self) -> str:
         return f"{self.start.week_year}-W{self.start.week}-{self.start.week_day}"
-    
+
     @classmethod
     def from_moment(cls, moment: Moment) -> WeekDay:
         return WeekDay(
@@ -134,18 +147,17 @@ class WeekDay(CustomInterval):
             week=moment.week,
             week_day=moment.week_day,
         )
-    
+
     def __next__(self) -> WeekDay:
         return WeekDay.from_moment(moment=self.stop)
-    
+
     @cached_property
-    def week(self)->Week:
+    def week(self) -> Week:
         return Week.from_moment(self.start)
-    
-    def to_day(self)->Day:
+
+    def to_day(self) -> Day:
         return Day.from_moment(self.start)
-    
-    
+
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class Second(CustomInterval):
@@ -330,8 +342,6 @@ class Day(CustomInterval):
         return Day.from_moment(self.stop)
 
 
-
-
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class Month(CustomInterval):
 
@@ -393,6 +403,10 @@ class Days(CustomCollection[Day]):
     @cached_property
     def months(self) -> Months:
         return Months([day.month for day in self])
+
+
+class WeekDays(CustomCollection[WeekDay]):
+    pass
 
 
 class Hours(CustomCollection[Hour]):

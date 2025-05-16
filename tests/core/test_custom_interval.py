@@ -61,12 +61,12 @@ class Params:
         ),
         Params(
             we.WeekDay,
-            we.WeekDay(2025,20, 5),
-            we.Moment(2025, 5, 16, 0,0,0),
+            we.WeekDay(2025, 20, 5),
+            we.Moment(2025, 5, 16, 0, 0, 0),
             we.Moment(2025, 5, 17, 0, 0, 0),
             "WeekDay(2025, 20, 5)",
             "2025-W20-5",
-            we.WeekDay(2025,20,6),
+            we.WeekDay(2025, 20, 6),
         ),
         Params(
             we.Hour,
