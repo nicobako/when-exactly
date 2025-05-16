@@ -17,7 +17,7 @@ def intervals(values: list[we.Interval]) -> we.Collection[we.Interval]:
     return we.Collection(values)
 
 
-def test_intervals_collection_api(
+def test_collection_api(
     values: list[we.Interval], intervals: we.Collection[we.Interval]
 ) -> None:
     assert list(intervals) == values
@@ -35,7 +35,7 @@ def test_intervals_collection_api(
     assert len(intervals) == 3
 
 
-def test_intervals_sorts_and_removes_duplicates() -> None:
+def test_collection_sorts_and_removes_duplicates() -> None:
     a = we.Interval(we.Moment(2020, 1, 1, 0, 0, 0), we.Moment(2020, 1, 2, 0, 0, 0))
     b = we.Interval(we.Moment(2020, 1, 2, 0, 0, 0), we.Moment(2020, 1, 3, 0, 0, 0))
     c = we.Interval(we.Moment(2020, 1, 3, 0, 0, 0), we.Moment(2020, 1, 4, 0, 0, 0))

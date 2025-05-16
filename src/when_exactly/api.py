@@ -5,7 +5,6 @@ import datetime
 from functools import cached_property
 from typing import Iterable, TypeVar
 
-from when_exactly.core.collection import Collection
 from when_exactly.core.delta import Delta
 from when_exactly.core.interval import Interval
 from when_exactly.core.moment import Moment
@@ -51,6 +50,15 @@ class Year(CustomInterval):
         return Months([Month(self.start.year, self.start.month + i) for i in range(12)])
 
     @cached_property
+    def weeks(self) -> Weeks:
+        return Weeks(
+            _gen_until(
+                Week(self.start.year, 1),
+                Week(self.start.year + 1, 1),
+            )
+        )
+    
+    @cached_property
     def days(self) -> Days:
         return Days(
             _gen_until(
@@ -65,18 +73,72 @@ class Year(CustomInterval):
             month,
         )
 
-    @cached_property
-    def weeks(self) -> Weeks:
-        return Weeks(
-            _gen_until(
-                Week(self.start.year, 1),
-                Week(self.start.year + 1, 1),
-            )
-        )
+
 
     def __next__(self) -> Year:
         return Year.from_moment(self.stop)
 
+@dataclasses.dataclass(frozen=True, init=False, repr=False)
+class Week(CustomInterval):
+
+    def __init__(self, year: int, week: int) -> None:
+        start = Moment.from_datetime(datetime.datetime.fromisocalendar(year, week, 1))
+        stop = start + Delta(days=7)
+        Interval.__init__(
+            self,
+            start=start,
+            stop=stop,
+        )
+
+    def __repr__(self) -> str:
+        return f"Week({self.start.week_year}, {self.start.week})"
+
+    def __str__(self) -> str:
+        return f"{self.start.week_year:04}-W{self.start.week:02}"
+
+    @classmethod
+    def from_moment(cls, moment: Moment) -> Week:
+        return Week(
+            moment.week_year,
+            moment.week,
+        )
+
+    def __next__(self) -> CustomInterval:
+        return Week.from_moment(self.stop)
+
+@dataclasses.dataclass(frozen=True, init=False, repr=False)
+class WeekDay(CustomInterval):
+    """A weekday interval."""
+
+    def __init__(self, year: int, week: int, week_day: int):
+        start = Moment.from_datetime(
+            datetime.datetime.fromisocalendar(
+                year=year,
+                week=week,
+                day=week_day,
+            )
+        )
+        stop = start + Delta(days=1)
+        Interval.__init__(self, start=start, stop=stop)
+
+    def __repr__(self) -> str:
+        return f"WeekDay({self.start.week_year}, {self.start.week}, {self.start.week_day})"
+
+    def __str__(self) -> str:
+        return f"{self.start.week_year}-W{self.start.week}-{self.start.week_day}"
+    
+    @classmethod
+    def from_moment(cls, moment: Moment) -> WeekDay:
+        return WeekDay(
+            year=moment.week_year,
+            week=moment.week,
+            week_day=moment.week_day,
+        )
+    
+    def __next__(self) -> CustomInterval:
+        return WeekDay.from_moment(moment=self.stop)
+    
+    
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class Second(CustomInterval):
@@ -261,33 +323,6 @@ class Day(CustomInterval):
         return Day.from_moment(self.stop)
 
 
-@dataclasses.dataclass(frozen=True, init=False, repr=False)
-class Week(CustomInterval):
-
-    def __init__(self, year: int, week: int) -> None:
-        start = Moment.from_datetime(datetime.datetime.fromisocalendar(year, week, 1))
-        stop = start + Delta(days=7)
-        Interval.__init__(
-            self,
-            start=start,
-            stop=stop,
-        )
-
-    def __repr__(self) -> str:
-        return f"Week({self.start.week_year}, {self.start.week})"
-
-    def __str__(self) -> str:
-        return f"{self.start.week_year:04}-W{self.start.week:02}"
-
-    @classmethod
-    def from_moment(cls, moment: Moment) -> Week:
-        return Week(
-            moment.week_year,
-            moment.week,
-        )
-
-    def __next__(self) -> CustomInterval:
-        return Week.from_moment(self.stop)
 
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)

@@ -11,6 +11,7 @@ from when_exactly.api import (
     Seconds,
     Week,
     Weeks,
+    WeekDay,
     Year,
     Years,
     now,
@@ -46,6 +47,7 @@ __all__ = [
     "Months",
     "Week",
     "Weeks",
+    "WeekDay",
     "Year",
     "Years",
 ]

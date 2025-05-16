@@ -18,7 +18,7 @@ Year(2025)
 
 ## The Months of a Year
 
-A `Year` has a `.months` property, which returns the [`Months`](months.md). of the year.
+Get the [`Months`](months.md) of a year.
 
 ```python
 >>> months = year.months
@@ -30,5 +30,19 @@ Month(2025, 1)
 
 >>> months[-2:]
 Months([Month(2025, 11), Month(2025, 12)])
+
+```
+
+## The Weeks of a Year
+
+Get the [`Weeks`](weeks.md) of a year.
+
+```python
+>>> weeks = year.weeks
+>>> len(weeks)
+52
+
+>>> weeks[0]
+Week(2025, 1)
 
 ```
