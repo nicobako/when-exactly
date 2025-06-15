@@ -40,26 +40,17 @@
                             <li class="nav-item">
                                 <a href="../../getting-started/" class="nav-link">Getting Started</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorial</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="./" class="dropdown-item active" aria-current="page">Core Concepts</a>
-</li>
-                                    
-<li>
-    <a href="../year/" class="dropdown-item">Year</a>
-</li>
-                                    
-<li>
-    <a href="../moment/" class="dropdown-item">Moment</a>
-</li>
-                                    
-<li>
-    <a href="../delta/" class="dropdown-item">Delta</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Core Concepts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../year/" class="nav-link">Year</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../moment/" class="nav-link">Moment</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../delta/" class="nav-link">Delta</a>
                             </li>
                         </ul>
 
@@ -108,6 +99,10 @@
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#interval" class="nav-link">Interval</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#custom-interval" class="nav-link">Custom Interval</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -168,6 +163,9 @@ An <em>interval</em> has a <em>start</em> and a <em>stop</em>.</p>
 '2025-02-14T12:00:00/2025-02-14T12:30:00'
 
 </code></pre>
+<h2 id="custom-interval">Custom Interval</h2>
+<p>A <a href="../custom-interval/"><code>CustomInterval</code></a> represents a <em>time span with a specific resolution</em>.
+For example, []</p>
 <p>This is the building block of all the <em>custom intervals</em> like <em>Year</em>, <em>Month</em>, etc.</p>
 <h2 id="collection">Collection</h2>
 <p>The <a href="../collection/"><code>Collection</code></a> represents a <em>collection of <code>Interval</code> objects</em>.
@@ -206,7 +204,6 @@ True
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../js/base.js"></script>
-        <script src="../../js/mermaid-11.4.1.min.js"></script>
         <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

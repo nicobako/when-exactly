@@ -40,26 +40,17 @@
                             <li class="nav-item">
                                 <a href="../../getting-started/" class="nav-link">Getting Started</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorial</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../core-concepts/" class="dropdown-item">Core Concepts</a>
-</li>
-                                    
-<li>
-    <a href="./" class="dropdown-item active" aria-current="page">Year</a>
-</li>
-                                    
-<li>
-    <a href="../moment/" class="dropdown-item">Moment</a>
-</li>
-                                    
-<li>
-    <a href="../delta/" class="dropdown-item">Delta</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="../core-concepts/" class="nav-link">Core Concepts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Year</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../moment/" class="nav-link">Moment</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../delta/" class="nav-link">Delta</a>
                             </li>
                         </ul>
 
@@ -107,6 +98,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#the-weeks-of-a-year" class="nav-link">The Weeks of a Year</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -128,7 +123,7 @@ Year(2025)
 
 </code></pre>
 <h2 id="the-months-of-a-year">The Months of a Year</h2>
-<p>A <code>Year</code> has a <code>.months</code> property, which returns the <a href="../months/"><code>Months</code></a>. of the year.</p>
+<p>Get the <a href="months.md"><code>Months</code></a> of a year.</p>
 <pre><code class="language-python">&gt;&gt;&gt; months = year.months
 &gt;&gt;&gt; len(months)
 12
@@ -138,6 +133,16 @@ Month(2025, 1)
 
 &gt;&gt;&gt; months[-2:]
 Months([Month(2025, 11), Month(2025, 12)])
+
+</code></pre>
+<h2 id="the-weeks-of-a-year">The Weeks of a Year</h2>
+<p>Get the <a href="../weeks/"><code>Weeks</code></a> of a year.</p>
+<pre><code class="language-python">&gt;&gt;&gt; weeks = year.weeks
+&gt;&gt;&gt; len(weeks)
+52
+
+&gt;&gt;&gt; weeks[0]
+Week(2025, 1)
 
 </code></pre></div>
             </div>
@@ -153,7 +158,6 @@ Months([Month(2025, 11), Month(2025, 12)])
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../js/base.js"></script>
-        <script src="../../js/mermaid-11.4.1.min.js"></script>
         <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
