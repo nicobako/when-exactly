@@ -1,6 +1,6 @@
 [project]
 name = "when-exactly"
-version = "0.0.5"
+version = "0.0.6"
 authors = [
   { name="Nico Bako", email="" },
 ]
@@ -12,6 +12,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+dependencies = []
 
 [project.urls]
 Homepage = "https://github.com/nicobako/when-exactly"

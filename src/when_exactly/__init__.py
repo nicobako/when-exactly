@@ -1,3 +1,8 @@
+"""when_exactly package
+
+A Python package for working with time intervals.
+"""
+
 from when_exactly.api import (
     Day,
     Days,

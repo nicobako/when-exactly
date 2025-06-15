@@ -51,4 +51,4 @@ twine==6.1.0
 urllib3==2.4.0
 virtualenv==20.30.0
 watchdog==6.0.0
--e git+https://github.com/nicobako/when-exactly.git@e713186dd4f4d7f14c4aa492a48ff8de9d41a2dd#egg=when_exactly
+-e .

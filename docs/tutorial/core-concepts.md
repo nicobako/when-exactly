@@ -4,7 +4,7 @@ _When-Exactly_ is basically a wrapper around Python's already awesome [`datetime
 
 ## Moment
 
-The [`Moment`](./moment.md) represents, _a moment in time_. This is analogous to Python's
+The [`Moment`](../tutorial/moment.md) represents, _a moment in time_. This is analogous to Python's
 [`datetime.datetime`](https://docs.python.org/3/library/datetime.html#datetime.datetime) class.
 
 
@@ -29,7 +29,7 @@ The [`Moment`](./moment.md) represents, _a moment in time_. This is analogous to
 
 ## Delta
 
-The [`Delta`](./delta.md) is analogous to Python's
+The [`Delta`](../tutorial/delta.md) is analogous to Python's
 [`datetime.timedelta`](https://docs.python.org/3/library/datetime.html#datetime.timedelta),
 with extra functionality for deltas of _years_ and _months_.
 
@@ -46,7 +46,7 @@ Moment(year=2026, month=4, day=28, hour=15, minute=0, second=0)
 
 ## Interval
 
-An [`Interval`](./interval.md) represents a _time span_.
+An [`Interval`](../tutorial/interval.md) represents a _time span_.
 An _interval_ has a _start_ and a _stop_.
 
 ```python
@@ -61,14 +61,14 @@ An _interval_ has a _start_ and a _stop_.
 
 ## Custom Interval
 
-A [`CustomInterval`](./custom-interval.md) represents a _time span with a specific resolution_.
+A [`CustomInterval`](../tutorial/custom-interval.md) represents a _time span with a specific resolution_.
 For example, []
 
 This is the building block of all the _custom intervals_ like _Year_, _Month_, etc.
 
 ## Collection
 
-The [`Collection`](./collection.md) represents a _collection of `Interval` objects_.
+The [`Collection`](../tutorial/collection.md) represents a _collection of `Interval` objects_.
 It provides all of the standard functionality you would expect a container to have
 
 ```python

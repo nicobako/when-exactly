@@ -9,6 +9,3 @@ nav:
   - Delta: tutorial/delta.md
 markdown_extensions:
   - admonition: {}
-extra_javascript:
-  - js/mermaid-11.4.1.min.js
-
