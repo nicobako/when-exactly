@@ -47,7 +47,7 @@ Moment(year=2026, month=4, day=28, hour=15, minute=0, second=0)
 ## Interval
 
 An [`Interval`](../tutorial/interval.md) represents a _time span_.
-An _interval_ has a _start_ and a _stop_.
+An _interval_ has an inclusive _start_ and an exclusive _stop_.
 
 ```python
 >>> interval = we.Interval(
@@ -62,7 +62,6 @@ An _interval_ has a _start_ and a _stop_.
 ## Custom Interval
 
 A [`CustomInterval`](../tutorial/custom-interval.md) represents a _time span with a specific resolution_.
-For example, []
 
 This is the building block of all the _custom intervals_ like _Year_, _Month_, etc.
 
