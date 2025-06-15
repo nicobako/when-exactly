@@ -154,7 +154,7 @@ Moment(year=2026, month=4, day=28, hour=15, minute=0, second=0)
 </code></pre>
 <h2 id="interval">Interval</h2>
 <p>An <a href="../interval/"><code>Interval</code></a> represents a <em>time span</em>.
-An <em>interval</em> has a <em>start</em> and a <em>stop</em>.</p>
+An <em>interval</em> has an inclusive <em>start</em> and an exclusive <em>stop</em>.</p>
 <pre><code class="language-python">&gt;&gt;&gt; interval = we.Interval(
 ...     start=we.Moment(2025, 2, 14, 12, 0, 0,),
 ...     stop=we.Moment(2025, 2, 14, 12, 30, 0),
@@ -164,8 +164,7 @@ An <em>interval</em> has a <em>start</em> and a <em>stop</em>.</p>
 
 </code></pre>
 <h2 id="custom-interval">Custom Interval</h2>
-<p>A <a href="../custom-interval/"><code>CustomInterval</code></a> represents a <em>time span with a specific resolution</em>.
-For example, []</p>
+<p>A <a href="../custom-interval/"><code>CustomInterval</code></a> represents a <em>time span with a specific resolution</em>.</p>
 <p>This is the building block of all the <em>custom intervals</em> like <em>Year</em>, <em>Month</em>, etc.</p>
 <h2 id="collection">Collection</h2>
 <p>The <a href="../collection/"><code>Collection</code></a> represents a <em>collection of <code>Interval</code> objects</em>.
