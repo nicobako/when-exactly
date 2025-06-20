@@ -1,6 +1,24 @@
 import pytest
 
 import when_exactly as we
+from tests.asserts import (
+    CustomIntervalParams,
+    assert_custom_interval_implemented_correctly,
+)
+
+
+def test_year_implemented_correcly() -> None:
+    assert_custom_interval_implemented_correctly(
+        params=CustomIntervalParams(
+            custom_interval=we.Year(2020),
+            custom_interval_type=we.Year,
+            expected_next=we.Year(2021),
+            expected_start=we.Moment(2020, 1, 1, 0, 0, 0),
+            expected_stop=we.Moment(2021, 1, 1, 0, 0, 0),
+            expected_repr="Year(2020)",
+            expected_str="2020",
+        )
+    )
 
 
 def test_year_months() -> None:

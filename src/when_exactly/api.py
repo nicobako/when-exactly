@@ -141,7 +141,7 @@ class WeekDay(CustomInterval):
         )
 
     def __str__(self) -> str:
-        return f"{self.start.week_year}-W{self.start.week}-{self.start.week_day}"
+        return f"{self.start.week_year}-W{self.start.week:02}-{self.start.week_day}"
 
     @classmethod
     def from_moment(cls, moment: Moment) -> WeekDay:

@@ -1,4 +1,22 @@
 import when_exactly as we
+from tests.asserts import (
+    CustomIntervalParams,
+    assert_custom_interval_implemented_correctly,
+)
+
+
+def test_hour_implemented_correctly() -> None:
+    assert_custom_interval_implemented_correctly(
+        params=CustomIntervalParams(
+            custom_interval=we.Hour(2020, 1, 1, 0),
+            custom_interval_type=we.Hour,
+            expected_next=we.Hour(2020, 1, 1, 1),
+            expected_start=we.Moment(2020, 1, 1, 0, 0, 0),
+            expected_stop=we.Moment(2020, 1, 1, 1, 0, 0),
+            expected_repr="Hour(2020, 1, 1, 0)",
+            expected_str="2020-01-01T00",
+        )
+    )
 
 
 def test_hour_minutes() -> None:

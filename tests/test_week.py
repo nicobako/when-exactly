@@ -1,4 +1,22 @@
 import when_exactly as we
+from tests.asserts import (
+    CustomIntervalParams,
+    assert_custom_interval_implemented_correctly,
+)
+
+
+def test_week_implemented_correctly() -> None:
+    assert_custom_interval_implemented_correctly(
+        params=CustomIntervalParams(
+            custom_interval=we.Week(2020, 1),
+            custom_interval_type=we.Week,
+            expected_next=we.Week(2020, 2),
+            expected_start=we.Moment(2019, 12, 30, 0, 0, 0),
+            expected_stop=we.Moment(2020, 1, 6, 0, 0, 0),
+            expected_repr="Week(2020, 1)",
+            expected_str="2020-W01",
+        )
+    )
 
 
 def test_week_week_day() -> None:

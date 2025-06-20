@@ -3,7 +3,7 @@ import datetime
 import pytest
 
 import when_exactly as we
-from tests.core.assert_frozen import assert_frozen
+from tests.asserts import assert_frozen
 
 
 def test_initialization() -> None:
