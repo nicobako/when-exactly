@@ -33,6 +33,7 @@ pip install \
   pytest \
   pytest-cov \
   mkdocs \
+  mkdocstrings[python] \
   pre-commit \
   build \
   twine \

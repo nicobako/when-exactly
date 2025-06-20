@@ -23,12 +23,12 @@ from when_exactly.api import (
     Years,
     now,
 )
-from when_exactly.core.collection import Collection
-from when_exactly.core.custom_collection import CustomCollection
-from when_exactly.core.custom_interval import CustomInterval
-from when_exactly.core.delta import Delta
-from when_exactly.core.interval import Interval
-from when_exactly.core.moment import Moment
+from when_exactly.collection import Collection
+from when_exactly.custom_collection import CustomCollection
+from when_exactly.custom_interval import CustomInterval
+from when_exactly.delta import Delta
+from when_exactly.interval import Interval
+from when_exactly.moment import Moment
 
 __all__ = [
     "Delta",

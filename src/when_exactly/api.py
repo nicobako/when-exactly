@@ -1,3 +1,5 @@
+"""API for when_exactly package."""
+
 from __future__ import annotations
 
 import dataclasses
@@ -5,11 +7,11 @@ import datetime
 from functools import cached_property
 from typing import Iterable, TypeVar
 
-from when_exactly.core.custom_collection import CustomCollection
-from when_exactly.core.custom_interval import CustomInterval
-from when_exactly.core.delta import Delta
-from when_exactly.core.interval import Interval
-from when_exactly.core.moment import Moment
+from when_exactly.custom_collection import CustomCollection
+from when_exactly.custom_interval import CustomInterval
+from when_exactly.delta import Delta
+from when_exactly.interval import Interval
+from when_exactly.moment import Moment
 
 I = TypeVar("I", bound=CustomInterval)
 
@@ -26,8 +28,70 @@ def now() -> Moment:
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class Year(CustomInterval):
+    """The `Year` represents an entire year, starting from _January 1_ to _December 31_.
+
+    ## Creating a Year
+
+    ```python
+    >>> import when_exactly as we
+
+    >>> year = we.Year(2025)
+    >>> year
+    Year(2025)
+
+    >>> str(year)
+    '2025'
+
+    ```
+
+    ## The Months of a Year
+
+    Get the [`Months`](months.md) of a year.
+
+    ```python
+    >>> months = year.months
+    >>> len(months)
+    12
+
+    >>> months[0]
+    Month(2025, 1)
+
+    >>> months[-2:]
+    Months([Month(2025, 11), Month(2025, 12)])
+
+    ```
+
+    ## The Weeks of a Year
+
+    Get the [`Weeks`](weeks.md) of a year.
+
+    ```python
+    >>> weeks = year.weeks
+    >>> len(weeks)
+    52
+
+    >>> weeks[0]
+    Week(2025, 1)
+
+    ```
+    """
 
     def __init__(self, year: int) -> None:
+        """Initialize a Year instance.
+
+        ## Creating a Year
+
+        ```python
+        >>> import when_exactly as we
+
+        >>> year = we.Year(2025)
+        >>> year
+        Year(2025)
+
+        >>> str(year)
+        '2025'
+
+        ```"""
 
         Interval.__init__(
             self,
@@ -59,6 +123,10 @@ class Year(CustomInterval):
         )
 
     def month(self, month: int) -> Month:
+        """Get a specific month of the year.
+        Args:
+            month (int): The month number (1-12).
+        """
         return Month(
             self.start.year,
             month,

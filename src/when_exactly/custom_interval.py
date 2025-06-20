@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import dataclasses
 
-from when_exactly.core.interval import Interval
-from when_exactly.core.moment import Moment
+from when_exactly.interval import Interval
+from when_exactly.moment import Moment
 
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)

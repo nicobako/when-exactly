@@ -1,14 +1,11 @@
 from __future__ import annotations
 
-from collections import abc
-from typing import Iterable, NoReturn, TypeVar, final, overload
+from typing import Iterable, NoReturn, final, overload
 
-from when_exactly.core.interval import Interval
-
-T = TypeVar("T", bound=Interval)
+from when_exactly.interval import Interval
 
 
-class Collection(abc.Container[T]):
+class Collection[T: Interval]:
     @final
     def __init__(self, values: Iterable[T]) -> None:
         self._values: list[T] = sorted(set(values))
@@ -67,6 +64,9 @@ class Collection(abc.Container[T]):
     def __eq__(self, other: Collection[T] | object) -> bool:
         if not isinstance(other, Collection):
             raise NotImplementedError
+
+        if not isinstance(other, self.__class__):
+            return False
 
         return self._values == other.values
 

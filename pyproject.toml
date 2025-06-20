@@ -23,3 +23,15 @@ Documentation = "https://when-exactly.nicobako.me"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = [
+    "--cov=when_exactly",
+    "--doctest-modules",
+    "--doctest-glob=*.py",
+]
+doctest_optionflags = [
+    "NORMALIZE_WHITESPACE",
+    "ELLIPSIS",
+    "IGNORE_EXCEPTION_DETAIL",
+]

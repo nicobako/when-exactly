@@ -5,7 +5,9 @@ import pytest
 
 import when_exactly as we
 
-FILES = [f for f in Path("./docs/").rglob("*.md")]
+FILES = [f for f in Path("./docs/").rglob("*.md")] + [
+    f for f in Path("./src/when_exactly/").rglob("*.py") if f.name != "__init__.py"
+]
 
 
 @pytest.mark.parametrize(
@@ -22,3 +24,12 @@ def test_docs(file: Path) -> None:
     )
 
     assert test_results.failed == 0
+
+
+def test_docstrings() -> None:
+    doctest.testmod(
+        we,
+        optionflags=doctest.ELLIPSIS | doctest.NORMALIZE_WHITESPACE | doctest.FAIL_FAST,
+        globs={"we": we},
+        verbose=True,
+    )
