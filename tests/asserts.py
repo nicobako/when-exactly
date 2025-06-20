@@ -45,15 +45,15 @@ def assert_frozen(obj: Any) -> None:
 
 
 @dataclasses.dataclass
-class CustomCollectionParams:
-    collection_type: Type[we.CustomCollection[we.CustomInterval]]
-    interval_values: list[we.CustomInterval]
+class CustomCollectionParams[T: we.CustomInterval]:
+    collection_type: Type[we.CustomCollection[T]]
+    interval_values: list[T]
     type_name: str
 
 
-def assert_custom_collection_implemented_correctly(
-    params: CustomCollectionParams,
-) -> None:
+def assert_custom_collection_implemented_correctly[
+    T: we.CustomInterval
+](params: CustomCollectionParams[T],) -> None:
     interval_values = params.interval_values
     collection_type = params.collection_type
     type_name = params.type_name
