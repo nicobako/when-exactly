@@ -77,21 +77,24 @@ class Year(CustomInterval):
     """
 
     def __init__(self, year: int) -> None:
-        """Initialize a Year instance.
+        """# Create a Year.
 
-        ## Creating a Year
+        Parameters:
+            year: The year to represent.
 
-        ```python
-        >>> import when_exactly as we
+        Examples:
+            ```python
+            >>> import when_exactly as we
 
-        >>> year = we.Year(2025)
-        >>> year
-        Year(2025)
+            >>> year = we.Year(2025)
+            >>> year
+            Year(2025)
 
-        >>> str(year)
-        '2025'
+            >>> str(year)
+            '2025'
 
-        ```"""
+            ```
+        """
 
         Interval.__init__(
             self,

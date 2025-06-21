@@ -14,4 +14,10 @@ watch:
 plugins:
   - search
   - autorefs
-  - mkdocstrings
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          options:
+            docstring_style: google # https://mkdocstrings.github.io/python/usage/configuration/docstrings/
+            annotations_path: full
