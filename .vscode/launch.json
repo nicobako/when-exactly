@@ -6,7 +6,7 @@
             "type": "debugpy",
             "request": "launch",
             "console": "integratedTerminal",
-            "preLaunchTask": "Run MkDocs Serve"
+            "preLaunchTask": "Run MkDocs Serve",
         }
-    ]
+    ],
 }

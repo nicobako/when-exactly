@@ -7,13 +7,9 @@
             "command": "python -m mkdocs serve",
             "options": {
                 "cwd": "${workspaceFolder}",
-                
             },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": []
+            "group": {"kind": "build", "isDefault": true},
+            "problemMatcher": [],
         }
-    ]
+    ],
 }

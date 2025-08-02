@@ -7,11 +7,9 @@ _When-Exactly_ is basically a wrapper around Python's already awesome [`datetime
 The [`Moment`](../tutorial/moment.md) represents, _a moment in time_. This is analogous to Python's
 [`datetime.datetime`](https://docs.python.org/3/library/datetime.html#datetime.datetime) class.
 
-
 !!!note
-    The resolution of a moment is limited to _a second_.
-    If you need more resolution, then when-exactly is probably not the library you need.
-
+The resolution of a moment is limited to _a second_.
+If you need more resolution, then when-exactly is probably not the library you need.
 
 ```python
 >>> moment = we.Moment(

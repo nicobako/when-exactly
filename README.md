@@ -11,55 +11,29 @@ Check out the documentation at [when-exactly.nicobako.me](https://when-exactly.n
 ### Setup
 
 ```bash
-# windows - git-bash
-py -3.13 -m venv .venv
-source .venv/Scripts/activate
-
-# linux
-python3.13 -m venv .venv
-source .venv/bin/activate
-
-# both
-python -m pip install --upgrade pip
-pip install -r requirements.txt
-pip install -e .
-pre-commit install
-```
-
-### Creating requirements
-
-```
-pip install \
-  pytest \
-  pytest-cov \
-  mkdocs \
-  mkdocstrings[python] \
-  pre-commit \
-  build \
-  twine \
-
-pip freeze > requirements.txt
+uv sync
+uv run pre-commit install
 ```
 
 ### Testing
 
 ```bash
-pytest .
+uv run pytest .
 ```
 
 ### Documentation
 
 ```bash
 # live-preview
-mkdocs serve
+uv run mkdocs serve
 
 # deploy
-mkdocs gh-deploy
+uv run mkdocs gh-deploy
 ```
 
 ## Build
 
 ```bash
-python -m build
-python -m twine upload dist/*
+uv build
+uvx uv-publish@latest
 ```

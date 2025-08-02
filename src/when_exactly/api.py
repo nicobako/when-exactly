@@ -5,7 +5,7 @@ from __future__ import annotations
 import dataclasses
 import datetime
 from functools import cached_property
-from typing import Iterable, TypeVar
+from typing import Iterable
 
 from when_exactly.custom_collection import CustomCollection
 from when_exactly.custom_interval import CustomInterval
@@ -13,10 +13,8 @@ from when_exactly.delta import Delta
 from when_exactly.interval import Interval
 from when_exactly.moment import Moment
 
-I = TypeVar("I", bound=CustomInterval)
 
-
-def _gen_until(start: I, stop: I) -> Iterable[I]:
+def _gen_until[I: CustomInterval](start: I, stop: I) -> Iterable[I]:
     while start < stop:
         yield start
         start = next(start)  # type: ignore
@@ -153,7 +151,6 @@ class Year(CustomInterval):
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class Week(CustomInterval):
-
     def __init__(self, year: int, week: int) -> None:
         start = Moment.from_datetime(datetime.datetime.fromisocalendar(year, week, 1))
         stop = start + Delta(days=7)
@@ -298,7 +295,6 @@ class Second(CustomInterval):
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class Minute(CustomInterval):
-
     def __init__(self, year: int, month: int, day: int, hour: int, minute: int) -> None:
         start = Moment(year, month, day, hour, minute, 0)
         stop = start + Delta(minutes=1)
@@ -445,7 +441,6 @@ class Day(CustomInterval):
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class Month(CustomInterval):
-
     def __init__(self, year: int, month: int) -> None:
         start = Moment(year, month, 1, 0, 0, 0)
         stop = start + Delta(months=1)
@@ -500,7 +495,6 @@ class Weeks(CustomCollection[Week]):
 
 
 class Days(CustomCollection[Day]):
-
     @cached_property
     def months(self) -> Months:
         return Months([day.month for day in self])

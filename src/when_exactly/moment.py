@@ -62,12 +62,12 @@ class Moment:
             new_moment_kwargs["day"] > 28
         ):  # if the day is too large for the month, we need to decrement it until it is valid
             try:
-                Moment(**new_moment_kwargs)
+                Moment(**new_moment_kwargs)  # type: ignore
                 break
             except ValueError:
                 new_moment_kwargs["day"] -= 1
 
-        dt = Moment(**new_moment_kwargs).to_datetime()
+        dt = Moment(**new_moment_kwargs).to_datetime()  # type: ignore
 
         dt += datetime.timedelta(weeks=delta.weeks)
         dt += datetime.timedelta(days=delta.days)
