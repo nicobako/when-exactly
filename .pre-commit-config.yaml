@@ -29,26 +29,26 @@ repos:
     hooks:
       - id: ty
         name: ty check
+        language: system
         entry: uv run ty check .
         types:
           - python
-        language: system
       - id: linter
         name: ruff check
+        language: system
         entry: uv run ruff check . --select I --fix --no-cache
         types:
           - python
-        language: system
       - id: formatter
         name: ruff format
         entry: uv run ruff format --no-cache
+        language: system
         types:
           - python
-        language: system
       - id: mdformat
         name: mdformat
+        language: system
         entry: uv run mdformat .
         types:
           - markdown
-        language: system
       

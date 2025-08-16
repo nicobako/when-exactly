@@ -11,7 +11,7 @@ Check out the documentation at [when-exactly.nicobako.me](https://when-exactly.n
 ### Setup
 
 ```bash
-uv sync
+uv sync -all-groups
 uv run pre-commit install
 ```
 
