@@ -8,6 +8,11 @@ from when_exactly.delta import Delta
 
 @dataclasses.dataclass(frozen=True)
 class Moment:
+    """A Moment represents a specific point in time with year, month, day, hour, minute, and second.
+
+    The `Moment` is analogous to the builtin [`datetime.datetime`](https://docs.python.org/3/library/datetime.html#datetime.datetime) class,
+    but it is immutable and provides additional functionality for date arithmetic."""
+
     year: int
     month: int
     day: int

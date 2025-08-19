@@ -5,7 +5,7 @@ from __future__ import annotations
 import dataclasses
 import datetime
 from functools import cached_property
-from typing import Iterable, TypeVar
+from typing import Iterable
 
 from when_exactly.custom_collection import CustomCollection
 from when_exactly.custom_interval import CustomInterval
@@ -13,10 +13,8 @@ from when_exactly.delta import Delta
 from when_exactly.interval import Interval
 from when_exactly.moment import Moment
 
-I = TypeVar("I", bound=CustomInterval)
 
-
-def _gen_until(start: I, stop: I) -> Iterable[I]:
+def _gen_until[I: CustomInterval](start: I, stop: I) -> Iterable[I]:
     while start < stop:
         yield start
         start = next(start)  # type: ignore
@@ -110,6 +108,7 @@ class Year(CustomInterval):
 
     @classmethod
     def from_moment(cls, moment: Moment) -> Year:
+        """Create a `Year` from a `Moment`."""
         return Year(moment.year)
 
     @cached_property

@@ -21,3 +21,4 @@ plugins:
           options:
             docstring_style: google # https://mkdocstrings.github.io/python/usage/configuration/docstrings/
             annotations_path: full
+            inherited_members: true

@@ -4,14 +4,11 @@ An expressive and intuitive library for working with dates.
 
 ## Rationale
 
-Why are rogrammers are restricted to working with _date-time_
-and _date_ objects while needing to work with dates?
+When we, as _ordinary people_, talk about dates and times we use words like _months, weeks, days, years, etc._
+Yet, when we, _as developers_, have to work with dates in code we are limited to concepts like _datetime, date, and time_.
 
-People tend to think and communicate about time in terms of
-_years_, _months_, _weeks_, _days_, _hours_, _minutes_, etc.
-
-When-Exactly is a library that aims to bring these types into the hands of developers,
-so they can write more expressive code when working with dates.
+When-Exactly is a library that aims to bring useful date and time abstractions into the hands of developers,
+so they can write more expressive code.
 
 ## Overview
 
@@ -37,3 +34,7 @@ Month(2025, 12)
 Week(2025, 52)
 
 ```
+
+::: when_exactly
+    options:
+        members: no
