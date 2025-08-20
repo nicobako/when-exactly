@@ -31,3 +31,10 @@ def test_week_week_days() -> None:
     week_days = week.week_days
     expected = we.WeekDays([we.WeekDay(2020, 1, i) for i in range(1, 8)])
     assert week_days == expected
+
+
+def test_week_days() -> None:
+    week = we.Week(2020, 2)
+    days = week.days
+    expected = we.Days([we.Day(2020, 1, 5 + i) for i in range(1, 8)])
+    assert days == expected

@@ -135,3 +135,31 @@ def test_moment_ordinal_accessors() -> None:
 
     moment = we.Moment(2019, 12, 31, 0, 0, 0)
     assert moment.ordinal_day == 365
+
+
+@pytest.mark.parametrize(
+    ["year", "month", "day", "hour", "minute", "second"],
+    [
+        (datetime.MAXYEAR + 100, 1, 1, 1, 1, 1),
+        (2020, 1, 32, 1, 1, 1),  # day
+        (2020, 13, 1, 1, 1, 1),  # month
+        (2020, 1, 1, 40, 1, 1),  # hour
+        (2020, 1, 1, 1, 80, 1),  # minute
+        (2020, 1, 1, 1, 1, 100),  # second
+    ],
+)
+def test_moment_invalid(
+    year: int, month: int, day: int, hour: int, minute: int, second: int
+) -> None:
+    try:
+        datetime.datetime(
+            year=year, month=month, day=day, hour=hour, minute=minute, second=second
+        )
+    except ValueError as e:
+        message = str(e)
+    else:
+        raise RuntimeError("Expected ValueError not raised")
+    with pytest.raises(we.InvalidMomentError, match=f"Invalid Moment: {message}"):
+        we.Moment(
+            year=year, month=month, day=day, hour=hour, minute=minute, second=second
+        )

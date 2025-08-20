@@ -49,7 +49,7 @@ A `Moment` is always a valid date-time.
 >>> we.Moment(2025, 1, 32, 0,0,0)
 Traceback (most recent call last):
 ...
-ValueError: Invalid moment: day is out of range for month
+ValueError: day 32 must be in range 1..31 for month 1 in year 2025
 
 ```
 

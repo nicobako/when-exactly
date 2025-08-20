@@ -187,6 +187,10 @@ class Week(CustomInterval):
     def week_days(self) -> WeekDays:
         return WeekDays([self.week_day(i) for i in range(1, 8)])
 
+    @cached_property
+    def days(self) -> Days:
+        return Days([self.week_day(i).to_day() for i in range(1, 8)])
+
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class WeekDay(CustomInterval):

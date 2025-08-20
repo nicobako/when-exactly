@@ -4,6 +4,7 @@ import dataclasses
 import datetime
 
 from when_exactly.delta import Delta
+from when_exactly.errors import InvalidMomentError
 
 
 @dataclasses.dataclass(frozen=True)
@@ -28,7 +29,7 @@ class Moment:
         try:
             self.to_datetime()
         except ValueError as e:
-            raise ValueError(f"Invalid moment: {e}") from e
+            raise InvalidMomentError(str(e)) from e
 
     def __lt__(self, other: Moment) -> bool:
         return self.to_datetime() < other.to_datetime()

@@ -1,13 +1,13 @@
 # Core Concepts
 
-_When-Exactly_ is basically a wrapper around Python's already awesome [`datetime`](https://docs.python.org/3/library/datetime.html) module, and allows developers to work with dates in a more abstract way.
+_When-Exactly_ is basically a wrapper around Python's already awesome [`datetime`][datetime] module, and allows developers to work with dates in a more abstract way.
 
 ## Moment
 
-The [`Moment`](../tutorial/moment.md) represents, _a moment in time_. This is analogous to Python's
-[`datetime.datetime`](https://docs.python.org/3/library/datetime.html#datetime.datetime) class.
+The [`Moment`][moment] represents, _a moment in time_. This is analogous to Python's
+[`datetime.datetime`][datetime.datetime] class.
 
-!!!note
+!!! note
 The resolution of a moment is limited to _a second_.
 If you need more resolution, then when-exactly is probably not the library you need.
 
@@ -28,7 +28,7 @@ If you need more resolution, then when-exactly is probably not the library you n
 ## Delta
 
 The [`Delta`](../tutorial/delta.md) is analogous to Python's
-[`datetime.timedelta`](https://docs.python.org/3/library/datetime.html#datetime.timedelta),
+[`datetime.timedelta`][datetime.timedelta],
 with extra functionality for deltas of _years_ and _months_.
 
 ```python
@@ -44,7 +44,7 @@ Moment(year=2026, month=4, day=28, hour=15, minute=0, second=0)
 
 ## Interval
 
-An [`Interval`](../tutorial/interval.md) represents a _time span_.
+An [`Interval`][interval] represents a _time span_.
 An _interval_ has an inclusive _start_ and an exclusive _stop_.
 
 ```python
@@ -90,3 +90,11 @@ True
 2023-W10
 
 ```
+
+<!-- Links -->
+
+[datetime]: https://docs.python.org/3/library/datetime.html
+[datetime.datetime]: https://docs.python.org/3/library/datetime.html#datetime.datetime
+[datetime.timedelta]: https://docs.python.org/3/library/datetime.html#datetime.timedelta
+[interval]: /interval
+[moment]: /moment
