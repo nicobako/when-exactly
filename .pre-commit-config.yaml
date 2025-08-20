@@ -1,17 +1,54 @@
 repos:
-  - repo: https://github.com/psf/black
-    rev: 24.10.0 # 2024-10-27
-    hooks:
-      - id: black
+  # - repo: https://github.com/psf/black
+  #   rev: 24.10.0 # 2024-10-27
+  #   hooks:
+  #     - id: black
       
-  - repo: https://github.com/PyCQA/isort
-    rev: 5.13.2 # 2023-12-13
-    hooks:
-      - id: isort
-        args: [--profile, black]
+  # - repo: https://github.com/PyCQA/isort
+  #   rev: 5.13.2 # 2023-12-13
+  #   hooks:
+  #     - id: isort
+  #       args: [--profile, black]
 
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.14.1 # 2025-01-09
+  # - repo: https://github.com/pre-commit/mirrors-mypy
+  #   rev: v1.14.1 # 2025-01-09
+  #   hooks:
+  #     - id: mypy
+  #       args: [--strict, --ignore-missing-imports]
+
+  # - repo: https://github.com/astral-sh/ruff-pre-commit
+  #   # Ruff version.
+  #   rev: v0.12.7
+  #   hooks:
+  #     # Run the linter.
+  #     - id: ruff-check
+  #       args: [ --select, I, --fix ]
+  #     # Run the formatter.
+  #     - id: ruff-format
+  - repo: local
     hooks:
-      - id: mypy
-        args: [--strict, --ignore-missing-imports]
+      - id: ty
+        name: ty check
+        language: system
+        entry: uv run ty check .
+        types:
+          - python
+      - id: linter
+        name: ruff check
+        language: system
+        entry: uv run ruff check . --select I --fix --no-cache
+        types:
+          - python
+      - id: formatter
+        name: ruff format
+        entry: uv run ruff format --no-cache
+        language: system
+        types:
+          - python
+      - id: mdformat
+        name: mdformat
+        language: system
+        entry: uv run mdformat .
+        types:
+          - markdown
+      

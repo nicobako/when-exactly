@@ -4,11 +4,13 @@ An expressive and intuitive library for working with dates.
 
 ## Rationale
 
-When we, as _ordinary people_, talk about dates and times we use words like _months, weeks, days, years, etc._
-Yet, when we, _as developers_, have to work with dates in code we are limited to concepts like _datetime, date, and time_.
+People think and communicate about time in terms of
+_years_, _months_, _weeks_, _days_, _hours_, _minutes_, etc.
 
-When-Exactly is a library that aims to bring useful date and time abstractions into the hands of developers,
-so they can write more expressive code.
+People do not think about time in terms of _datetimes_...
+
+When-Exactly is a library that aims to bring more human-friendly date-time types into the hands of developers,
+so they can write more expressive code when working with dates.
 
 ## Overview
 
@@ -33,8 +35,11 @@ Month(2025, 12)
 >>> day.week # the week that the day is a part of
 Week(2025, 52)
 
+>>> day.week.days[0:5] # all weekday (Mon thru Fri) of the week
+Days([Day(2025, 12, 22), Day(2025, 12, 23), Day(2025, 12, 24), Day(2025, 12, 25), Day(2025, 12, 26)])
+
 ```
 
 ::: when_exactly
-    options:
-        members: no
+options:
+members: no

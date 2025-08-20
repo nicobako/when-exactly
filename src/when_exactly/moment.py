@@ -4,6 +4,7 @@ import dataclasses
 import datetime
 
 from when_exactly.delta import Delta
+from when_exactly.errors import InvalidMomentError
 
 
 @dataclasses.dataclass(frozen=True)
@@ -33,7 +34,7 @@ class Moment:
         try:
             self.to_datetime()
         except ValueError as e:
-            raise ValueError(f"Invalid moment: {e}") from e
+            raise InvalidMomentError(str(e)) from e
 
     def __lt__(self, other: Moment) -> bool:
         return self.to_datetime() < other.to_datetime()
@@ -67,12 +68,12 @@ class Moment:
             new_moment_kwargs["day"] > 28
         ):  # if the day is too large for the month, we need to decrement it until it is valid
             try:
-                Moment(**new_moment_kwargs)
+                Moment(**new_moment_kwargs)  # type: ignore
                 break
             except ValueError:
                 new_moment_kwargs["day"] -= 1
 
-        dt = Moment(**new_moment_kwargs).to_datetime()
+        dt = Moment(**new_moment_kwargs).to_datetime()  # type: ignore
 
         dt += datetime.timedelta(weeks=delta.weeks)
         dt += datetime.timedelta(days=delta.days)

@@ -10,56 +10,62 @@ Check out the documentation at [when-exactly.nicobako.me](https://when-exactly.n
 
 ### Setup
 
+Instructions for setting up the dev environment.
+
 ```bash
-# windows - git-bash
-py -3.13 -m venv .venv
-source .venv/Scripts/activate
-
-# linux
-python3.13 -m venv .venv
-source .venv/bin/activate
-
-# both
-python -m pip install --upgrade pip
-pip install -r requirements.txt
-pip install -e .
-pre-commit install
+uv sync --all-groups
+uv run pre-commit install
 ```
 
-### Creating requirements
+### Linting
 
-```
-pip install \
-  pytest \
-  pytest-cov \
-  mkdocs \
-  mkdocstrings[python] \
-  pre-commit \
-  build \
-  twine \
+All linting and static analysis is run by pre-commit.
 
-pip freeze > requirements.txt
+```bash
+uv run pre-commit run --all-files
 ```
 
 ### Testing
 
+Use pytest.
+
 ```bash
-pytest .
+uv run pytest .
 ```
 
 ### Documentation
 
+Documentation is built using mkdocs.
+
 ```bash
 # live-preview
-mkdocs serve
+uv run mkdocs serve
 
 # deploy
-mkdocs gh-deploy
+uv run mkdocs gh-deploy
 ```
 
-## Build
+## Deploy
 
 ```bash
-python -m build
-python -m twine upload dist/*
+deploy () {
+    set -e  # Exit immediately if a command exits with a non-zero status
+    version=$1
+
+    # run tests and static analysis
+    uv run pre-commit run --all-files
+    uv run pytest .
+
+    # build
+    uv run mkdocs gh-deploy --strict
+    uv build
+
+    # tag and deploy
+    uv version "$version"
+    git commit -am "Version $verion"
+    git tag -a "$version" -m "$version"
+    git push --all
+    uvx uv-publish@latest
+}
+
 ```

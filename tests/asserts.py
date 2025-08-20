@@ -51,9 +51,9 @@ class CustomCollectionParams[T: we.CustomInterval]:
     type_name: str
 
 
-def assert_custom_collection_implemented_correctly[
-    T: we.CustomInterval
-](params: CustomCollectionParams[T],) -> None:
+def assert_custom_collection_implemented_correctly[T: we.CustomInterval](
+    params: CustomCollectionParams[T],
+) -> None:
     interval_values = params.interval_values
     collection_type = params.collection_type
     type_name = params.type_name

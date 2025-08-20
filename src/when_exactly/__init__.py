@@ -27,6 +27,7 @@ from when_exactly.collection import Collection
 from when_exactly.custom_collection import CustomCollection
 from when_exactly.custom_interval import CustomInterval
 from when_exactly.delta import Delta
+from when_exactly.errors import InvalidMomentError
 from when_exactly.interval import Interval
 from when_exactly.moment import Moment
 
@@ -59,4 +60,5 @@ __all__ = [
     "WeekDays",
     "Year",
     "Years",
+    "InvalidMomentError",
 ]

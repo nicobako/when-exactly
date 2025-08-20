@@ -152,7 +152,6 @@ class Year(CustomInterval):
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class Week(CustomInterval):
-
     def __init__(self, year: int, week: int) -> None:
         start = Moment.from_datetime(datetime.datetime.fromisocalendar(year, week, 1))
         stop = start + Delta(days=7)
@@ -188,6 +187,10 @@ class Week(CustomInterval):
     @cached_property
     def week_days(self) -> WeekDays:
         return WeekDays([self.week_day(i) for i in range(1, 8)])
+
+    @cached_property
+    def days(self) -> Days:
+        return Days([self.week_day(i).to_day() for i in range(1, 8)])
 
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
@@ -297,7 +300,6 @@ class Second(CustomInterval):
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class Minute(CustomInterval):
-
     def __init__(self, year: int, month: int, day: int, hour: int, minute: int) -> None:
         start = Moment(year, month, day, hour, minute, 0)
         stop = start + Delta(minutes=1)
@@ -444,7 +446,6 @@ class Day(CustomInterval):
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class Month(CustomInterval):
-
     def __init__(self, year: int, month: int) -> None:
         start = Moment(year, month, 1, 0, 0, 0)
         stop = start + Delta(months=1)
@@ -499,7 +500,6 @@ class Weeks(CustomCollection[Week]):
 
 
 class Days(CustomCollection[Day]):
-
     @cached_property
     def months(self) -> Months:
         return Months([day.month for day in self])

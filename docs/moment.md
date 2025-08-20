@@ -5,7 +5,6 @@ The `Moment` represents _a moment in time_. It is analogous to Python's
 
 The `Moment` is a simple class that it is used prevalently throughout _When-Exactly_.
 
-
 ## Creating a Moment
 
 ```python
@@ -50,7 +49,7 @@ A `Moment` is always a valid date-time.
 >>> we.Moment(2025, 1, 32, 0,0,0)
 Traceback (most recent call last):
 ...
-ValueError: Invalid moment: day is out of range for month
+ValueError: day 32 must be in range 1..31 for month 1 in year 2025
 
 ```
 
@@ -73,7 +72,6 @@ ValueError: Invalid moment: day is out of range for month
 ## Adding Deltas to Moments
 
 A [`Delta`](./delta.md) can be added to a `Moment`.
-
 
 ```python
 >>> moment = we.Moment(2025, 1, 31, 12, 30, 30)
@@ -108,10 +106,3 @@ A moment's ISO year, week, and weekday are accessible as follows:
 2
 
 ```
-
-
-
-
-
-
-
