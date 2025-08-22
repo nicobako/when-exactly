@@ -83,6 +83,17 @@ class Moment:
 
         return Moment.from_datetime(dt)
 
+    def __sub__(self, delta: Delta) -> Moment:
+        return self + Delta(
+            years=-delta.years,
+            months=-delta.months,
+            weeks=-delta.weeks,
+            days=-delta.days,
+            hours=-delta.hours,
+            minutes=-delta.minutes,
+            seconds=-delta.seconds,
+        )
+
     def __str__(self) -> str:
         return self.to_datetime().isoformat()
 

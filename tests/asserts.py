@@ -10,11 +10,13 @@ import when_exactly as we
 class CustomIntervalParams:
     custom_interval_type: Type[we.CustomInterval]
     custom_interval: we.CustomInterval
+    expected_precision: we.Precision
     expected_start: we.Moment
     expected_stop: we.Moment
     expected_repr: str
     expected_str: str
     expected_next: we.CustomInterval
+    expected_prev: we.CustomInterval
 
 
 def assert_custom_interval_implemented_correctly(
@@ -24,6 +26,7 @@ def assert_custom_interval_implemented_correctly(
     assert_frozen(params.custom_interval)
     assert params.custom_interval.start == params.expected_start
     assert params.custom_interval.stop == params.expected_stop
+    assert params.custom_interval.precision == params.expected_precision
     assert repr(params.custom_interval) == params.expected_repr
     assert str(params.custom_interval) == params.expected_str
     assert (
@@ -35,6 +38,15 @@ def assert_custom_interval_implemented_correctly(
     )
     assert next(params.custom_interval) == params.expected_next
     assert params.custom_interval.next == params.expected_next
+
+    assert params.custom_interval + 1 == params.expected_next
+    assert params.custom_interval - 1 == params.expected_prev
+
+    assert params.custom_interval + 0 == params.custom_interval
+    assert params.custom_interval - 0 == params.custom_interval
+
+    assert params.custom_interval + 2 == params.expected_next.next
+    assert params.custom_interval - 2 == params.expected_prev.previous
 
 
 def assert_frozen(obj: Any) -> None:

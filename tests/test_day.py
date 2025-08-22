@@ -10,13 +10,18 @@ def test_day_implemented_correctly() -> None:
         params=CustomIntervalParams(
             custom_interval=we.Day(2020, 1, 1),
             custom_interval_type=we.Day,
+            expected_precision=we.Precisions.DAY,
             expected_next=we.Day(2020, 1, 2),
             expected_start=we.Moment(2020, 1, 1, 0, 0, 0),
             expected_stop=we.Moment(2020, 1, 2, 0, 0, 0),
             expected_repr="Day(2020, 1, 1)",
             expected_str="2020-01-01",
+            expected_prev=we.Day(2019, 12, 31),
         )
     )
+
+    d = we.Day(2020, 1, 1)
+    d.next
 
 
 def test_day_hour() -> None:

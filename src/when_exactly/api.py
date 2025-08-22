@@ -12,6 +12,7 @@ from when_exactly.custom_interval import CustomInterval
 from when_exactly.delta import Delta
 from when_exactly.interval import Interval
 from when_exactly.moment import Moment
+from when_exactly.precision import Precision, Precisions
 
 
 def _gen_until[I: CustomInterval](start: I, stop: I) -> Iterable[I]:
@@ -405,13 +406,7 @@ class Day(CustomInterval):
     def __init__(self, year: int, month: int, day: int) -> None:
         start = Moment(year, month, day, 0, 0, 0)
         stop = start + Delta(days=1)
-        Interval.__init__(self, start=start, stop=stop)
-
-    def __repr__(self) -> str:
-        return f"Day({self.start.year}, {self.start.month}, {self.start.day})"
-
-    def __str__(self) -> str:
-        return f"{self.start.year:04}-{self.start.month:02}-{self.start.day:02}"
+        CustomInterval.__init__(self, start=start, stop=stop, precision=Precisions.DAY)
 
     @classmethod
     def from_moment(cls, moment: Moment) -> Day:
@@ -420,6 +415,20 @@ class Day(CustomInterval):
             moment.month,
             moment.day,
         )
+
+    @property
+    def next(self) -> Day:
+        return Day.from_moment(self.stop)
+
+    @property
+    def previous(self) -> Day:
+        return Day.from_moment(self.start - Delta(days=1))
+
+    def __repr__(self) -> str:
+        return f"Day({self.start.year}, {self.start.month}, {self.start.day})"
+
+    def __str__(self) -> str:
+        return f"{self.start.year:04}-{self.start.month:02}-{self.start.day:02}"
 
     def hour(self, hour: int) -> Hour:
         return Hour(

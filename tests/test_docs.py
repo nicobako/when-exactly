@@ -6,7 +6,7 @@ import pytest
 import when_exactly as we
 
 FILES = [f for f in Path("./docs/").rglob("*.md")] + [
-    f for f in Path("./src/when_exactly/").rglob("*.py") if f.name != "__init__.py"
+    f for f in Path("./src/when_exactly/").rglob("*.py")
 ]
 
 
