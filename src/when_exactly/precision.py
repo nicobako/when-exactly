@@ -4,15 +4,14 @@ from enum import Enum
 from when_exactly.delta import Delta
 
 
-@dataclasses.dataclass(frozen=True)
-class Precision:
-    level: int
-    name: str
-    delta: Delta
-
-
-class Precisions(Enum):
+class Precision(Enum):
     """Precision levels for date and time intervals."""
+
+    @dataclasses.dataclass(frozen=True)
+    class Precision:
+        level: int
+        name: str
+        delta: Delta
 
     SECOND = Precision(1, "second", Delta(seconds=1))
     MINUTE = Precision(2, "minute", Delta(minutes=1))

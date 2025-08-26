@@ -14,23 +14,24 @@ from when_exactly.precision import Precision
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class CustomInterval(Interval):
-    precision: Precision
-
-    def __init__(self, precision: Precision, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         Interval.__init__(self, *args, **kwargs)
-        object.__setattr__(self, "precision", precision)
 
     @classmethod
-    def from_moment(cls, moment: Moment) -> CustomInterval[P]:
+    def from_moment(cls, moment: Moment) -> CustomInterval:
         raise NotImplementedError("CustomInterval from_moment not implemented")
 
     @property
-    def next(self) -> CustomInterval[P]:
+    def next(self) -> CustomInterval:
         raise NotImplementedError("CustomInterval next not implemented")
 
     @property
-    def previous(self) -> CustomInterval[P]:
+    def previous(self) -> CustomInterval:
         raise NotImplementedError("CustomInterval previous not implemented")
+
+    @property
+    def precision(self) -> Precision:
+        raise NotImplementedError("CustomInterval precision not implemented")
 
     def __repr__(self) -> str:
         raise NotImplementedError("CustomInterval repr not implemented")
@@ -38,13 +39,13 @@ class CustomInterval(Interval):
     def __str__(self) -> str:
         raise NotImplementedError("CustomInterval str not implemented")
 
-    def __add__(self, value: int) -> CustomInterval[P]:
+    def __add__(self, value: int) -> CustomInterval:
         next_value = deepcopy(self)
         for _ in range(value):
             next_value = next_value.next
         return next_value
 
-    def __sub__(self, value: int) -> CustomInterval[P]:
+    def __sub__(self, value: int) -> CustomInterval:
         prev_value = deepcopy(self)
         for _ in range(value):
             prev_value = prev_value.previous

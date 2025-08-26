@@ -10,7 +10,7 @@ def test_day_implemented_correctly() -> None:
         params=CustomIntervalParams(
             custom_interval=we.Day(2020, 1, 1),
             custom_interval_type=we.Day,
-            expected_precision=we.Precisions.DAY,
+            expected_precision=we.Precision.DAY,
             expected_next=we.Day(2020, 1, 2),
             expected_start=we.Moment(2020, 1, 1, 0, 0, 0),
             expected_stop=we.Moment(2020, 1, 2, 0, 0, 0),

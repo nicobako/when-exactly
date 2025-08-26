@@ -5,14 +5,14 @@ from __future__ import annotations
 import dataclasses
 import datetime
 from functools import cached_property
-from typing import Iterable
+from typing import Iterable, Literal
 
 from when_exactly.custom_collection import CustomCollection
 from when_exactly.custom_interval import CustomInterval
 from when_exactly.delta import Delta
 from when_exactly.interval import Interval
 from when_exactly.moment import Moment
-from when_exactly.precision import Precision, Precisions
+from when_exactly.precision import Precision
 
 
 def _gen_until[I: CustomInterval](start: I, stop: I) -> Iterable[I]:
@@ -406,7 +406,7 @@ class Day(CustomInterval):
     def __init__(self, year: int, month: int, day: int) -> None:
         start = Moment(year, month, day, 0, 0, 0)
         stop = start + Delta(days=1)
-        CustomInterval.__init__(self, start=start, stop=stop, precision=Precisions.DAY)
+        CustomInterval.__init__(self, start=start, stop=stop)
 
     @classmethod
     def from_moment(cls, moment: Moment) -> Day:
@@ -422,7 +422,7 @@ class Day(CustomInterval):
 
     @property
     def previous(self) -> Day:
-        return Day.from_moment(self.start - Delta(days=1))
+        return Day.from_moment(self.start - self.precision.value.delta)
 
     def __repr__(self) -> str:
         return f"Day({self.start.year}, {self.start.month}, {self.start.day})"
@@ -437,6 +437,10 @@ class Day(CustomInterval):
             self.start.day,
             hour,
         )
+
+    @property
+    def precision(self) -> Literal[Precision.DAY]:
+        return Precision.DAY
 
     @cached_property
     def month(self) -> Month:
