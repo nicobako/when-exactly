@@ -11,6 +11,7 @@ def test_hour_implemented_correctly() -> None:
             custom_interval=we.Hour(2020, 1, 1, 0),
             custom_interval_type=we.Hour,
             expected_next=we.Hour(2020, 1, 1, 1),
+            expected_prev=we.Hour(2019, 12, 31, 23),
             expected_start=we.Moment(2020, 1, 1, 0, 0, 0),
             expected_stop=we.Moment(2020, 1, 1, 1, 0, 0),
             expected_repr="Hour(2020, 1, 1, 0)",

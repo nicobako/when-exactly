@@ -10,6 +10,7 @@ def test_second_implemented_correctly() -> None:
         params=CustomIntervalParams(
             custom_interval=we.Second(2020, 1, 1, 0, 0, 0),
             custom_interval_type=we.Second,
+            expected_prev=we.Second(2019, 12, 31, 23, 59, 59),
             expected_next=we.Second(2020, 1, 1, 0, 0, 1),
             expected_start=we.Moment(2020, 1, 1, 0, 0, 0),
             expected_stop=we.Moment(2020, 1, 1, 0, 0, 1),

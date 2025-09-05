@@ -5,14 +5,13 @@ from __future__ import annotations
 import dataclasses
 import datetime
 from functools import cached_property
-from typing import Iterable, Literal
+from typing import Iterable
 
 from when_exactly.custom_collection import CustomCollection
 from when_exactly.custom_interval import CustomInterval
 from when_exactly.delta import Delta
 from when_exactly.interval import Interval
 from when_exactly.moment import Moment
-from when_exactly.precision import Precision
 
 
 def _gen_until[I: CustomInterval](start: I, stop: I) -> Iterable[I]:
@@ -135,7 +134,8 @@ class Year(CustomInterval):
             month,
         )
 
-    def __next__(self) -> Year:
+    @property
+    def next(self) -> Year:
         return Year.from_moment(self.stop)
 
     def week(self, week: int) -> Week:
@@ -175,7 +175,8 @@ class Week(CustomInterval):
             moment.week,
         )
 
-    def __next__(self) -> CustomInterval:
+    @property
+    def next(self) -> Week:
         return Week.from_moment(self.stop)
 
     def week_day(self, week_day: int) -> WeekDay:
@@ -225,7 +226,8 @@ class WeekDay(CustomInterval):
             week_day=moment.week_day,
         )
 
-    def __next__(self) -> WeekDay:
+    @property
+    def next(self) -> WeekDay:
         return WeekDay.from_moment(moment=self.stop)
 
     @cached_property
@@ -259,7 +261,8 @@ class OrdinalDay(CustomInterval):
     def from_moment(cls, moment: Moment) -> OrdinalDay:
         return OrdinalDay(moment.year, moment.ordinal_day)
 
-    def __next__(self) -> OrdinalDay:
+    @property
+    def next(self) -> OrdinalDay:
         return OrdinalDay.from_moment(self.stop)
 
 
@@ -284,7 +287,8 @@ class Second(CustomInterval):
     def minute(self) -> Minute:
         return Minute.from_moment(self.start)
 
-    def __next__(self) -> Second:
+    @property
+    def next(self) -> Second:
         return Second.from_moment(self.stop)
 
     @classmethod
@@ -336,7 +340,8 @@ class Minute(CustomInterval):
             second,
         )
 
-    def __next__(self) -> Minute:
+    @property
+    def next(self) -> Minute:
         return Minute.from_moment(self.stop)
 
     @classmethod
@@ -397,12 +402,15 @@ class Hour(CustomInterval):
     def day(self) -> Day:
         return Day.from_moment(self.start)
 
-    def __next__(self) -> Hour:
+    @property
+    def next(self) -> Hour:
         return Hour.from_moment(self.stop)
 
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class Day(CustomInterval):
+    """Represents a single day, from midnight to midnight."""
+
     def __init__(self, year: int, month: int, day: int) -> None:
         start = Moment(year, month, day, 0, 0, 0)
         stop = start + Delta(days=1)
@@ -417,12 +425,8 @@ class Day(CustomInterval):
         )
 
     @property
-    def next(self) -> Day:
-        return Day.from_moment(self.stop)
-
-    @property
     def previous(self) -> Day:
-        return Day.from_moment(self.start - self.precision.value.delta)
+        return Day.from_moment(self.start - Delta(days=1))
 
     def __repr__(self) -> str:
         return f"Day({self.start.year}, {self.start.month}, {self.start.day})"
@@ -438,10 +442,6 @@ class Day(CustomInterval):
             hour,
         )
 
-    @property
-    def precision(self) -> Literal[Precision.DAY]:
-        return Precision.DAY
-
     @cached_property
     def month(self) -> Month:
         return Month(
@@ -453,7 +453,23 @@ class Day(CustomInterval):
     def week(self) -> Week:
         return Week.from_moment(self.start)
 
-    def __next__(self) -> Day:
+    @cached_property
+    def ordinal_day(self) -> OrdinalDay:
+        return OrdinalDay(
+            self.start.year,
+            self.start.ordinal_day,
+        )
+
+    @cached_property
+    def weekday(self) -> WeekDay:
+        return WeekDay(
+            self.start.year,
+            self.start.week,
+            self.start.week_day,
+        )
+
+    @property
+    def next(self) -> Day:
         return Day.from_moment(self.stop)
 
 
@@ -496,7 +512,8 @@ class Month(CustomInterval):
             day,
         )
 
-    def __next__(self) -> Month:
+    @property
+    def next(self) -> Month:
         return Month.from_moment(self.stop)
 
 

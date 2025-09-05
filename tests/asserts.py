@@ -10,7 +10,6 @@ import when_exactly as we
 class CustomIntervalParams:
     custom_interval_type: Type[we.CustomInterval]
     custom_interval: we.CustomInterval
-    expected_precision: we.Precision
     expected_start: we.Moment
     expected_stop: we.Moment
     expected_repr: str
@@ -26,7 +25,6 @@ def assert_custom_interval_implemented_correctly(
     assert_frozen(params.custom_interval)
     assert params.custom_interval.start == params.expected_start
     assert params.custom_interval.stop == params.expected_stop
-    assert params.custom_interval.precision == params.expected_precision
     assert repr(params.custom_interval) == params.expected_repr
     assert str(params.custom_interval) == params.expected_str
     assert (

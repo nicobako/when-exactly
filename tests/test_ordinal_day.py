@@ -14,6 +14,7 @@ def test_ordinal_day_implemented_correctly() -> None:
             ),
             custom_interval_type=we.OrdinalDay,
             expected_next=we.OrdinalDay(2020, 2),
+            expected_prev=we.OrdinalDay(2019, 365),
             expected_start=we.Moment(2020, 1, 1, 0, 0, 0),
             expected_stop=we.Moment(2020, 1, 2, 0, 0, 0),
             expected_repr="OrdinalDay(2020, 1)",

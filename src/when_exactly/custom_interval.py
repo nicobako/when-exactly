@@ -1,15 +1,11 @@
 from __future__ import annotations
 
 import dataclasses
-import datetime
 from copy import deepcopy
-from enum import Enum
-from typing import Any, Self
+from typing import Any
 
-from when_exactly.delta import Delta
 from when_exactly.interval import Interval
 from when_exactly.moment import Moment
-from when_exactly.precision import Precision
 
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
@@ -28,10 +24,6 @@ class CustomInterval(Interval):
     @property
     def previous(self) -> CustomInterval:
         raise NotImplementedError("CustomInterval previous not implemented")
-
-    @property
-    def precision(self) -> Precision:
-        raise NotImplementedError("CustomInterval precision not implemented")
 
     def __repr__(self) -> str:
         raise NotImplementedError("CustomInterval repr not implemented")

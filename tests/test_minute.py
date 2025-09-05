@@ -11,6 +11,7 @@ def test_minute_implemented_correctly() -> None:
             custom_interval=we.Minute(2020, 1, 1, 0, 0),
             custom_interval_type=we.Minute,
             expected_next=we.Minute(2020, 1, 1, 0, 1),
+            expected_prev=we.Minute(2019, 12, 31, 23, 59),
             expected_start=we.Moment(2020, 1, 1, 0, 0, 0),
             expected_stop=we.Moment(2020, 1, 1, 0, 1, 0),
             expected_repr="Minute(2020, 1, 1, 0, 0)",

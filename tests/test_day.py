@@ -10,7 +10,6 @@ def test_day_implemented_correctly() -> None:
         params=CustomIntervalParams(
             custom_interval=we.Day(2020, 1, 1),
             custom_interval_type=we.Day,
-            expected_precision=we.Precision.DAY,
             expected_next=we.Day(2020, 1, 2),
             expected_start=we.Moment(2020, 1, 1, 0, 0, 0),
             expected_stop=we.Moment(2020, 1, 2, 0, 0, 0),
@@ -43,3 +42,15 @@ def test_day_week() -> None:
     day = we.Day(2020, 1, 1)
     week = day.week
     assert week == we.Week(2020, 1)
+
+
+def test_day_ordinal_day() -> None:
+    day = we.Day(2020, 1, 1)
+    ordinal_day = we.OrdinalDay(2020, 1)
+    assert day.ordinal_day == ordinal_day
+
+
+def test_day_week_day() -> None:
+    day = we.Day(2025, 9, 5)  # This is a Wednesday
+    weekday = day.weekday
+    assert weekday == we.WeekDay(2025, 36, 5)

@@ -13,6 +13,7 @@ def test_year_implemented_correcly() -> None:
             custom_interval=we.Year(2020),
             custom_interval_type=we.Year,
             expected_next=we.Year(2021),
+            expected_prev=we.Year(2019),
             expected_start=we.Moment(2020, 1, 1, 0, 0, 0),
             expected_stop=we.Moment(2021, 1, 1, 0, 0, 0),
             expected_repr="Year(2020)",

@@ -11,6 +11,7 @@ def test_week_day_implemented_correctly() -> None:
             custom_interval=we.WeekDay(2020, 1, 1),
             custom_interval_type=we.WeekDay,
             expected_next=we.WeekDay(2020, 1, 2),
+            expected_prev=we.WeekDay(2019, 52, 7),
             expected_start=we.Moment(2019, 12, 30, 0, 0, 0),
             expected_stop=we.Moment(2019, 12, 31, 0, 0, 0),
             expected_repr="WeekDay(2020, 1, 1)",

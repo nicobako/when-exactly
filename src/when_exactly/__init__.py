@@ -30,7 +30,6 @@ from when_exactly.delta import Delta
 from when_exactly.errors import InvalidMomentError
 from when_exactly.interval import Interval
 from when_exactly.moment import Moment
-from when_exactly.precision import Precision
 
 __all__ = [
     "Delta",
@@ -62,5 +61,4 @@ __all__ = [
     "Year",
     "Years",
     "InvalidMomentError",
-    "Precision",
 ]
