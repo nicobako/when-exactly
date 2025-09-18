@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import dataclasses
 
-from when_exactly.moment import Moment
+from when_exactly.core.moment import Moment
 
 
 @dataclasses.dataclass(frozen=True)

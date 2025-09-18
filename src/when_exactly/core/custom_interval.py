@@ -4,12 +4,19 @@ import dataclasses
 from copy import deepcopy
 from typing import Any
 
-from when_exactly.interval import Interval
-from when_exactly.moment import Moment
+from when_exactly.core.interval import Interval
+from when_exactly.core.moment import Moment
 
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class CustomInterval(Interval):
+    """A custom intervval.
+
+    This class serves as a base class from which custom intervals can be derived.
+    It provides the necessary interface and methods to be implemented by subclasses.
+
+    """
+
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         Interval.__init__(self, *args, **kwargs)
 

@@ -3,8 +3,8 @@ from __future__ import annotations
 import dataclasses
 import datetime
 
-from when_exactly.delta import Delta
-from when_exactly.errors import InvalidMomentError
+from when_exactly.core.delta import Delta
+from when_exactly.core.errors import InvalidMomentError
 
 
 @dataclasses.dataclass(frozen=True)

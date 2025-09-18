@@ -53,7 +53,7 @@ def test_year_week() -> None:
     week = year.week(53)
     assert week == we.Week(2020, 53)
 
-    # we.WeekDay(2025,1,1) is 2024-12-30
+    # we.Weekday(2025,1,1) is 2024-12-30
     edge_case_year = we.Year(2025)
     week = edge_case_year.week(1)
     assert week == we.Week(2025, 1)  # day with different month-day

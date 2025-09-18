@@ -53,4 +53,4 @@ def test_day_ordinal_day() -> None:
 def test_day_week_day() -> None:
     day = we.Day(2025, 9, 5)  # This is a Wednesday
     weekday = day.weekday
-    assert weekday == we.WeekDay(2025, 36, 5)
+    assert weekday == we.Weekday(2025, 36, 5)

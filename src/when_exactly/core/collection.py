@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Iterable, NoReturn, final, overload
 
-from when_exactly.interval import Interval
+from when_exactly.core.interval import Interval
 
 
 class Collection[T: Interval]:
