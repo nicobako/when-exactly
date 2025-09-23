@@ -7,17 +7,17 @@
         
         
         
-        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Moment - when-exactly</title>
-        <link href="../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../css/fontawesome.min.css" rel="stylesheet">
-        <link href="../../css/brands.min.css" rel="stylesheet">
-        <link href="../../css/solid.min.css" rel="stylesheet">
-        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
-        <link href="../../css/base.css" rel="stylesheet">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
         <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
         <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <link href="../../assets/_mkdocstrings.css" rel="stylesheet">
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
@@ -25,7 +25,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="../..">when-exactly</a>
+                <a class="navbar-brand" href="..">when-exactly</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -36,25 +36,25 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="../.." class="nav-link">Home</a>
+                                <a href=".." class="nav-link">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../../getting-started/" class="nav-link">Getting Started</a>
+                                <a href="../getting-started/" class="nav-link">Getting Started</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../core-concepts/" class="nav-link">Core Concepts</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../year/" class="nav-link">Year</a>
+                                <a href="../tutorial/year/" class="nav-link">Year</a>
                             </li>
                             <li class="nav-item">
                                 <a href="./" class="nav-link active" aria-current="page">Moment</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../delta/" class="nav-link">Delta</a>
+                                <a href="../tutorial/delta/" class="nav-link">Delta</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../../api/" class="nav-link">API</a>
+                                <a href="../api/" class="nav-link">API</a>
                             </li>
                         </ul>
 
@@ -65,12 +65,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../year/" class="nav-link">
+                                <a rel="prev" href="../tutorial/year/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../delta/" class="nav-link">
+                                <a rel="next" href="../tutorial/delta/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -126,9 +126,9 @@
 <a href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime.datetime</a> class.</p>
 <p>The <code>Moment</code> is a simple class that it is used prevalently throughout <em>When-Exactly</em>.</p>
 <h2 id="creating-a-moment">Creating a Moment</h2>
-<pre><code class="language-python">&gt;&gt;&gt; import when_exactly as we
+<pre><code class="language-python">&gt;&gt;&gt; import when_exactly as wnx
 
-&gt;&gt;&gt; moment = we.Moment(
+&gt;&gt;&gt; moment = wnx.Moment(
 ...     year=2025,
 ...     month=1,
 ...     day=30,
@@ -140,7 +140,7 @@
 Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
 
 &gt;&gt;&gt; # or, more concisely 
-&gt;&gt;&gt; we.Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
+&gt;&gt;&gt; wnx.Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
 Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
 
 </code></pre>
@@ -151,40 +151,40 @@ Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
 datetime.datetime(2025, 1, 30, 15, 25, 30)
 
 &gt;&gt;&gt; dt = datetime.datetime(2025, 1, 30, 15, 25, 30)
-&gt;&gt;&gt; we.Moment.from_datetime(dt)
+&gt;&gt;&gt; wnx.Moment.from_datetime(dt)
 Moment(year=2025, month=1, day=30, hour=15, minute=25, second=30)
 
 </code></pre>
 <h2 id="moment-validation">Moment Validation</h2>
 <p>A <code>Moment</code> is always a valid date-time.</p>
-<pre><code class="language-python">&gt;&gt;&gt; we.Moment(2025, 1, 32, 0,0,0)
+<pre><code class="language-python">&gt;&gt;&gt; wnx.Moment(2025, 1, 32, 0,0,0)
 Traceback (most recent call last):
-...
-ValueError: Invalid moment: day is out of range for month
+    ...
+when_exactly.core.errors.InvalidMomentError: Invalid Moment: day 32 must be in range 1..31 for month 1 in year 2025
 
 </code></pre>
 <h2 id="comaring-moments">Comaring Moments</h2>
 <p><code>Moment</code>s can be compared to one another</p>
-<pre><code class="language-python">&gt;&gt;&gt; moment1 = we.Moment(2025, 1, 1, 0, 0, 0)
-&gt;&gt;&gt; moment2 = we.Moment(2025, 1, 1, 1, 0, 0)
+<pre><code class="language-python">&gt;&gt;&gt; moment1 = wnx.Moment(2025, 1, 1, 0, 0, 0)
+&gt;&gt;&gt; moment2 = wnx.Moment(2025, 1, 1, 1, 0, 0)
 &gt;&gt;&gt; assert moment1 != moment2
 &gt;&gt;&gt; assert moment1 &lt; moment2
 &gt;&gt;&gt; assert moment1 &lt;= moment2
 &gt;&gt;&gt; assert moment2 &gt; moment1
 &gt;&gt;&gt; assert moment2 &gt;= moment1
-&gt;&gt;&gt; assert moment1 == we.Moment(2025, 1, 1, 0, 0, 0)
+&gt;&gt;&gt; assert moment1 == wnx.Moment(2025, 1, 1, 0, 0, 0)
 
 </code></pre>
 <h2 id="adding-deltas-to-moments">Adding Deltas to Moments</h2>
-<p>A <a href="../delta/"><code>Delta</code></a> can be added to a <code>Moment</code>.</p>
-<pre><code class="language-python">&gt;&gt;&gt; moment = we.Moment(2025, 1, 31, 12, 30, 30)
-&gt;&gt;&gt; moment + we.Delta(years=1)
+<p>A <a href="./delta.md"><code>Delta</code></a> can be added to a <code>Moment</code>.</p>
+<pre><code class="language-python">&gt;&gt;&gt; moment = wnx.Moment(2025, 1, 31, 12, 30, 30)
+&gt;&gt;&gt; moment + wnx.Delta(years=1)
 Moment(year=2026, month=1, day=31, hour=12, minute=30, second=30)
 
-&gt;&gt;&gt; moment + we.Delta(months=1)
+&gt;&gt;&gt; moment + wnx.Delta(months=1)
 Moment(year=2025, month=2, day=28, hour=12, minute=30, second=30)
 
-&gt;&gt;&gt; moment + we.Delta(days=2)
+&gt;&gt;&gt; moment + wnx.Delta(days=2)
 Moment(year=2025, month=2, day=2, hour=12, minute=30, second=30)
 
 &gt;&gt;&gt; # etc.
@@ -193,7 +193,7 @@ Moment(year=2025, month=2, day=2, hour=12, minute=30, second=30)
 <h2 id="weeks">Weeks</h2>
 <p>A moment's ISO year, week, and weekday are accessible as follows:</p>
 <pre><code class="language-python">&gt;&gt;&gt; # 2019-12-31 == 2020-W01-2
-&gt;&gt;&gt; moment = we.Moment(2019, 12, 31, 0,0,0)
+&gt;&gt;&gt; moment = wnx.Moment(2019, 12, 31, 0,0,0)
 
 &gt;&gt;&gt; moment.week_year
 2020
@@ -212,13 +212,13 @@ Moment(year=2025, month=2, day=2, hour=12, minute=30, second=30)
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
         <script>
-            var base_url = "../..",
+            var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js"></script>
-        <script src="../../search/main.js"></script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

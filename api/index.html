@@ -42,13 +42,13 @@
                                 <a href="../getting-started/" class="nav-link">Getting Started</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../tutorial/core-concepts/" class="nav-link">Core Concepts</a>
+                                <a href="../core-concepts/" class="nav-link">Core Concepts</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../tutorial/year/" class="nav-link">Year</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../tutorial/moment/" class="nav-link">Moment</a>
+                                <a href="../moment/" class="nav-link">Moment</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../tutorial/delta/" class="nav-link">Delta</a>
@@ -102,6 +102,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#when_exactly.Year.from_moment" class="nav-link">from_moment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#when_exactly.Year.month" class="nav-link">month</a>
               <ul class="nav flex-column">
               </ul>
@@ -123,14 +127,19 @@
 <a id="when_exactly.Year"></a>
     <div class="doc doc-contents first">
             <p class="doc doc-class-bases">
-              Bases: <code><span title="when_exactly">when_exactly</span>.<span title="when_exactly.custom_interval">custom_interval</span>.<span title="when_exactly.custom_interval.CustomInterval">CustomInterval</span></code></p>
+              Bases: <code><a class="autorefs autorefs-internal" href="../#when_exactly">when_exactly</a>.<span title="when_exactly.core">core</span>.<span title="when_exactly.core.custom_interval">custom_interval</span>.<a class="autorefs autorefs-internal" title="CustomInterval
+
+
+  
+      dataclass
+   (when_exactly.core.custom_interval.CustomInterval)" href="../#when_exactly.CustomInterval">CustomInterval</a></code></p>
 
 
         <p>The <code>Year</code> represents an entire year, starting from <em>January 1</em> to <em>December 31</em>.</p>
 <h3 id="when_exactly.Year--creating-a-year">Creating a Year</h3>
-<pre><code class="language-python">&gt;&gt;&gt; import when_exactly as we
+<pre><code class="language-python">&gt;&gt;&gt; import when_exactly as wnx
 
-&gt;&gt;&gt; year = we.Year(2025)
+&gt;&gt;&gt; year = wnx.Year(2025)
 &gt;&gt;&gt; year
 Year(2025)
 
@@ -169,8 +178,10 @@ Week(2025, 1)
 
 
               <details class="quote">
-                <summary>Source code in <code>src\when_exactly\api.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 27</span>
+                <summary>Source code in <code>src/when_exactly/_api.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
 <span class="normal"> 28</span>
 <span class="normal"> 29</span>
 <span class="normal"> 30</span>
@@ -292,16 +303,20 @@ Week(2025, 1)
 <span class="normal">146</span>
 <span class="normal">147</span>
 <span class="normal">148</span>
-<span class="normal">149</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Year</span><span class="p">(</span><span class="n">CustomInterval</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The `Year` represents an entire year, starting from _January 1_ to _December 31_.</span>
 
 <span class="sd">    ## Creating a Year</span>
 
 <span class="sd">    ```python</span>
-<span class="sd">    &gt;&gt;&gt; import when_exactly as we</span>
+<span class="sd">    &gt;&gt;&gt; import when_exactly as wnx</span>
 
-<span class="sd">    &gt;&gt;&gt; year = we.Year(2025)</span>
+<span class="sd">    &gt;&gt;&gt; year = wnx.Year(2025)</span>
 <span class="sd">    &gt;&gt;&gt; year</span>
 <span class="sd">    Year(2025)</span>
 
@@ -350,9 +365,9 @@ Week(2025, 1)
 
 <span class="sd">        Examples:</span>
 <span class="sd">            ```python</span>
-<span class="sd">            &gt;&gt;&gt; import when_exactly as we</span>
+<span class="sd">            &gt;&gt;&gt; import when_exactly as wnx</span>
 
-<span class="sd">            &gt;&gt;&gt; year = we.Year(2025)</span>
+<span class="sd">            &gt;&gt;&gt; year = wnx.Year(2025)</span>
 <span class="sd">            &gt;&gt;&gt; year</span>
 <span class="sd">            Year(2025)</span>
 
@@ -376,6 +391,7 @@ Week(2025, 1)
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_moment</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">moment</span><span class="p">:</span> <span class="n">Moment</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Year</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a `Year` from a `Moment`.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Year</span><span class="p">(</span><span class="n">moment</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
 
     <span class="nd">@cached_property</span>
@@ -385,7 +401,7 @@ Week(2025, 1)
     <span class="nd">@cached_property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">weeks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Weeks</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Weeks</span><span class="p">(</span>
-            <span class="n">_gen_until</span><span class="p">(</span>
+            <span class="n">gen_until</span><span class="p">(</span>
                 <span class="n">Week</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
                 <span class="n">Week</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">year</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
             <span class="p">)</span>
@@ -401,8 +417,13 @@ Week(2025, 1)
             <span class="n">month</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Year</span><span class="p">:</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Year</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Year</span><span class="o">.</span><span class="n">from_moment</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">previous</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Year</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Year</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">year</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">week</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">week</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Week</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Week</span><span class="p">(</span>
@@ -476,9 +497,9 @@ Week(2025, 1)
 
 
 <p><span class="doc-section-title">Examples:</span></p>
-    <pre><code class="language-python">&gt;&gt;&gt; import when_exactly as we
+    <pre><code class="language-python">&gt;&gt;&gt; import when_exactly as wnx
 
-&gt;&gt;&gt; year = we.Year(2025)
+&gt;&gt;&gt; year = wnx.Year(2025)
 &gt;&gt;&gt; year
 Year(2025)
 
@@ -489,32 +510,32 @@ Year(2025)
 
 
             <details class="quote">
-              <summary>Source code in <code>src\when_exactly\api.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 77</span>
-<span class="normal"> 78</span>
-<span class="normal"> 79</span>
-<span class="normal"> 80</span>
-<span class="normal"> 81</span>
-<span class="normal"> 82</span>
-<span class="normal"> 83</span>
-<span class="normal"> 84</span>
-<span class="normal"> 85</span>
-<span class="normal"> 86</span>
-<span class="normal"> 87</span>
-<span class="normal"> 88</span>
-<span class="normal"> 89</span>
-<span class="normal"> 90</span>
-<span class="normal"> 91</span>
-<span class="normal"> 92</span>
-<span class="normal"> 93</span>
-<span class="normal"> 94</span>
-<span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+              <summary>Source code in <code>src/when_exactly/_api.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span>
+<span class="normal">99</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;# Create a Year.</span>
 
 <span class="sd">    Parameters:</span>
@@ -522,9 +543,9 @@ Year(2025)
 
 <span class="sd">    Examples:</span>
 <span class="sd">        ```python</span>
-<span class="sd">        &gt;&gt;&gt; import when_exactly as we</span>
+<span class="sd">        &gt;&gt;&gt; import when_exactly as wnx</span>
 
-<span class="sd">        &gt;&gt;&gt; year = we.Year(2025)</span>
+<span class="sd">        &gt;&gt;&gt; year = wnx.Year(2025)</span>
 <span class="sd">        &gt;&gt;&gt; year</span>
 <span class="sd">        Year(2025)</span>
 
@@ -548,6 +569,39 @@ Year(2025)
 <div class="doc doc-object doc-function">
 
 
+<h2 id="when_exactly.Year.from_moment" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">from_moment</span><span class="p">(</span><span class="n">moment</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Create a <code>Year</code> from a <code>Moment</code>.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>src/when_exactly/_api.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">from_moment</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">moment</span><span class="p">:</span> <span class="n">Moment</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Year</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a `Year` from a `Moment`.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">Year</span><span class="p">(</span><span class="n">moment</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
 <h2 id="when_exactly.Year.month" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span></code>
 
@@ -562,16 +616,16 @@ Args:
 
 
             <details class="quote">
-              <summary>Source code in <code>src\when_exactly\api.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">126</span>
+              <summary>Source code in <code>src/when_exactly/_api.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">125</span>
+<span class="normal">126</span>
 <span class="normal">127</span>
 <span class="normal">128</span>
 <span class="normal">129</span>
 <span class="normal">130</span>
 <span class="normal">131</span>
 <span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">month</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Month</span><span class="p">:</span>
+<span class="normal">133</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">month</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Month</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a specific month of the year.</span>
 <span class="sd">    Args:</span>
 <span class="sd">        month (int): The month number (1-12).</span>
@@ -592,7 +646,7 @@ Args:
 
     </div>
 
-</div></div>
+</div><p>handler: python</p></div>
             </div>
         </div>
 
