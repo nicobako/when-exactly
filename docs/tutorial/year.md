@@ -5,9 +5,9 @@ The `Year` represents an entire year, starting from _January 1_ to _December 31_
 ## Creating a Year
 
 ```python
->>> import when_exactly as we
+>>> import when_exactly as wnx
 
->>> year = we.Year(2025)
+>>> year = wnx.Year(2025)
 >>> year
 Year(2025)
 

@@ -1,9 +1,9 @@
-import when_exactly as we
+import when_exactly as wnx
 from tests.asserts import assert_frozen
 
 
 def test_delta() -> None:
-    duration = we.Delta(
+    duration = wnx.Delta(
         years=1,
         months=2,
         weeks=3,

@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-import when_exactly as we
+import when_exactly as wnx
 
 FILES = [f for f in Path("./docs/").rglob("*.md")] + [
     f for f in Path("./src/when_exactly/").rglob("*.py")
@@ -22,7 +22,7 @@ def test_docs(file: Path) -> None:
         return doctest.testfile(
             filename=file_str,
             module_relative=False,
-            globs={"we": we},
+            globs={"wnx": wnx},
             verbose=verbose,
         )
 
@@ -36,8 +36,8 @@ def test_docs(file: Path) -> None:
 
 def test_docstrings() -> None:
     doctest.testmod(
-        we,
+        wnx,
         optionflags=doctest.ELLIPSIS | doctest.NORMALIZE_WHITESPACE | doctest.FAIL_FAST,
-        globs={"we": we},
+        globs={"wnx": wnx},
         verbose=True,
     )

@@ -3,19 +3,19 @@ from typing import Any, Type
 
 import pytest
 
-import when_exactly as we
+import when_exactly as wnx
 
 
 @dataclasses.dataclass
 class CustomIntervalParams:
-    custom_interval_type: Type[we.CustomInterval]
-    custom_interval: we.CustomInterval
-    expected_start: we.Moment
-    expected_stop: we.Moment
+    custom_interval_type: Type[wnx.CustomInterval]
+    custom_interval: wnx.CustomInterval
+    expected_start: wnx.Moment
+    expected_stop: wnx.Moment
     expected_repr: str
     expected_str: str
-    expected_next: we.CustomInterval
-    expected_prev: we.CustomInterval
+    expected_next: wnx.CustomInterval
+    expected_prev: wnx.CustomInterval
 
 
 def assert_custom_interval_implemented_correctly(
@@ -31,10 +31,10 @@ def assert_custom_interval_implemented_correctly(
         params.custom_interval_type.from_moment(params.expected_start)
         == params.custom_interval
     )
-    assert params.custom_interval_type.from_moment(params.expected_stop) == next(
-        params.custom_interval
+    assert (
+        params.custom_interval_type.from_moment(params.expected_stop)
+        == params.expected_next
     )
-    assert next(params.custom_interval) == params.expected_next
     assert params.custom_interval.next == params.expected_next
 
     assert params.custom_interval + 1 == params.expected_next
@@ -55,13 +55,13 @@ def assert_frozen(obj: Any) -> None:
 
 
 @dataclasses.dataclass
-class CustomCollectionParams[T: we.CustomInterval]:
-    collection_type: Type[we.CustomCollection[T]]
+class CustomCollectionParams[T: wnx.CustomInterval]:
+    collection_type: Type[wnx.CustomCollection[T]]
     interval_values: list[T]
     type_name: str
 
 
-def assert_custom_collection_implemented_correctly[T: we.CustomInterval](
+def assert_custom_collection_implemented_correctly[T: wnx.CustomInterval](
     params: CustomCollectionParams[T],
 ) -> None:
     interval_values = params.interval_values
@@ -70,7 +70,7 @@ def assert_custom_collection_implemented_correctly[T: we.CustomInterval](
 
     assert len(interval_values) > 1
     collection = collection_type(interval_values)
-    assert isinstance(collection, we.CustomCollection)
+    assert isinstance(collection, wnx.CustomCollection)
     assert isinstance(collection, collection_type)
 
     # test __contains__

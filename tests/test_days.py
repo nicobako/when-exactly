@@ -1,4 +1,4 @@
-import when_exactly as we
+import when_exactly as wnx
 from tests.asserts import (
     CustomCollectionParams,
     assert_custom_collection_implemented_correctly,
@@ -8,11 +8,11 @@ from tests.asserts import (
 def test_days_implemented_correctly() -> None:
     assert_custom_collection_implemented_correctly(
         params=CustomCollectionParams(
-            collection_type=we.Days,
+            collection_type=wnx.Days,
             interval_values=[
-                we.Day(2020, 1, 1),
-                we.Day(2020, 1, 2),
-                we.Day(2020, 1, 3),
+                wnx.Day(2020, 1, 1),
+                wnx.Day(2020, 1, 2),
+                wnx.Day(2020, 1, 3),
             ],
             type_name="Days",
         )
@@ -20,26 +20,26 @@ def test_days_implemented_correctly() -> None:
 
 
 def test_initialization() -> None:
-    days = we.Days(
+    days = wnx.Days(
         [
-            we.Day(2020, 1, 1),
-            we.Day(2020, 1, 2),
-            we.Day(2020, 1, 3),
+            wnx.Day(2020, 1, 1),
+            wnx.Day(2020, 1, 2),
+            wnx.Day(2020, 1, 3),
         ]
     )
-    assert isinstance(days, we.Days)
-    assert isinstance(days, we.Collection)
+    assert isinstance(days, wnx.Days)
+    assert isinstance(days, wnx.Collection)
 
 
 def test_months() -> None:
-    days = we.Days(
+    days = wnx.Days(
         [
-            we.Day(2020, 1, 1),
-            we.Day(2020, 1, 2),
-            we.Day(2020, 1, 3),
-            we.Day(2020, 2, 1),
-            we.Day(2020, 2, 2),
-            we.Day(2020, 2, 3),
+            wnx.Day(2020, 1, 1),
+            wnx.Day(2020, 1, 2),
+            wnx.Day(2020, 1, 3),
+            wnx.Day(2020, 2, 1),
+            wnx.Day(2020, 2, 2),
+            wnx.Day(2020, 2, 3),
         ]
     )
-    assert days.months == we.Months([we.Month(2020, 1), we.Month(2020, 2)])
+    assert days.months == wnx.Months([wnx.Month(2020, 1), wnx.Month(2020, 2)])

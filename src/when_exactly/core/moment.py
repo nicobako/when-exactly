@@ -66,11 +66,11 @@ class Moment:
 
         while (
             new_moment_kwargs["day"] > 28
-        ):  # if the day is too large for the month, we need to decrement it until it is valid
+        ):  # if the day is too large for the month, wnx need to decrement it until it is valid
             try:
                 Moment(**new_moment_kwargs)  # type: ignore
                 break
-            except ValueError:
+            except InvalidMomentError:
                 new_moment_kwargs["day"] -= 1
 
         dt = Moment(**new_moment_kwargs).to_datetime()  # type: ignore

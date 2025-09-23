@@ -15,9 +15,9 @@ so they can write more expressive code when working with dates.
 ## Overview
 
 ```python
->>> import when_exactly as we
+>>> import when_exactly as wnx
 
->>> year = we.Year(2025) # the year 2025
+>>> year = wnx.Year(2025) # the year 2025
 >>> year
 Year(2025)
 
@@ -25,7 +25,7 @@ Year(2025)
 >>> month
 Month(2025, 1)
 
->>> day = we.Day(2025, 12, 25) # December 25, 2025
+>>> day = wnx.Day(2025, 12, 25) # December 25, 2025
 >>> day
 Day(2025, 12, 25)
 

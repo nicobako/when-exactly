@@ -12,7 +12,7 @@ The resolution of a moment is limited to _a second_.
 If you need more resolution, then when-exactly is probably not the library you need.
 
 ```python
->>> moment = we.Moment(
+>>> moment = wnx.Moment(
 ...     year=2025,
 ...     month=3,
 ...     day=14,
@@ -32,7 +32,7 @@ The [`Delta`](../tutorial/delta.md) is analogous to Python's
 with extra functionality for deltas of _years_ and _months_.
 
 ```python
->>> delta = we.Delta(
+>>> delta = wnx.Delta(
 ...    years=1,
 ...    months=1,
 ...    weeks=2,
@@ -48,9 +48,9 @@ An [`Interval`][interval] represents an _interval of time_.
 An _interval_ has an inclusive _start_ and an exclusive _stop_.
 
 ```python
->>> interval = we.Interval(
-...     start=we.Moment(2025, 2, 14, 12, 0, 0,),
-...     stop=we.Moment(2025, 2, 14, 12, 30, 0),
+>>> interval = wnx.Interval(
+...     start=wnx.Moment(2025, 2, 14, 12, 0, 0,),
+...     stop=wnx.Moment(2025, 2, 14, 12, 30, 0),
 ... )
 >>> str(interval)
 '2025-02-14T12:00:00/2025-02-14T12:30:00'
@@ -69,10 +69,10 @@ The [`Collection`](../tutorial/collection.md) represents a _collection of `Inter
 It provides all of the standard functionality you would expect a container to have
 
 ```python
->>> collection = we.Collection([
-...    we.Day(2023, 1, 5),
-...    we.Day(2023, 1, 7),
-...    we.Week(2023, 10),
+>>> collection = wnx.Collection([
+...    wnx.Day(2023, 1, 5),
+...    wnx.Day(2023, 1, 7),
+...    wnx.Week(2023, 10),
 ... ])
 >>> collection[0]
 Day(2023, 1, 5)
@@ -80,7 +80,7 @@ Day(2023, 1, 5)
 >>> collection[0:2]
 Collection([Day(2023, 1, 5), Day(2023, 1, 7)])
 
->>> we.Week(2023, 10) in collection
+>>> wnx.Week(2023, 10) in collection
 True
 
 >>> for interval in collection:

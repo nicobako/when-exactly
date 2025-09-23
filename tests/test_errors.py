@@ -1,10 +1,10 @@
 import pytest
 
-import when_exactly as we
+import when_exactly as wnx
 
 
 def test_invalid_moment() -> None:
-    msg = "Invalid moment: day is out of range for month"
-    exc = we.InvalidMomentError(msg)
+    msg = "day is out of range for month"
+    exc = wnx.InvalidMomentError(msg)
     assert isinstance(exc, RuntimeError)
-    assert str(exc) == msg
+    assert str(exc) == f"Invalid Moment: {msg}"

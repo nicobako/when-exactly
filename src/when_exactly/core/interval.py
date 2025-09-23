@@ -14,9 +14,6 @@ class Interval:
         if self.start >= self.stop:
             raise ValueError("Interval start must be before stop")
 
-    def __next__(self) -> Interval:
-        raise NotImplementedError  # pragma: no cover
-
     def __lt__(self, other: Interval) -> bool:
         return self.start < other.start or self.stop < other.stop
 
