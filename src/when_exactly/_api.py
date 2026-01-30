@@ -155,6 +155,31 @@ class Year(CustomInterval):
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class Month(CustomInterval):
+    """Represents a calendar month from the first day to the last day.
+
+    A Month spans from 00:00:00 on the first day of the month to 00:00:00 on
+    the first day of the next month (exclusive).
+
+    Attributes:
+        start: The moment at the beginning of the month (inclusive).
+        stop: The moment at the beginning of the next month (exclusive).
+
+    Example:
+        ```python
+        >>> import when_exactly as wnx
+        >>> month = wnx.Month(2025, 1)
+        >>> month
+        Month(2025, 1)
+        >>> str(month)
+        '2025-01'
+        >>> len(list(month.days()))
+        31
+        >>> month.next
+        Month(2025, 2)
+
+        ```
+    """
+
     def __init__(self, year: int, month: int) -> None:
         start = Moment(year, month, 1, 0, 0, 0)
         stop = start + Delta(months=1)
@@ -298,7 +323,30 @@ class Weekday(CustomInterval):
 
 @dataclasses.dataclass(frozen=True, init=False, repr=False)
 class Day(CustomInterval):
-    """Represents a single day, from midnight to midnight."""
+    """Represents a single day, from midnight to midnight.
+
+    A Day spans from 00:00:00 to 00:00:00 the next day (exclusive).
+
+    Attributes:
+        start: The moment at midnight starting the day (inclusive).
+        stop: The moment at midnight ending the day (exclusive).
+
+    Example:
+        ```python
+        >>> import when_exactly as wnx
+        >>> day = wnx.Day(2025, 1, 15)
+        >>> day
+        Day(2025, 1, 15)
+        >>> str(day)
+        '2025-01-15'
+        >>> day.next
+        Day(2025, 1, 16)
+        >>> day.month
+        Month(2025, 1)
+
+        ```
+
+    """
 
     def __init__(self, year: int, month: int, day: int) -> None:
         start = Moment(year, month, day, 0, 0, 0)
@@ -552,36 +600,108 @@ class Second(CustomInterval):
 
 # region Custom Collections
 class Years(CustomCollection[Year]):
+    """A collection of Year intervals.
+
+    Example:
+        ```python
+        >>> import when_exactly as wnx
+        >>> years = wnx.Years([wnx.Year(2024), wnx.Year(2025), wnx.Year(2023)])
+        >>> len(years)
+        3
+        >>> years[0]  # Sorted automatically
+        Year(2023)
+
+        ```
+    """
+
     pass
 
 
 class Weeks(CustomCollection[Week]):
+    """A collection of Week intervals.
+
+    Example:
+        ```python
+        >>> import when_exactly as wnx
+        >>> weeks = wnx.Weeks([wnx.Week(2025, 1), wnx.Week(2025, 2)])
+        >>> len(weeks)
+        2
+
+        ```
+    """
+
     pass
 
 
 class Weekdays(CustomCollection[Weekday]):
+    """A collection of Weekday intervals."""
+
     pass
 
 
 class Months(CustomCollection[Month]):
+    """A collection of Month intervals.
+
+    Example:
+        ```python
+        >>> import when_exactly as wnx
+        >>> months = wnx.Months([wnx.Month(2025, 1), wnx.Month(2025, 3)])
+        >>> len(months)
+        2
+        >>> months[0]
+        Month(2025, 1)
+
+        ```
+    """
+
     pass
 
 
 class Days(CustomCollection[Day]):
+    """A collection of Day intervals.
+
+    Days provides additional functionality beyond the base Collection, including
+    the ability to get all unique months that the days span.
+
+    Attributes:
+        months: All unique months that the days in this collection span.
+
+    Example:
+        ```python
+        >>> import when_exactly as wnx
+        >>> days = wnx.Days([
+        ...     wnx.Day(2025, 1, 1),
+        ...     wnx.Day(2025, 1, 15),
+        ...     wnx.Day(2025, 2, 1),
+        ... ])
+        >>> len(days)
+        3
+        >>> days.months
+        Months([Month(2025, 1), Month(2025, 2)])
+
+        ```
+    """
+
     @cached_property
     def months(self) -> Months:
         return Months([day.month for day in self.values])
 
 
 class Hours(CustomCollection[Hour]):
+    """A collection of Hour intervals."""
+
     pass
 
 
 class Minutes(CustomCollection[Minute]):
+    """A collection of Minute intervals."""
+
     pass
 
 
 class Seconds(CustomCollection[Second]):
+    """A collection of Second intervals."""
+
     pass
 
 

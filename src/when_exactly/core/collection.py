@@ -6,13 +6,55 @@ from when_exactly.core.interval import Interval
 
 
 class Collection[T: Interval]:
+    """A Collection is an ordered, deduplicated set of Intervals.
+
+    Collections automatically sort their values and remove duplicates. They provide
+    iteration, indexing, slicing, and membership testing operations. Collections are
+    the base class for concrete types like Days, Months, Years, etc.
+
+    Type Parameters:
+        T: The type of Interval this collection holds.
+
+    Attributes:
+        values: A sorted list of unique intervals in this collection.
+
+    Example:
+        ```python
+        >>> import when_exactly as wnx
+        >>> # Days is a subclass of Collection
+        >>> days = wnx.Days([
+        ...     wnx.Day(2025, 1, 1),
+        ...     wnx.Day(2025, 1, 3),
+        ...     wnx.Day(2025, 1, 2),
+        ...     wnx.Day(2025, 1, 1),  # duplicate, will be removed
+        ... ])
+        >>> len(days)
+        3
+        >>> days[0]
+        Day(2025, 1, 1)
+        >>> wnx.Day(2025, 1, 2) in days
+        True
+
+        ```
+    """
     @final
     def __init__(self, values: Iterable[T]) -> None:
+        """Initialize a Collection with the given intervals.
+
+        Args:
+            values: An iterable of intervals. Duplicates will be removed and
+                    the intervals will be sorted.
+        """
         self._values: list[T] = sorted(set(values))
         self._counter = 0
 
     @property
     def values(self) -> list[T]:
+        """Get the sorted list of unique intervals in this collection.
+
+        Returns:
+            A sorted list of intervals.
+        """
         return self._values
 
     @final

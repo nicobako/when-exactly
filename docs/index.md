@@ -40,6 +40,3 @@ Days([Day(2025, 12, 22), Day(2025, 12, 23), Day(2025, 12, 24), Day(2025, 12, 25)
 
 ```
 
-::: when_exactly
-options:
-members: no

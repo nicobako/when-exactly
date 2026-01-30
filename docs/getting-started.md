@@ -8,7 +8,8 @@ pip install when-exactly
 
 ## Usage
 
-Since the name `when_exactly` is a bit verbose, it is recommended to use an import alias, such as `wnx`.
+Since the name `when_exactly` is a bit verbose, it is recommended to use an import alias.
+Throughout this site you will see the alias `wnx`, pronounced _When-X_.
 
 ```python
 >>> import when_exactly as wnx

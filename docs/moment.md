@@ -106,3 +106,7 @@ A moment's ISO year, week, and weekday are accessible as follows:
 2
 
 ```
+
+## API Reference
+
+For complete API documentation including all methods and properties, see the [Moment API Reference](api.md#moment).
