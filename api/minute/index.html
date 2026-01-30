@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Year - when-exactly</title>
+        <title>Minute - when-exactly</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/fontawesome.min.css" rel="stylesheet">
         <link href="../../css/brands.min.css" rel="stylesheet">
@@ -39,19 +39,114 @@
                                 <a href="../../getting-started/" class="nav-link">Getting Started</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../../core-concepts/" class="nav-link">Core Concepts</a>
+                                <a href="../" class="nav-link">API Reference</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="../../tutorial/year/" class="nav-link">Year</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Core Concepts</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../core-concepts/" class="dropdown-item">Overview</a>
+</li>
+                                    
+<li>
+    <a href="../moment/" class="dropdown-item">Moment</a>
+</li>
+                                    
+<li>
+    <a href="../delta/" class="dropdown-item">Delta</a>
+</li>
+                                    
+<li>
+    <a href="../interval/" class="dropdown-item">Interval</a>
+</li>
+                                    
+<li>
+    <a href="../collection/" class="dropdown-item">Collection</a>
+</li>
+                                    
+<li>
+    <a href="../custom-interval/" class="dropdown-item">Custom Interval</a>
+</li>
+                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a href="../../moment/" class="nav-link">Moment</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Intervals</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../year/" class="dropdown-item">Year</a>
+</li>
+                                    
+<li>
+    <a href="../month/" class="dropdown-item">Month</a>
+</li>
+                                    
+<li>
+    <a href="../week/" class="dropdown-item">Week</a>
+</li>
+                                    
+<li>
+    <a href="../day/" class="dropdown-item">Day</a>
+</li>
+                                    
+<li>
+    <a href="../ordinal-day/" class="dropdown-item">OrdinalDay</a>
+</li>
+                                    
+<li>
+    <a href="../weekday/" class="dropdown-item">Weekday</a>
+</li>
+                                    
+<li>
+    <a href="../hour/" class="dropdown-item">Hour</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Minute</a>
+</li>
+                                    
+<li>
+    <a href="../second/" class="dropdown-item">Second</a>
+</li>
+                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a href="../../tutorial/delta/" class="nav-link">Delta</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../api/" class="nav-link">API</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Collections</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../years/" class="dropdown-item">Years</a>
+</li>
+                                    
+<li>
+    <a href="../months/" class="dropdown-item">Months</a>
+</li>
+                                    
+<li>
+    <a href="../weeks/" class="dropdown-item">Weeks</a>
+</li>
+                                    
+<li>
+    <a href="../days/" class="dropdown-item">Days</a>
+</li>
+                                    
+<li>
+    <a href="../weekdays/" class="dropdown-item">Weekdays</a>
+</li>
+                                    
+<li>
+    <a href="../hours/" class="dropdown-item">Hours</a>
+</li>
+                                    
+<li>
+    <a href="../minutes/" class="dropdown-item">Minutes</a>
+</li>
+                                    
+<li>
+    <a href="../seconds/" class="dropdown-item">Seconds</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
@@ -61,6 +156,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../hour/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../second/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -80,13 +185,9 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#year" class="nav-link">Year</a>
+            <li class="nav-item" data-bs-level="1"><a href="#minute" class="nav-link">Minute</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#creating-a-year" class="nav-link">Creating a Year</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#the-months-of-a-year" class="nav-link">The Months of a Year</a>
+            <li class="nav-item" data-bs-level="2"><a href="#when_exactly.Minute" class="nav-link">Minute</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -97,32 +198,60 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="year">Year</h1>
-<p>The <code>Year</code> represents an entire year, starting from <em>January 1</em> to <em>December 31</em>.</p>
-<h2 id="creating-a-year">Creating a Year</h2>
-<pre><code class="language-python">&gt;&gt;&gt; import when_exactly as wnx
+<h1 id="minute">Minute</h1>
 
-&gt;&gt;&gt; year = wnx.Year(2025)
-&gt;&gt;&gt; year
-Year(2025)
 
-&gt;&gt;&gt; str(year)
-'2025'
+<div class="doc doc-object doc-class">
 
-</code></pre>
-<h2 id="the-months-of-a-year">The Months of a Year</h2>
-<p>A <code>Year</code> has a <code>.months</code> property, which returns the <a href="../months/"><code>Months</code></a>. of the year.</p>
-<pre><code class="language-python">&gt;&gt;&gt; months = year.months
-&gt;&gt;&gt; len(months)
-12
 
-&gt;&gt;&gt; months[0]
-Month(2025, 1)
 
-&gt;&gt;&gt; months[-2:]
-Months([Month(2025, 11), Month(2025, 12)])
+<h2 id="when_exactly.Minute" class="doc doc-heading">
+            <code>when_exactly.Minute</code>
 
-</code></pre></div>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="when_exactly">when_exactly</span>.<span title="when_exactly.core">core</span>.<span title="when_exactly.core.custom_interval">custom_interval</span>.<a class="autorefs autorefs-internal" title="when_exactly.CustomInterval
+
+
+  
+      dataclass
+   (when_exactly.core.custom_interval.CustomInterval)" href="../custom-interval/#when_exactly.CustomInterval">CustomInterval</a></code></p>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div></div>
             </div>
         </div>
 

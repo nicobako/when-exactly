@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Custom interval - when-exactly</title>
+        <title>Days - when-exactly</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/fontawesome.min.css" rel="stylesheet">
         <link href="../../css/brands.min.css" rel="stylesheet">
@@ -39,7 +39,7 @@
                                 <a href="../../getting-started/" class="nav-link">Getting Started</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../../api/" class="nav-link">API Reference</a>
+                                <a href="../" class="nav-link">API Reference</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Core Concepts</a>
@@ -50,23 +50,23 @@
 </li>
                                     
 <li>
-    <a href="../../api/moment/" class="dropdown-item">Moment</a>
+    <a href="../moment/" class="dropdown-item">Moment</a>
 </li>
                                     
 <li>
-    <a href="../../api/delta/" class="dropdown-item">Delta</a>
+    <a href="../delta/" class="dropdown-item">Delta</a>
 </li>
                                     
 <li>
-    <a href="../../api/interval/" class="dropdown-item">Interval</a>
+    <a href="../interval/" class="dropdown-item">Interval</a>
 </li>
                                     
 <li>
-    <a href="../../api/collection/" class="dropdown-item">Collection</a>
+    <a href="../collection/" class="dropdown-item">Collection</a>
 </li>
                                     
 <li>
-    <a href="../../api/custom-interval/" class="dropdown-item">Custom Interval</a>
+    <a href="../custom-interval/" class="dropdown-item">Custom Interval</a>
 </li>
                                 </ul>
                             </li>
@@ -75,76 +75,76 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../api/year/" class="dropdown-item">Year</a>
+    <a href="../year/" class="dropdown-item">Year</a>
 </li>
                                     
 <li>
-    <a href="../../api/month/" class="dropdown-item">Month</a>
+    <a href="../month/" class="dropdown-item">Month</a>
 </li>
                                     
 <li>
-    <a href="../../api/week/" class="dropdown-item">Week</a>
+    <a href="../week/" class="dropdown-item">Week</a>
 </li>
                                     
 <li>
-    <a href="../../api/day/" class="dropdown-item">Day</a>
+    <a href="../day/" class="dropdown-item">Day</a>
 </li>
                                     
 <li>
-    <a href="../../api/ordinal-day/" class="dropdown-item">OrdinalDay</a>
+    <a href="../ordinal-day/" class="dropdown-item">OrdinalDay</a>
 </li>
                                     
 <li>
-    <a href="../../api/weekday/" class="dropdown-item">Weekday</a>
+    <a href="../weekday/" class="dropdown-item">Weekday</a>
 </li>
                                     
 <li>
-    <a href="../../api/hour/" class="dropdown-item">Hour</a>
+    <a href="../hour/" class="dropdown-item">Hour</a>
 </li>
                                     
 <li>
-    <a href="../../api/minute/" class="dropdown-item">Minute</a>
+    <a href="../minute/" class="dropdown-item">Minute</a>
 </li>
                                     
 <li>
-    <a href="../../api/second/" class="dropdown-item">Second</a>
+    <a href="../second/" class="dropdown-item">Second</a>
 </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Collections</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Collections</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../api/years/" class="dropdown-item">Years</a>
+    <a href="../years/" class="dropdown-item">Years</a>
 </li>
                                     
 <li>
-    <a href="../../api/months/" class="dropdown-item">Months</a>
+    <a href="../months/" class="dropdown-item">Months</a>
 </li>
                                     
 <li>
-    <a href="../../api/weeks/" class="dropdown-item">Weeks</a>
+    <a href="../weeks/" class="dropdown-item">Weeks</a>
 </li>
                                     
 <li>
-    <a href="../../api/days/" class="dropdown-item">Days</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Days</a>
 </li>
                                     
 <li>
-    <a href="../../api/weekdays/" class="dropdown-item">Weekdays</a>
+    <a href="../weekdays/" class="dropdown-item">Weekdays</a>
 </li>
                                     
 <li>
-    <a href="../../api/hours/" class="dropdown-item">Hours</a>
+    <a href="../hours/" class="dropdown-item">Hours</a>
 </li>
                                     
 <li>
-    <a href="../../api/minutes/" class="dropdown-item">Minutes</a>
+    <a href="../minutes/" class="dropdown-item">Minutes</a>
 </li>
                                     
 <li>
-    <a href="../../api/seconds/" class="dropdown-item">Seconds</a>
+    <a href="../seconds/" class="dropdown-item">Seconds</a>
 </li>
                                 </ul>
                             </li>
@@ -156,6 +156,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../weeks/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../weekdays/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -174,12 +184,210 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#days" class="nav-link">Days</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#when_exactly.Days" class="nav-link">Days</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
+<h1 id="days">Days</h1>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="when_exactly.Days" class="doc doc-heading">
+            <code>when_exactly.Days</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="when_exactly">when_exactly</span>.<span title="when_exactly.core">core</span>.<span title="when_exactly.core.custom_collection">custom_collection</span>.<span title="when_exactly.core.custom_collection.CustomCollection">CustomCollection</span>[<span title="when_exactly">when_exactly</span>.<span title="when_exactly._api">_api</span>.<a class="autorefs autorefs-internal" title="when_exactly.Day
+
+
+  
+      dataclass
+   (when_exactly._api.Day)" href="../day/#when_exactly.Day">Day</a>]</code></p>
+
+
+        <p>A collection of Day intervals.</p>
+<p>Days provides additional functionality beyond the base Collection, including
+the ability to get all unique months that the days span.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="when_exactly.Days.months">months</span></code></td>
+            <td>
+                  <code><span title="when_exactly">when_exactly</span>.<span title="when_exactly._api">_api</span>.<a class="autorefs autorefs-internal" title="when_exactly.Months (when_exactly._api.Months)" href="../months/#when_exactly.Months">Months</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>All unique months that the days in this collection span.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <pre><code class="language-python">&gt;&gt;&gt; import when_exactly as wnx
+&gt;&gt;&gt; days = wnx.Days([
+...     wnx.Day(2025, 1, 1),
+...     wnx.Day(2025, 1, 15),
+...     wnx.Day(2025, 2, 1),
+... ])
+&gt;&gt;&gt; len(days)
+3
+&gt;&gt;&gt; days.months
+Months([Month(2025, 1), Month(2025, 2)])
+
+</code></pre>
+</details>
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="when_exactly.Days.values" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">values</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the sorted list of unique intervals in this collection.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="list">list</span>[<span title="when_exactly">when_exactly</span>.<span title="when_exactly.core">core</span>.<span title="when_exactly.core.collection">collection</span>.<a class="autorefs autorefs-internal" title="when_exactly.Collection (when_exactly.core.collection.Collection)" href="../collection/#when_exactly.Collection">Collection</a><span title="when_exactly.core.collection.CollectionT">T</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A sorted list of intervals.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+
 </div>
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="when_exactly.Days.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">values</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize a Collection with the given intervals.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>values</code>
+            </td>
+            <td>
+                  <code><span title="typing">typing</span>.<span title="typing.Iterable">Iterable</span>[<span title="when_exactly">when_exactly</span>.<span title="when_exactly.core">core</span>.<span title="when_exactly.core.collection">collection</span>.<a class="autorefs autorefs-internal" title="when_exactly.Collection (when_exactly.core.collection.Collection)" href="../collection/#when_exactly.Collection">Collection</a><span title="when_exactly.core.collection.CollectionT">T</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>An iterable of intervals. Duplicates will be removed and
+    the intervals will be sorted.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div></div>
             </div>
         </div>
 
