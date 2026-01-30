@@ -308,7 +308,208 @@ Month(2025, 1)
 
 
 
+<div class="doc doc-object doc-attribute">
 
+
+
+<h3 id="when_exactly.Day.month" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">month</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-cached"><code>cached</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The month containing this day.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="when_exactly.Day.next" class="doc doc-heading">
+            <code class="highlight language-python"><span class="nb">next</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The next day.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="when_exactly.Day.ordinal_day" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ordinal_day</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-cached"><code>cached</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>This day as an OrdinalDay.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="when_exactly.Day.week" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">week</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-cached"><code>cached</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The ISO week containing this day.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="when_exactly.Day.weekday" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">weekday</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-cached"><code>cached</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>This day as a Weekday.</p>
+
+    </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="when_exactly.Day.hour" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">hour</span><span class="p">(</span><span class="n">hour</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get a specific hour of the day.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>hour</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The hour (0-23).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="when_exactly">when_exactly</span>.<span title="when_exactly._api">_api</span>.<a class="autorefs autorefs-internal" title="when_exactly.Hour
+
+
+  
+      dataclass
+   (when_exactly._api.Hour)" href="../hour/#when_exactly.Hour">Hour</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The Hour for the specified hour.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <pre><code class="language-python">&gt;&gt;&gt; import when_exactly as wnx
+&gt;&gt;&gt; day = wnx.Day(2025, 1, 15)
+&gt;&gt;&gt; day.hour(14)
+Hour(2025, 1, 15, 14)
+
+</code></pre>
+</details>
+
+    </div>
+
+</div>
 
 
 

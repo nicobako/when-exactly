@@ -226,6 +226,73 @@
    (when_exactly.core.custom_interval.CustomInterval)" href="../custom-interval/#when_exactly.CustomInterval">CustomInterval</a></code></p>
 
 
+        <p>Represents a single minute, from :00 to :01 the next minute.</p>
+<p>A Minute is a 60-second interval. Minutes are numbered from 0 to 59.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="when_exactly.Minute.start">start</span></code></td>
+            <td>
+                  <code><span title="when_exactly">when_exactly</span>.<span title="when_exactly.core">core</span>.<span title="when_exactly.core.moment">moment</span>.<a class="autorefs autorefs-internal" title="when_exactly.Moment
+
+
+  
+      dataclass
+   (when_exactly.core.moment.Moment)" href="../moment/#when_exactly.Moment">Moment</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The moment at the start of the minute (inclusive).</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="when_exactly.Minute.stop">stop</span></code></td>
+            <td>
+                  <code><span title="when_exactly">when_exactly</span>.<span title="when_exactly.core">core</span>.<span title="when_exactly.core.moment">moment</span>.<a class="autorefs autorefs-internal" title="when_exactly.Moment
+
+
+  
+      dataclass
+   (when_exactly.core.moment.Moment)" href="../moment/#when_exactly.Moment">Moment</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The moment at the start of the next minute (exclusive).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <pre><code class="language-python">&gt;&gt;&gt; import when_exactly as wnx
+&gt;&gt;&gt; minute = wnx.Minute(2020, 1, 1, 0, 0)
+&gt;&gt;&gt; minute
+Minute(2020, 1, 1, 0, 0)
+&gt;&gt;&gt; str(minute)
+'2020-01-01T00:00'
+&gt;&gt;&gt; minute.next
+Minute(2020, 1, 1, 0, 1)
+&gt;&gt;&gt; minute.second(30)
+Second(2020, 1, 1, 0, 0, 30)
+&gt;&gt;&gt; len(list(minute.seconds()))
+60
+
+</code></pre>
+</details>
 
 
 
@@ -243,7 +310,465 @@
 
 
 
+<div class="doc doc-object doc-attribute">
 
+
+
+<h3 id="when_exactly.Minute.next" class="doc doc-heading">
+            <code class="highlight language-python"><span class="nb">next</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The next minute.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="when_exactly.Minute.previous" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">previous</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The previous minute.</p>
+
+    </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="when_exactly.Minute.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">hour</span><span class="p">,</span> <span class="n">minute</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Create a Minute from year, month, day, hour, and minute.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>year</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The year.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>month</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The month (1-12).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>day</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The day of month.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>hour</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The hour (0-23).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>minute</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The minute (0-59).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A Minute interval.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="when_exactly.Minute.__repr__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__repr__</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the canonical string representation of the minute.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="when_exactly.Minute.__str__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__str__</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the ISO 8601 string representation of the minute.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="when_exactly.Minute.from_moment" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">from_moment</span><span class="p">(</span><span class="n">moment</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Create a Minute from a Moment.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>moment</code>
+            </td>
+            <td>
+                  <code><span title="when_exactly">when_exactly</span>.<span title="when_exactly.core">core</span>.<span title="when_exactly.core.moment">moment</span>.<a class="autorefs autorefs-internal" title="when_exactly.Moment
+
+
+  
+      dataclass
+   (when_exactly.core.moment.Moment)" href="../moment/#when_exactly.Moment">Moment</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The moment to extract the minute from.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="when_exactly">when_exactly</span>.<span title="when_exactly._api">_api</span>.<a class="autorefs autorefs-internal" title="when_exactly.Minute
+
+
+  
+      dataclass
+   (when_exactly._api.Minute)" href="#when_exactly.Minute">Minute</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The Minute containing the moment.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <pre><code class="language-python">&gt;&gt;&gt; import when_exactly as wnx
+&gt;&gt;&gt; moment = wnx.Moment(2020, 1, 1, 15, 30, 45)
+&gt;&gt;&gt; wnx.Minute.from_moment(moment)
+Minute(2020, 1, 1, 15, 30)
+
+</code></pre>
+</details>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="when_exactly.Minute.second" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">second</span><span class="p">(</span><span class="n">second</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get a specific second of the minute.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>second</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The second (0-59).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="when_exactly">when_exactly</span>.<span title="when_exactly._api">_api</span>.<a class="autorefs autorefs-internal" title="when_exactly.Second
+
+
+  
+      dataclass
+   (when_exactly._api.Second)" href="../second/#when_exactly.Second">Second</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The Second for the specified second.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <pre><code class="language-python">&gt;&gt;&gt; import when_exactly as wnx
+&gt;&gt;&gt; minute = wnx.Minute(2020, 1, 1, 0, 0)
+&gt;&gt;&gt; minute.second(30)
+Second(2020, 1, 1, 0, 0, 30)
+
+</code></pre>
+</details>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="when_exactly.Minute.seconds" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">seconds</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Generate all 60 seconds in this minute.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing">typing</span>.<span title="typing.Iterable">Iterable</span>[<span title="when_exactly">when_exactly</span>.<span title="when_exactly._api">_api</span>.<a class="autorefs autorefs-internal" title="when_exactly.Second
+
+
+  
+      dataclass
+   (when_exactly._api.Second)" href="../second/#when_exactly.Second">Second</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>An iterable of Second objects from :00 to :59.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <pre><code class="language-python">&gt;&gt;&gt; import when_exactly as wnx
+&gt;&gt;&gt; minute = wnx.Minute(2020, 1, 1, 0, 0)
+&gt;&gt;&gt; seconds = list(minute.seconds())
+&gt;&gt;&gt; len(seconds)
+60
+&gt;&gt;&gt; seconds[0]
+Second(2020, 1, 1, 0, 0, 0)
+
+</code></pre>
+</details>
+
+    </div>
+
+</div>
 
 
 
