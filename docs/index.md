@@ -4,11 +4,6 @@ An expressive and intuitive library for working with dates.
 
 ## Rationale
 
-People think and communicate about time in terms of
-_years_, _months_, _weeks_, _days_, _hours_, _minutes_, etc.
-
-People do not think about time in terms of _datetimes_...
-
 When-Exactly is a library that aims to bring more human-friendly date-time types into the hands of developers,
 so they can write more expressive code when working with dates.
 
