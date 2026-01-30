@@ -44,6 +44,9 @@ plugins:
       handlers:
         python:
           options:
+            # refer to https://mkdocstrings.github.io/python/reference/api/?h=docs#mkdocstrings_handlers.python.PythonInputOptions.docstring_style
             docstring_style: google # https://mkdocstrings.github.io/python/usage/configuration/docstrings/
             annotations_path: full
             inherited_members: true
+            # members: true # uncomment to show all members by default
+            show_root_toc_entry: false
