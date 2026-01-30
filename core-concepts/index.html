@@ -217,7 +217,7 @@
 <h1 id="core-concepts">Core Concepts</h1>
 <p><em>When-Exactly</em> is basically a wrapper around Python's already awesome <a href="https://docs.python.org/3/library/datetime.html"><code>datetime</code></a> module, and allows developers to work with dates in a more abstract way.</p>
 <h2 id="moment">Moment</h2>
-<p>The <a href="/moment"><code>Moment</code></a> represents, <em>a moment in time</em>. This is analogous to Python's
+<p>The <a href="../moment/"><code>Moment</code></a> represents, <em>a moment in time</em>. This is analogous to Python's
 <a href="https://docs.python.org/3/library/datetime.html#datetime.datetime"><code>datetime.datetime</code></a> class.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -237,7 +237,7 @@ If you need more resolution, then when-exactly is probably not the library you n
 
 </code></pre>
 <h2 id="delta">Delta</h2>
-<p>The <a href="../tutorial/delta.md"><code>Delta</code></a> is analogous to Python's
+<p>The <a href="../tutorial/delta/"><code>Delta</code></a> is analogous to Python's
 <a href="https://docs.python.org/3/library/datetime.html#datetime.timedelta"><code>datetime.timedelta</code></a>,
 with extra functionality for deltas of <em>years</em> and <em>months</em>.</p>
 <pre><code class="language-python">&gt;&gt;&gt; delta = wnx.Delta(
@@ -250,7 +250,7 @@ Moment(year=2026, month=4, day=28, hour=15, minute=0, second=0)
 
 </code></pre>
 <h2 id="interval">Interval</h2>
-<p>An <a href="/interval"><code>Interval</code></a> represents an <em>interval of time</em>.
+<p>An <a href="../interval/"><code>Interval</code></a> represents an <em>interval of time</em>.
 An <em>interval</em> has an inclusive <em>start</em> and an exclusive <em>stop</em>.</p>
 <pre><code class="language-python">&gt;&gt;&gt; interval = wnx.Interval(
 ...     start=wnx.Moment(2025, 2, 14, 12, 0, 0,),
@@ -261,10 +261,10 @@ An <em>interval</em> has an inclusive <em>start</em> and an exclusive <em>stop</
 
 </code></pre>
 <h2 id="custom-intervals">Custom Intervals</h2>
-<p>A <a href="../tutorial/custom-interval.md"><code>CustomInterval</code></a> represents a <em>time span with a specific resolution</em>.</p>
+<p>A <a href="../tutorial/custom-interval/"><code>CustomInterval</code></a> represents a <em>time span with a specific resolution</em>.</p>
 <p>This is the building block of all the <em>custom intervals</em> like <em>Year</em>, <em>Month</em>, etc.</p>
 <h2 id="collection">Collection</h2>
-<p>The <a href="../tutorial/collection.md"><code>Collection</code></a> represents a <em>collection of <code>Interval</code> objects</em>.
+<p>The <a href="../tutorial/collection/"><code>Collection</code></a> represents a <em>collection of <code>Interval</code> objects</em>.
 It provides all of the standard functionality you would expect a container to have</p>
 <pre><code class="language-python">&gt;&gt;&gt; collection = wnx.Collection([
 ...    wnx.Day(2023, 1, 5),
