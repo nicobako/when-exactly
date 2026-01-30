@@ -1,135 +1,39 @@
 # API Reference
 
-This page provides comprehensive API documentation for all when-exactly classes and functions.
+Comprehensive API documentation for all when-exactly classes.
 
-## Core Classes
+## Core Concepts
 
-### Moment
+The foundational building blocks of when-exactly:
 
-::: when_exactly.Moment
-    options:
-      show_root_heading: true
-      show_source: true
+- **[Moment](api/moment.md)** - A precise point in time
+- **[Delta](api/delta.md)** - A time difference for arithmetic operations
+- **[Interval](api/interval.md)** - A continuous span of time between two moments
+- **[Collection](api/collection.md)** - A sorted, deduplicated collection of intervals
+- **[Custom Interval](api/custom-interval.md)** - A base class for defining custom intervals
+## Intervals
 
-### Delta
+Time intervals representing specific durations:
 
-::: when_exactly.Delta
-    options:
-      show_root_heading: true
-      show_source: false
-
-### Interval
-
-::: when_exactly.Interval
-    options:
-      show_root_heading: true
-      show_source: false
-
-### Collection
-
-::: when_exactly.Collection
-    options:
-      show_root_heading: true
-      show_source: false
-
-## Time Intervals
-
-### Year
-
-::: when_exactly.Year
-    options:
-      show_root_heading: true
-      show_source: false
-
-### Month
-
-::: when_exactly.Month
-    options:
-      show_root_heading: true
-      show_source: false
-
-### Week
-
-::: when_exactly.Week
-    options:
-      show_root_heading: true
-      show_source: false
-
-### Day
-
-::: when_exactly.Day
-    options:
-      show_root_heading: true
-      show_source: false
-
-### Hour
-
-::: when_exactly.Hour
-    options:
-      show_root_heading: true
-      show_source: false
-
-### Minute
-
-::: when_exactly.Minute
-    options:
-      show_root_heading: true
-      show_source: false
-
-### Second
-
-::: when_exactly.Second
-    options:
-      show_root_heading: true
-      show_source: false
+- **[Year](api/year.md)** - A calendar year (365 or 366 days)
+- **[Month](api/month.md)** - A calendar month (28-31 days)
+- **[Week](api/week.md)** - An ISO week (7 days)
+- **[Day](api/day.md)** - A 24-hour day using Gregorian calendar coordinates
+- **[OrdinalDay](api/ordinal-day.md)** - A 24-hour day using ordinal day-of-year numbering (1-366)
+- **[Weekday](api/weekday.md)** - A 24-hour day within an ISO week (1=Monday, 7=Sunday)
+- **[Hour](api/hour.md)** - A 60-minute hour
+- **[Minute](api/minute.md)** - A 60-second minute
+- **[Second](api/second.md)** - A 1-second interval
 
 ## Collections
 
-### Years
+Collections of intervals with additional functionality:
 
-::: when_exactly.Years
-    options:
-      show_root_heading: true
-      show_source: false
-
-### Months
-
-::: when_exactly.Months
-    options:
-      show_root_heading: true
-      show_source: false
-
-### Weeks
-
-::: when_exactly.Weeks
-    options:
-      show_root_heading: true
-      show_source: false
-
-### Days
-
-::: when_exactly.Days
-    options:
-      show_root_heading: true
-      show_source: false
-
-### Hours
-
-::: when_exactly.Hours
-    options:
-      show_root_heading: true
-      show_source: false
-
-### Minutes
-
-::: when_exactly.Minutes
-    options:
-      show_root_heading: true
-      show_source: false
-
-### Seconds
-
-::: when_exactly.Seconds
-    options:
-      show_root_heading: true
-      show_source: false
+- **[Years](api/years.md)** - Collection of Year intervals
+- **[Months](api/months.md)** - Collection of Month intervals
+- **[Weeks](api/weeks.md)** - Collection of Week intervals
+- **[Days](api/days.md)** - Collection of Day intervals (with `.months` property)
+- **[Weekdays](api/weekdays.md)** - Collection of Weekday intervals
+- **[Hours](api/hours.md)** - Collection of Hour intervals
+- **[Minutes](api/minutes.md)** - Collection of Minute intervals
+- **[Seconds](api/seconds.md)** - Collection of Second intervals

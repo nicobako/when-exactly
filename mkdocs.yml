@@ -4,11 +4,33 @@ theme:
   color_mode: auto
 nav:
   - Getting Started: getting-started.md
-  - Core Concepts: core-concepts.md
-  - Year: tutorial/year.md
-  - Moment: moment.md
-  - Delta: tutorial/delta.md
-  - API: api.md
+  - API Reference: api.md
+  - Core Concepts:
+    - Overview: core-concepts.md
+    - Moment: api/moment.md
+    - Delta: api/delta.md
+    - Interval: api/interval.md
+    - Collection: api/collection.md
+    - Custom Interval: api/custom-interval.md
+  - Intervals:
+    - Year: api/year.md
+    - Month: api/month.md
+    - Week: api/week.md
+    - Day: api/day.md
+    - OrdinalDay: api/ordinal-day.md
+    - Weekday: api/weekday.md
+    - Hour: api/hour.md
+    - Minute: api/minute.md
+    - Second: api/second.md
+  - Collections:
+    - Years: api/years.md
+    - Months: api/months.md
+    - Weeks: api/weeks.md
+    - Days: api/days.md
+    - Weekdays: api/weekdays.md
+    - Hours: api/hours.md
+    - Minutes: api/minutes.md
+    - Seconds: api/seconds.md
 markdown_extensions:
   - admonition: {}
 watch:
@@ -16,6 +38,7 @@ watch:
 plugins:
   - search
   - autorefs
+  - mermaid2
   - mkdocstrings:
       default_handler: python
       handlers:
