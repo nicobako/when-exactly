@@ -9,7 +9,7 @@ This page provides comprehensive API documentation for all when-exactly classes 
 ::: when_exactly.Moment
     options:
       show_root_heading: true
-      show_source: false
+      show_source: true
 
 ### Delta
 
