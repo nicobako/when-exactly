@@ -27,7 +27,7 @@ If you need more resolution, then when-exactly is probably not the library you n
 
 ## Delta
 
-The [`Delta`](../tutorial/delta.md) is analogous to Python's
+The [`Delta`](tutorial/delta.md) is analogous to Python's
 [`datetime.timedelta`][datetime.timedelta],
 with extra functionality for deltas of _years_ and _months_.
 
@@ -59,13 +59,13 @@ An _interval_ has an inclusive _start_ and an exclusive _stop_.
 
 ## Custom Intervals
 
-A [`CustomInterval`](../tutorial/custom-interval.md) represents a _time span with a specific resolution_.
+A [`CustomInterval`](tutorial/custom-interval.md) represents a _time span with a specific resolution_.
 
 This is the building block of all the _custom intervals_ like _Year_, _Month_, etc.
 
 ## Collection
 
-The [`Collection`](../tutorial/collection.md) represents a _collection of `Interval` objects_.
+The [`Collection`](tutorial/collection.md) represents a _collection of `Interval` objects_.
 It provides all of the standard functionality you would expect a container to have
 
 ```python
@@ -96,5 +96,5 @@ True
 [datetime]: https://docs.python.org/3/library/datetime.html
 [datetime.datetime]: https://docs.python.org/3/library/datetime.html#datetime.datetime
 [datetime.timedelta]: https://docs.python.org/3/library/datetime.html#datetime.timedelta
-[interval]: /interval
-[moment]: /moment
+[interval]: interval.md
+[moment]: moment.md

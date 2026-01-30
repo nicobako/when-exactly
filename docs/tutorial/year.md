@@ -18,7 +18,7 @@ Year(2025)
 
 ## The Months of a Year
 
-Get the [`Months`](months.md) of a year.
+Get the [`Months`](../api/months.md) of a year.
 
 ```python
 >>> months = year.months

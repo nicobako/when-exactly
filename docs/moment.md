@@ -71,7 +71,7 @@ when_exactly.core.errors.InvalidMomentError: Invalid Moment: day 32 must be in r
 
 ## Adding Deltas to Moments
 
-A [`Delta`](./delta.md) can be added to a `Moment`.
+A [`Delta`](api/delta.md) can be added to a `Moment`.
 
 ```python
 >>> moment = wnx.Moment(2025, 1, 31, 12, 30, 30)
@@ -109,4 +109,4 @@ A moment's ISO year, week, and weekday are accessible as follows:
 
 ## API Reference
 
-For complete API documentation including all methods and properties, see the [Moment API Reference](api.md#moment).
+For complete API documentation including all methods and properties, see the [Moment API Reference](api/moment.md).
