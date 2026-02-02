@@ -57,12 +57,14 @@ All user-facing classes are defined in `_api.py` (single file to avoid circular 
 **Collections**: `Years`, `Months`, `Weeks`, `Days`, `Weekdays`, `Hours`, `Minutes`, `Seconds`
 
 Each interval type follows a consistent pattern:
+
 - Constructor from components (e.g., `Day(2025, 1, 15)`)
 - `from_moment()` class method
 - `next`/`previous` properties for navigation
 - Navigation to related intervals (e.g., `day.month`, `month.days()`)
 
 **Day-related Classes**: Three distinct classes represent 24-hour periods:
+
 - `Day(year, month, day)` - Gregorian calendar dates
 - `OrdinalDay(year, ordinal_day)` - Day-of-year numbering (1-366)
 - `Weekday(year, week, week_day)` - ISO 8601 week dates (1=Monday, 7=Sunday)

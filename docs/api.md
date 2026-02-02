@@ -11,6 +11,7 @@ The foundational building blocks of when-exactly:
 - **[Interval](api/interval.md)** - A continuous span of time between two moments
 - **[Collection](api/collection.md)** - A sorted, deduplicated collection of intervals
 - **[Custom Interval](api/custom-interval.md)** - A base class for defining custom intervals
+
 ## Intervals
 
 Time intervals representing specific durations:

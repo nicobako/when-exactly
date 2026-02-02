@@ -35,6 +35,7 @@ class Interval:
 
         ```
     """
+
     start: Moment
     stop: Moment
 

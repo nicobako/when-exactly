@@ -37,6 +37,7 @@ class Collection[T: Interval]:
 
         ```
     """
+
     @final
     def __init__(self, values: Iterable[T]) -> None:
         """Initialize a Collection with the given intervals.
